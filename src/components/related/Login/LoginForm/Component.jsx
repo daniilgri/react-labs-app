@@ -3,18 +3,14 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import { Wrapper, Label, Input, SubmitButton } from "./styles";
 
-const Component = ({ signUpRequested }) => {
+const Component = ({ signInRequested }) => {
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      confirmPassword: "",
     },
     onSubmit: (values) => {
-      signUpRequested({
-        email: values.email,
-        password: values.password,
-      });
+      signInRequested(values);
     },
   });
 
@@ -38,26 +34,17 @@ const Component = ({ signUpRequested }) => {
         onChange={formik.handleChange}
         value={formik.values.password}
       />
-      <Label htmlFor="confirmPassword">Confirm password*</Label>
-      <Input
-        id="confirmPassword"
-        name="confirmPassword"
-        placeholder="confirmPassword"
-        type="confirmPassword"
-        onChange={formik.handleChange}
-        value={formik.values.confirmPassword}
-      />
-      <SubmitButton type="submit">Sign up</SubmitButton>
+      <SubmitButton type="submit">Sign in</SubmitButton>
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
-  signUpRequested: () => {},
+  signInRequested: () => {},
 };
 
 Component.propTypes = {
-  signUpRequested: PropTypes.func.isRequired,
+  signInRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

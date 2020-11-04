@@ -2,27 +2,28 @@ import { handleActions } from "redux-actions";
 import produce from "immer";
 
 import {
-  fetchFilmsInitialRequested,
-  fetchFilmsInitialFailed,
-  fetchFilmsInitialSucceed,
+  fetchFilmByIdFailed,
+  fetchFilmByIdRequested,
+  fetchFilmByIdSucceed,
 } from "../actions/filmsActions";
 
 const initialState = {
   loading: false,
   error: "",
-  films: [],
+  film: {},
 };
 
 const filmsBoard = handleActions(
   {
-    [fetchFilmsInitialRequested]: produce((state) => {
+    [fetchFilmByIdRequested]: produce((state) => {
       state.loading = true;
     }),
-    [fetchFilmsInitialSucceed]: produce((state, { payload }) => {
+    [fetchFilmByIdSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      state.films = payload;
+      console.log(payload);
+      state.film = payload;
     }),
-    [fetchFilmsInitialFailed]: produce((state, { payload: { message } }) => {
+    [fetchFilmByIdFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
       state.error = message;
     }),

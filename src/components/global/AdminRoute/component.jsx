@@ -1,15 +1,15 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) =>
-        false ? <Component {...props} /> : <Redirect to="/login" />
+        false && false ? <Component {...props} /> : <Redirect to="/" />
       }
     />
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

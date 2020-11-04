@@ -3,24 +3,27 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
-import { Wrapper, Pending } from "./styles";
+import { Wrapper, Loading } from "./styles";
 
 const Component = ({ loading, fetchFilmsInitialRequested, films, error }) => {
   useEffect(() => {
     fetchFilmsInitialRequested({ count: 25 });
   }, []);
 
+  let content;
+
   if (loading) {
-    return <Pending>Loading</Pending>;
+    content = <Loading>Loading</Loading>;
+  } else {
+    content =
+      films.length > 0 ? (
+        films.map((item) => <Card key={uuidv4()} film={item} />)
+      ) : (
+        <Loading>Empty</Loading>
+      );
   }
 
-  return (
-    <Wrapper>
-      {films.map((item) => (
-        <Card key={uuidv4()} film={item} />
-      ))}
-    </Wrapper>
-  );
+  return <Wrapper>{content}</Wrapper>;
 };
 
 Component.defaultProps = {

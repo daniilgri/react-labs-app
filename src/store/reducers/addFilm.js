@@ -20,9 +20,9 @@ const addFilm = handleActions(
     [addFilmSucceed]: produce((state) => {
       state.loading = false;
     }),
-    [addFilmFailed]: produce((state, { payload }) => {
+    [addFilmFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
-      state.error = payload;
+      state.error = message;
     }),
   },
   initialState

@@ -1,11 +1,17 @@
 import { call, put } from "redux-saga/effects";
 
-import { signUpAPI, signInAPI } from "../../services/authAPI";
+import {
+  signUpAPI,
+  signInAPI,
+  authCurrentUserAPI,
+} from "../../services/authAPI";
 import {
   signUpSucceed,
   signUpFailed,
   signInSucceed,
   signInFailed,
+  authCurrentUserSucceed,
+  authCurrentUserFailed,
 } from "../actions/authActions";
 
 export function* signUp({ payload }) {
@@ -23,5 +29,14 @@ export function* signIn({ payload }) {
     yield put(signInSucceed(data));
   } catch (error) {
     yield put(signInFailed(error));
+  }
+}
+
+export function* authCurrentUser() {
+  try {
+    const data = yield call(authCurrentUserAPI);
+    yield put(authCurrentUserSucceed(data));
+  } catch (error) {
+    yield put(authCurrentUserFailed(error));
   }
 }

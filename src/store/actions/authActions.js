@@ -25,3 +25,10 @@ export const signInFailed = createAction(
   "@AUTH/SIGN_IN_FAILED",
   (payload) => payload
 );
+
+export const authCurrentUserSucceed = createAction(
+  "@AUTH/AUTH_CURRENT_USER_SUCCEED"
+);
+export const authCurrentUserFailed = createAction(
+  "@AUTH/AUTH/CURRENT_USER_FAILED"
+);

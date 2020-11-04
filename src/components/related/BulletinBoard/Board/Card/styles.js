@@ -11,6 +11,7 @@ export const Wrapper = styled(Link)`
   display: flex;
   align-items: flex-end;
   text-decoration: none;
+  box-shadow: 5px 10px 60px rgba(170, 111, 81, 0.1);
 `;
 
 export const BottomInfo = styled.div`

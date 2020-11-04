@@ -11,6 +11,7 @@ import Signup from "../pages/Signup";
 import Error404 from "../pages/Error404";
 import NewFilm from "../pages/admin/NewFilm";
 import FilmCard from "../pages/FilmCard";
+import Orders from "../pages/Orders";
 
 import { Wrapper, GlobalStyle } from "./styles";
 
@@ -18,7 +19,8 @@ const component = () => (
   <Wrapper>
     <GlobalStyle />
     <Switch>
-      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute exact path="/profile" component={Profile} />
+      <PrivateRoute path="/profile/orders" component={Orders} />
       <PublicRoute
         restricted={false}
         exact

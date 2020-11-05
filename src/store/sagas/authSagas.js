@@ -10,7 +10,6 @@ import {
   signUpFailed,
   signInSucceed,
   signInFailed,
-  authCurrentUserSucceed,
   authCurrentUserFailed,
 } from "../actions/authActions";
 
@@ -32,10 +31,9 @@ export function* signIn({ payload }) {
   }
 }
 
-export function* authCurrentUser() {
+export function* authCurrentUser(dispatch) {
   try {
-    const data = yield call(authCurrentUserAPI);
-    yield put(authCurrentUserSucceed(data));
+    yield call(authCurrentUserAPI, dispatch);
   } catch (error) {
     yield put(authCurrentUserFailed(error));
   }

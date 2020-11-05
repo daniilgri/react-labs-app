@@ -7,8 +7,7 @@ import {
   ScreeningDate,
   CancelButton,
 } from "./styles";
-
-const component = ({ value }) => (
+const component = () => (
   <Wrapper>
     <Image src="https://picsum.photos/800/1200" />
     <InfoSection>

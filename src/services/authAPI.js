@@ -1,4 +1,5 @@
 import { auth } from "./firestore";
+import { authCurrentUserSucceed } from "../store/actions/authActions";
 
 export const signUpAPI = async (payload) => {
   return await auth.createUserWithEmailAndPassword(
@@ -19,6 +20,9 @@ export const updatePasswordAPI = async (payload) => {
   await auth.currentUser.updatePassword(payload.newPassword);
 };
 
-export const authCurrentUserAPI = () => {
+export const authCurrentUserAPI = (dispatch) => {
+  auth.onAuthStateChanged((user) => {
+    dispatch(authCurrentUserSucceed(user));
+  });
   return auth.currentUser;
 };

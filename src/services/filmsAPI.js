@@ -1,10 +1,12 @@
 import { db, storage } from "./firestore";
 
 export const addFilmAPI = async (payload) => {
-  const newFilm = await db.collection("films").doc().set({
+  const newFilmDoc = db.collection("films").doc();
+  await newFilmDoc.set({
     title: payload.title,
     description: payload.description,
     ticketPrice: payload.ticketPrice,
+    image: "",
   });
 
   const uploadTask = storage
@@ -24,8 +26,12 @@ export const addFilmAPI = async (payload) => {
         .ref("images")
         .child(payload.imageAsFile.name)
         .getDownloadURL()
-        .then((fireBaseUrl) => {
-          console.log(fireBaseUrl);
+        .then((imageUrl) => {
+          console.log(newFilmDoc.id);
+          console.log(imageUrl);
+          newFilmDoc.update({
+            image: imageUrl,
+          });
         });
     }
   );

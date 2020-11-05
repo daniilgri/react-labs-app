@@ -9,7 +9,8 @@ import BulletinBoard from "../pages/BulletinBoard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Error404 from "../pages/Error404";
-import NewFilm from "../pages/admin/NewFilm";
+import { default as NewFilmAdminPanel } from "../pages/admin/NewFilm";
+import { default as FilmsAdminPanel } from "../pages/admin/Films";
 import FilmCard from "../pages/FilmCard";
 import Orders from "../pages/Orders";
 
@@ -30,7 +31,13 @@ const component = () => (
       <PublicRoute restricted={false} path="/film/:id" component={FilmCard} />
       <PublicRoute restricted={true} path="/login" component={Login} />
       <PublicRoute restricted={true} path="/signup" component={Signup} />
-      <Route path="/admin/films/new" component={NewFilm} />
+      <PublicRoute
+        exact
+        restricted={false}
+        path="/admin/films"
+        component={FilmsAdminPanel}
+      />
+      <Route path="/admin/films/new" component={NewFilmAdminPanel} />
       <Route component={Error404} />
     </Switch>
   </Wrapper>

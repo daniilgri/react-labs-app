@@ -22,6 +22,7 @@ const addFilm = handleActions(
     }),
     [addFilmFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
+      console.log(message);
       state.error = message;
     }),
   },

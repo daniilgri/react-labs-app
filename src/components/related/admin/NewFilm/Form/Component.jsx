@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
@@ -6,17 +6,27 @@ import { useFormik } from "formik";
 import { Wrapper, Form, Label, Input, PublishButton } from "./styles";
 
 const Component = ({ addFilmRequested, history }) => {
+  const [imageAsFile, setImageAsFile] = useState("");
+
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
       ticketPrice: 0,
+      imageAsFile: "",
     },
     onSubmit: (values) => {
+      console.log(values);
+
       addFilmRequested(values);
       history.push("/");
     },
   });
+
+  const handleImageUpload = (event) => {
+    event.preventDefault();
+    formik.setFieldValue("imageAsFile", event.currentTarget.files[0]);
+  };
 
   return (
     <Wrapper>
@@ -48,6 +58,15 @@ const Component = ({ addFilmRequested, history }) => {
           onChange={formik.handleChange}
           value={formik.values.ticketPrice}
         />
+
+        <Label htmlFor="image">Image</Label>
+        <Input
+          id="image"
+          name="image"
+          type="file"
+          onChange={handleImageUpload}
+        />
+
         <PublishButton type="submit">Publish</PublishButton>
       </Form>
     </Wrapper>

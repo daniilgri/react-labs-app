@@ -25,13 +25,12 @@ export const Title = styled.h2`
 export const FieldsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
 `;
 
 export const Field = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const ErrorText = styled.label`
@@ -54,6 +53,7 @@ export const Input = styled.input`
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+  margin-top: 5px;
 
   width: 360px;
   height: 55px;
@@ -70,7 +70,6 @@ export const Label = styled.label`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin-right: 10px;
 `;
 
 export const FilledButton = styled.button`

@@ -25,7 +25,7 @@ export const OptionTitle = styled.h5`
 
 export const OptionList = styled.ul`
   list-style: none;
-  margin: 10px 0;
+  margin: 30px 0;
   padding: 0;
 `;
 

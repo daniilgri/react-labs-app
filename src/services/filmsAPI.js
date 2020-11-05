@@ -1,11 +1,34 @@
-import { db } from "./firestore";
+import { db, storage } from "./firestore";
 
 export const addFilmAPI = async (payload) => {
-  await db.collection("films").doc().set({
+  const newFilm = await db.collection("films").doc().set({
     title: payload.title,
     description: payload.description,
     ticketPrice: payload.ticketPrice,
   });
+
+  const uploadTask = storage
+    .ref(`/images/${payload.imageAsFile.name}`)
+    .put(payload.imageAsFile);
+
+  uploadTask.on(
+    "state_changed",
+    (snapShot) => {
+      console.log(snapShot);
+    },
+    (err) => {
+      console.log(err);
+    },
+    () => {
+      storage
+        .ref("images")
+        .child(payload.imageAsFile.name)
+        .getDownloadURL()
+        .then((fireBaseUrl) => {
+          console.log(fireBaseUrl);
+        });
+    }
+  );
 };
 
 export const getFilmsInitialAPI = async (payload) => {

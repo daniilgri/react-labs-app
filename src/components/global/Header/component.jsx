@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { faBars, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -20,6 +20,8 @@ const Component = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeProfileSelect, setActiveProfileSelect] = useState(false);
 
+  const profileSelectRef = useRef(null);
+
   const handleMenuToggleOnClick = (event) => {
     setActiveMenu((prevState) => !prevState);
   };
@@ -27,6 +29,27 @@ const Component = () => {
   const handleProfileSelectOnClick = (event) => {
     setActiveProfileSelect((prevState) => !prevState);
   };
+
+  const handleClickOutside = (event) => {
+    if (
+      activeProfileSelect &&
+      profileSelectRef.current &&
+      !profileSelectRef.current.contains(event.target)
+    ) {
+      setActiveProfileSelect(false);
+    }
+  };
+
+  const handleDefaultCloseOptionOnClick = (event) => {
+    setActiveProfileSelect(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   return (
     <Wrapper role="custom-dropdown">
@@ -38,22 +61,19 @@ const Component = () => {
         <MenuItem>
           <StyledNavLink to="/">All films</StyledNavLink>
         </MenuItem>
-        <MenuItem>
-          <StyledNavLink to="/test">Test</StyledNavLink>
-        </MenuItem>
       </Menu>
-      <Select active={activeMenu}>
+      <Select active={activeMenu} ref={profileSelectRef}>
         <SelectIcon onClick={handleProfileSelectOnClick}>
           <FontAwesomeIcon icon={faUserCircle} />
         </SelectIcon>
         <OptionsList active={activeProfileSelect}>
-          <Option>
+          <Option onClick={handleDefaultCloseOptionOnClick}>
             <StyledLink to="/profile">Profile</StyledLink>
           </Option>
-          <Option>
+          <Option onClick={handleDefaultCloseOptionOnClick}>
             <StyledLink to="/profile/orders">Orders</StyledLink>
           </Option>
-          <Option>Sign out</Option>
+          <Option onClick={handleDefaultCloseOptionOnClick}>Sign out</Option>
           {/* Login or sign up links */}
         </OptionsList>
       </Select>

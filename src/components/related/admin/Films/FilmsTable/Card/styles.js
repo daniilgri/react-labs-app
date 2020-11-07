@@ -25,15 +25,17 @@ export const Title = styled.h4`
 
 export const ScreeningDate = styled.p``;
 
-export const CancelButton = styled.button`
+export const Controllers = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   border: 0;
   outline: none;
 
-  color: red;
+  color: ${({ color }) => color};
 
   cursor: pointer;
-  &:hover {
-    color: #ff6868;
-  }
 `;

@@ -9,10 +9,14 @@ import BulletinBoard from "../pages/BulletinBoard";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Error404 from "../pages/Error404";
-import { default as NewFilmAdminPanel } from "../pages/admin/NewFilm";
-import { default as FilmsAdminPanel } from "../pages/admin/Films";
 import FilmCard from "../pages/FilmCard";
 import Orders from "../pages/Orders";
+
+import { default as UsersAdminPanel } from "../pages/admin/Users";
+import { default as NewFilmAdminPanel } from "../pages/admin/NewFilm";
+import { default as FilmsAdminPanel } from "../pages/admin/Films";
+import { default as FilmCardAdminPanel } from "../pages/admin/FilmCard";
+import { default as EditFilmAdminPanel } from "../pages/admin/EditFilm";
 
 import { Wrapper, GlobalStyle } from "./styles";
 
@@ -31,13 +35,13 @@ const component = () => (
       <PublicRoute restricted={false} path="/film/:id" component={FilmCard} />
       <PublicRoute restricted={true} path="/login" component={Login} />
       <PublicRoute restricted={true} path="/signup" component={Signup} />
-      <PublicRoute
-        exact
-        restricted={false}
-        path="/admin/films"
-        component={FilmsAdminPanel}
-      />
+
+      <Route exact path="/admin/films" component={FilmsAdminPanel} />
       <Route path="/admin/films/new" component={NewFilmAdminPanel} />
+      <Route path="/admin/users" component={UsersAdminPanel} />
+      <Route path="/admin/film/:id" component={FilmCardAdminPanel} />
+      <Route path="/admin/film/edit/:id" component={EditFilmAdminPanel} />
+
       <Route component={Error404} />
     </Switch>
   </Wrapper>

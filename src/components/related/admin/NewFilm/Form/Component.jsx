@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
-import { Wrapper, Form, Label, Input, PublishButton } from "./styles";
+import DescriptionSection from "./DescriptionSection";
+import MediaSection from "./MediaSection";
+import FormalSection from "./FormalSection";
 
-const Component = ({ addFilmRequested, history }) => {
-  const [imageAsFile, setImageAsFile] = useState("");
+import { Wrapper, Head, Title, Body, FilledButton } from "./styles";
 
+const Component = ({
+  addFilmRequested,
+  history,
+  openAddScreeningDateModal,
+}) => {
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
       ticketPrice: 0,
       imageAsFile: "",
+      tags: [],
+      screeningDates: [],
     },
     onSubmit: (values) => {
       console.log(values);
@@ -28,57 +36,85 @@ const Component = ({ addFilmRequested, history }) => {
     formik.setFieldValue("imageAsFile", event.currentTarget.files[0]);
   };
 
+  const handleTagAddition = (tag) => {
+    formik.setFieldValue("tags", [...formik.values.tags, tag]);
+  };
+
+  const handleTagDelete = (i) => {
+    formik.setFieldValue(
+      "tags",
+      formik.values.tags.filter((tag, index) => index !== i)
+    );
+  };
+
+  const handleTagDrag = (tag, currPos, newPos) => {
+    const { tags } = formik.values;
+    const newTags = tags.slice();
+
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
+
+    formik.setFieldValue("tags", newTags);
+  };
+
+  const handleScreeningDateAddition = (screeningDate) => {
+    formik.setFieldValue("screeningDates", [
+      ...formik.values.screeningDates,
+      screeningDate,
+    ]);
+  };
+
+  const handleScreeningDateDelete = (screeningDate) => {
+    formik.setFieldValue(
+      "screeningDates",
+      formik.values.screeningDates.filter(
+        (sd) => sd.date !== screeningDate.date
+      )
+    );
+  };
+
   return (
-    <Wrapper>
-      <Form onSubmit={formik.handleSubmit}>
-        <Label htmlFor="title">Title</Label>
-        <Input
-          id="title"
-          name="title"
-          placeholder="title"
-          type="text"
+    <Wrapper onSubmit={formik.handleSubmit}>
+      <Head>
+        <Title>Add new film</Title>
+      </Head>
+      <Body>
+        <DescriptionSection
+          values={formik.values}
+          errors={formik.errors}
           onChange={formik.handleChange}
-          value={formik.values.title}
+          onTagAdd={handleTagAddition}
+          onTagDelete={handleTagDelete}
+          onTagDrag={handleTagDrag}
         />
-        <Label htmlFor="description">Description</Label>
-        <Input
-          id="description"
-          name="description"
-          placeholder="description"
-          type="text"
+        <MediaSection
+          errors={formik.errors}
+          onImageUpload={handleImageUpload}
+        />
+        <FormalSection
+          values={formik.values}
+          errors={formik.errors}
           onChange={formik.handleChange}
-          value={formik.values.description}
+          onAddScreeningDateModalOpen={openAddScreeningDateModal}
+          onScreeningDateAdd={handleScreeningDateAddition}
+          onScreeningDateDelete={handleScreeningDateDelete}
         />
-        <Label htmlFor="ticketPrice">Ticket price</Label>
-        <Input
-          id="ticketPrice"
-          name="ticketPrice"
-          placeholder="price"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.ticketPrice}
-        />
+      </Body>
 
-        <Label htmlFor="image">Image</Label>
-        <Input
-          id="image"
-          name="image"
-          type="file"
-          onChange={handleImageUpload}
-        />
-
-        <PublishButton type="submit">Publish</PublishButton>
-      </Form>
+      <FilledButton type="submit">Publish</FilledButton>
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
   addFilmRequested: () => {},
+  openAddScreeningDateModal: () => {},
 };
 
 Component.propTypes = {
   addFilmRequested: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  openAddScreeningDateModal: PropTypes.func.isRequired,
 };
 
 export default withRouter(Component);

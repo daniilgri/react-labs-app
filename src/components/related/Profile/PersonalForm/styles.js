@@ -24,6 +24,7 @@ export const Title = styled.h2`
   line-height: 40px;
   text-transform: uppercase;
   padding-bottom: 11px;
+  margin-top: 0;
 `;
 
 export const Body = styled.div`

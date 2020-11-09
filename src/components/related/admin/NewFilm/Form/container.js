@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { addFilmRequested } from "../../../../../store/actions/filmsActions";
+import { openModal as openAddScreeningDateModal } from "../../../../../store/actions/addScreeningDateModalActions";
 import Component from "./Component";
 
 const mapStateToProps = (state) => ({
@@ -10,7 +11,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({ addFilmRequested }, dispatch),
+  ...bindActionCreators(
+    { addFilmRequested, openAddScreeningDateModal },
+    dispatch
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

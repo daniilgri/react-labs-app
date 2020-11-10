@@ -7,7 +7,6 @@ export const Wrapper = styled.nav`
   width: 100%;
   position: relative;
   padding: 10px 0;
-  margin-bottom: 40px;
 
   @media ${device.laptop} {
     display: flex;
@@ -16,12 +15,14 @@ export const Wrapper = styled.nav`
 `;
 
 export const LogoWrapper = styled.a`
-  font-size: 36px;
-  line-height: 51px;
-
   margin: 0 2%;
 
   color: #aa6f51;
+  font-family: Rozha One;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 51px;
 `;
 
 export const Menu = styled.ul`
@@ -44,6 +45,14 @@ export const MenuItem = styled.li`
   width: 100%;
   cursor: pointer;
 
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+
+  text-transform: uppercase;
+
   @media ${device.laptop} {
     margin-right: 15px;
     width: auto;
@@ -61,9 +70,13 @@ export const StyledNavLink = styled(NavLink).attrs({
 })`
   text-decoration: none;
 
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 20px;
 
+  text-transform: uppercase;
   @media ${device.mobileS} {
     color: #000;
     &.${activeClassName} {
@@ -132,27 +145,37 @@ export const OptionsList = styled.ul`
   padding: 0;
   display: none;
 
-  width: 100%;
+  width: auto;
 
   ${({ active }) => active && `display: block;`};
 
   @media ${device.laptop} {
     position: absolute;
     top: 100%;
-    right: 100%;
+    right: 0;
     box-shadow: 5px 10px 60px rgba(170, 111, 81, 0.1);
   }
 `;
 
 export const Option = styled.li`
   cursor: pointer;
-  text-align: center;
-  padding: 15px 0;
 
+  padding: 15px;
+
+  text-align: center;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+  text-transform: uppercase;
+
+  white-space: nowrap;
 
   @media ${device.laptop} {
+    &:hover {
+      background-color: #f5f5f5;
+    }
   }
 `;
 

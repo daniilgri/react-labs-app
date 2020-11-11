@@ -1,11 +1,21 @@
-import { auth } from "./firestore";
+import { auth, db } from "./firestore";
 import { authCurrentUserSucceed } from "../store/actions/authActions";
 
 export const signUpAPI = async (payload) => {
-  return await auth.createUserWithEmailAndPassword(
+  const registeredUser = await auth.createUserWithEmailAndPassword(
     payload.email,
     payload.password
   );
+
+  await db.collection("users").doc().set({
+    uid: registeredUser.user.uid,
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    requestOnDelete: false,
+    role: "guest",
+  });
+
+  return {};
 };
 
 export const signInAPI = async (payload) => {

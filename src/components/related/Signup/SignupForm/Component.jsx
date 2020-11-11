@@ -23,11 +23,9 @@ const Component = ({ signUpRequested, history }) => {
       password: "",
       confirmPassword: "",
     },
-    onSubmit: (values) => {
-      signUpRequested({
-        email: values.email,
-        password: values.password,
-      });
+    onSubmit: (values, { resetForm }) => {
+      signUpRequested(values);
+      resetForm();
       history.push("/");
     },
   });

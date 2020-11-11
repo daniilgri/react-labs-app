@@ -7,6 +7,9 @@ export const addFilmAPI = async (payload) => {
     description: payload.description,
     ticketPrice: payload.ticketPrice,
     image: "",
+    tags: payload.tags,
+    screeningDates: payload.screeningDates,
+    rate: 0,
   });
 
   const uploadTask = storage

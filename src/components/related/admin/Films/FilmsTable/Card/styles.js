@@ -11,7 +11,6 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #f3f3f3;
-
   min-height: 250px;
 `;
 
@@ -20,7 +19,7 @@ export const InfoSection = styled.div`
 `;
 
 export const Title = styled.h4`
-  margin: 0;
+  margin: 0 0 40px 0;
 `;
 
 export const ScreeningDate = styled.p``;

@@ -1,7 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { WithContext as ReactTags } from "react-tag-input";
+import Tags from "./Tags";
 
 import {
   Wrapper,
@@ -16,21 +15,8 @@ import {
   Textarea,
 } from "./styles";
 
-const Component = ({
-  onChange,
-  values,
-  errors,
-  onTagAdd,
-  onTagDelete,
-  onTagDrag,
-}) => {
-  const KeyCodes = {
-    comma: 188,
-    enter: 13,
-  };
-
-  const delimiters = [KeyCodes.comma, KeyCodes.enter];
-
+const Component = ({ onChange, values, errors, onTagAdd, onTagDelete }) => {
+  console.log(values.tags);
   return (
     <Wrapper>
       <Head>
@@ -62,15 +48,7 @@ const Component = ({
           {errors.description && <ErrorText>{errors.description}</ErrorText>}
         </Field>
         <TagsField>
-          <ReactTags
-            tags={values.tags}
-            handleDelete={onTagDelete}
-            handleAddition={onTagAdd}
-            handleDrag={onTagDrag}
-            delimiters={delimiters}
-            name="tags"
-            id="tags"
-          />
+          <Tags onSet={onTagAdd} onDelete={onTagDelete} values={values.tags} />
         </TagsField>
       </Body>
     </Wrapper>
@@ -81,12 +59,16 @@ Component.defaultProps = {
   onChange: () => {},
   values: {},
   errors: {},
+  onTagAdd: () => {},
+  onTagDelete: () => {},
 };
 
 Component.propTypes = {
   onChange: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  onTagAdd: PropTypes.func.isRequired,
+  onTagDelete: PropTypes.func.isRequired,
 };
 
-export default withRouter(Component);
+export default Component;

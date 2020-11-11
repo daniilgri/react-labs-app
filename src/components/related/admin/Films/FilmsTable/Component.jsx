@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 
-import { Wrapper } from "./styles";
+import { Wrapper, Loading } from "./styles";
 
-const Component = () => {
-  const films = React.useState([1, 2, 3, 4, 5]);
+const Component = ({
+  loading,
+  fetchFilmsAdminPanelInitialRequested,
+  films,
+  error,
+}) => {
+  useEffect(() => {
+    fetchFilmsAdminPanelInitialRequested({ count: 25 });
+  }, []);
 
-  return (
-    <Wrapper>
-      {films.map((film) => (
-        <Card key={uuidv4()} value={film} />
-      ))}
-    </Wrapper>
-  );
+  let content;
+
+  if (loading) {
+    content = <Loading>Loading</Loading>;
+  } else {
+    content =
+      films.length > 0 ? (
+        films.map((item) => <Card key={uuidv4()} film={item} />)
+      ) : (
+        <Loading>Empty</Loading>
+      );
+  }
+
+  return <Wrapper>{content}</Wrapper>;
+};
+
+Component.defaultProps = {
+  films: [],
+  loading: true,
+  error: "",
+  fetchFilmsAdminPanelInitialRequested: () => {},
+};
+
+Component.propTypes = {
+  films: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  fetchFilmsAdminPanelInitialRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

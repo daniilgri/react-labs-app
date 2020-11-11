@@ -36,27 +36,6 @@ const Component = ({
     formik.setFieldValue("imageAsFile", event.currentTarget.files[0]);
   };
 
-  const handleTagAddition = (tag) => {
-    formik.setFieldValue("tags", [...formik.values.tags, tag]);
-  };
-
-  const handleTagDelete = (i) => {
-    formik.setFieldValue(
-      "tags",
-      formik.values.tags.filter((tag, index) => index !== i)
-    );
-  };
-
-  const handleTagDrag = (tag, currPos, newPos) => {
-    const { tags } = formik.values;
-    const newTags = tags.slice();
-
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
-
-    formik.setFieldValue("tags", newTags);
-  };
-
   const handleScreeningDateAddition = (screeningDate) => {
     formik.setFieldValue("screeningDates", [
       ...formik.values.screeningDates,
@@ -73,8 +52,27 @@ const Component = ({
     );
   };
 
+  const handleTagAddition = (tag) => {
+    console.log(tag);
+    formik.setFieldValue("tags", [...formik.values.tags, tag]);
+    console.log(formik.values.tags);
+  };
+
+  const handleTagDelete = (tag) => {
+    formik.setFieldValue(
+      "tags",
+      formik.values.tags.filter((elTag) => elTag !== tag)
+    );
+  };
+
+  const handleFormOnKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   return (
-    <Wrapper onSubmit={formik.handleSubmit}>
+    <Wrapper onKeyDown={handleFormOnKeyDown} onSubmit={formik.handleSubmit}>
       <Head>
         <Title>Add new film</Title>
       </Head>
@@ -85,7 +83,6 @@ const Component = ({
           onChange={formik.handleChange}
           onTagAdd={handleTagAddition}
           onTagDelete={handleTagDelete}
-          onTagDrag={handleTagDrag}
         />
         <MediaSection
           errors={formik.errors}

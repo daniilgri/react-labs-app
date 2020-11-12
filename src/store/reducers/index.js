@@ -6,6 +6,7 @@ import auth from "./auth";
 import filmCard from "./filmCard";
 import addScreeningDateModal from "./addScreeningDateModal";
 import filmsAdminPanel from "./filmsAdminPanel";
+import usersAdminPanel from "./usersAdminPanel";
 
 export default combineReducers({
   addFilm,
@@ -14,4 +15,5 @@ export default combineReducers({
   filmCard,
   addScreeningDateModal,
   filmsAdminPanel,
+  usersAdminPanel,
 });

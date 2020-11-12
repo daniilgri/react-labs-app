@@ -16,11 +16,9 @@ const initialState = {
 const filmsAdminPanel = handleActions(
   {
     [fetchFilmsAdminPanelInitialRequested]: produce((state) => {
-      console.log("false");
       state.loading = true;
     }),
     [fetchFilmsAdminPanelInitialSucceed]: produce((state, { payload }) => {
-      console.log("lol");
       state.loading = false;
 
       state.films = payload;

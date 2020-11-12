@@ -54,4 +54,8 @@ export const FilledButton = styled.button`
   padding: 10px 20px;
 
   cursor: pointer;
+
+  &:disabled {
+    background-color: #f85d4b1a;
+  }
 `;

@@ -25,7 +25,7 @@ const Component = ({
       <FilmBox
         title={film.title}
         description={film.description}
-        imageSrc="https://picsum.photos/900/1400"
+        imageSrc={film.imageAsFile}
       />
       <TicketBox />
     </Wrapper>

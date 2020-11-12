@@ -7,8 +7,10 @@ import {
   fetchFilmsInitialRequested,
 } from "../actions/filmsActions";
 import { fetchFilmsAdminPanelInitialRequested } from "../actions/filmsAdminPanelActions";
+import { fetchUsersAdminPanelInitialRequested } from "../actions/usersAdminPanelActions";
 
 import { addFilm, fetchFilmsInitial, fetchFilmById } from "./filmsSagas";
+import { fetchUsersAdminPanelInitial } from "./usersAdminPanel";
 import { signUp, signIn, authCurrentUser } from "./authSagas";
 import { fetchFilmsAdminPanelInitial } from "./filmsAdminPanel";
 
@@ -26,6 +28,10 @@ function* rootSaga() {
     yield takeLatest(
       fetchFilmsAdminPanelInitialRequested,
       fetchFilmsAdminPanelInitial
+    ),
+    yield takeLatest(
+      fetchUsersAdminPanelInitialRequested,
+      fetchUsersAdminPanelInitial
     ),
   ]);
 }

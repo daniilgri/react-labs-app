@@ -1,6 +1,10 @@
 import { takeLatest, all, fork } from "redux-saga/effects";
 
-import { signUpRequested, signInRequested } from "../actions/authActions";
+import {
+  signUpRequested,
+  signInRequested,
+  signOutRequested,
+} from "../actions/authActions";
 import {
   addFilmRequested,
   fetchFilmByIdRequested,
@@ -11,7 +15,7 @@ import { fetchUsersAdminPanelInitialRequested } from "../actions/usersAdminPanel
 
 import { addFilm, fetchFilmsInitial, fetchFilmById } from "./filmsSagas";
 import { fetchUsersAdminPanelInitial } from "./usersAdminPanel";
-import { signUp, signIn, authCurrentUser } from "./authSagas";
+import { signUp, signIn, authCurrentUser, signOut } from "./authSagas";
 import { fetchFilmsAdminPanelInitial } from "./filmsAdminPanel";
 
 function* rootSaga() {
@@ -24,6 +28,7 @@ function* rootSaga() {
 
     yield takeLatest(signUpRequested, signUp),
     yield takeLatest(signInRequested, signIn),
+    yield takeLatest(signOutRequested, signOut),
 
     yield takeLatest(
       fetchFilmsAdminPanelInitialRequested,

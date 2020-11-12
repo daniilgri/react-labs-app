@@ -4,6 +4,7 @@ import {
   signUpAPI,
   signInAPI,
   getAuthChannelAPI,
+  signOutAPI,
 } from "../../services/authAPI";
 import {
   signUpSucceed,
@@ -12,6 +13,9 @@ import {
   signInFailed,
   authCurrentUserFailed,
   authCurrentUserSucceed,
+  authCurrentUserRequested,
+  signOutFailed,
+  signOutSucceed,
 } from "../actions/authActions";
 
 export function* signUp({ payload }) {
@@ -32,8 +36,19 @@ export function* signIn({ payload }) {
   }
 }
 
+export function* signOut() {
+  try {
+    yield call(signOutAPI);
+    yield put(signOutSucceed());
+  } catch (error) {
+    yield put(signOutFailed());
+  }
+}
+
 export function* authCurrentUser() {
   try {
+    yield put(authCurrentUserRequested());
+
     const authChannel = yield call(getAuthChannelAPI);
 
     while (true) {

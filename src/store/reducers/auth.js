@@ -10,6 +10,9 @@ import {
   authCurrentUserFailed,
   authCurrentUserSucceed,
   authCurrentUserRequested,
+  signOutFailed,
+  signOutRequested,
+  signOutSucceed,
 } from "../actions/authActions";
 
 const initialState = { loading: false, user: null, error: "" };
@@ -40,6 +43,20 @@ const auth = handleActions(
       state.error = message;
     }),
 
+    [signOutRequested]: produce((state) => {
+      state.loading = true;
+    }),
+    [signOutSucceed]: produce((state) => {
+      state.loading = false;
+    }),
+    [signOutFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
+
+    [authCurrentUserRequested]: produce((state, { payload }) => {
+      state.loading = true;
+    }),
     [authCurrentUserSucceed]: produce((state, { payload }) => {
       state.loading = false;
       state.user = payload;

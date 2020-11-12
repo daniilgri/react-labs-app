@@ -27,8 +27,22 @@ export const signInFailed = createAction(
 );
 
 export const authCurrentUserSucceed = createAction(
-  "@AUTH/AUTH_CURRENT_USER_SUCCEED"
+  "@AUTH/AUTH_CURRENT_USER_SUCCEED",
+  (payload) => payload
 );
 export const authCurrentUserFailed = createAction(
-  "@AUTH/AUTH/CURRENT_USER_FAILED"
+  "@AUTH/AUTH_CURRENT_USER_FAILED",
+  (payload) => payload
+);
+export const authCurrentUserRequested = createAction(
+  "@AUTH/AUTH_CURRENT_USER_REQUESTED"
+);
+
+export const signOutRequested = createAction("@AUTH/SIGN_OUT_REQUESTED");
+
+export const signOutSucceed = createAction("@AUTH/SIGN_OUT_SUCCEED");
+
+export const signOutFailed = createAction(
+  "@AUTH/SIGN_OUT_FAILED",
+  (payload) => payload
 );

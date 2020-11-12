@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import PrivateRoute from "../components/global/PrivateRoute";
 import PublicRoute from "../components/global/PublicRoute";
+import AdminRoute from "../components/global/AdminRoute";
 
 import Profile from "../pages/Profile";
 import BulletinBoard from "../pages/BulletinBoard";
@@ -26,6 +27,7 @@ const component = () => (
     <Switch>
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute path="/profile/orders" component={Orders} />
+
       <PublicRoute
         restricted={false}
         exact
@@ -36,11 +38,11 @@ const component = () => (
       <PublicRoute restricted={true} path="/login" component={Login} />
       <PublicRoute restricted={true} path="/signup" component={Signup} />
 
-      <Route exact path="/admin/films" component={FilmsAdminPanel} />
-      <Route path="/admin/films/new" component={NewFilmAdminPanel} />
-      <Route path="/admin/users" component={UsersAdminPanel} />
-      <Route path="/admin/film/:id" component={FilmCardAdminPanel} />
-      <Route path="/admin/film/edit/:id" component={EditFilmAdminPanel} />
+      <AdminRoute exact path="/admin/films" component={FilmsAdminPanel} />
+      <AdminRoute path="/admin/films/new" component={NewFilmAdminPanel} />
+      <AdminRoute path="/admin/users" component={UsersAdminPanel} />
+      <AdminRoute path="/admin/film/:id" component={FilmCardAdminPanel} />
+      <AdminRoute path="/admin/film/edit/:id" component={EditFilmAdminPanel} />
 
       <Route component={Error404} />
     </Switch>

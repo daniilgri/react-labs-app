@@ -12,7 +12,7 @@ import {
   authCurrentUserRequested,
 } from "../actions/authActions";
 
-const initialState = { loading: false, user: {}, error: "" };
+const initialState = { loading: false, user: null, error: "" };
 
 const auth = handleActions(
   {
@@ -42,11 +42,11 @@ const auth = handleActions(
 
     [authCurrentUserSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      console.log(payload);
+      state.user = payload;
     }),
     [authCurrentUserFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
-      console.log(message);
+      state.error = message;
     }),
   },
   initialState

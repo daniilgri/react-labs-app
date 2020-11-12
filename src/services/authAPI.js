@@ -1,5 +1,5 @@
 import { auth, db } from "./firestore";
-import { authCurrentUserSucceed } from "../store/actions/authActions";
+import { eventChannel, END } from "redux-saga";
 
 export const signUpAPI = async (payload) => {
   const registeredUser = await auth.createUserWithEmailAndPassword(
@@ -30,9 +30,25 @@ export const updatePasswordAPI = async (payload) => {
   await auth.currentUser.updatePassword(payload.newPassword);
 };
 
-export const authCurrentUserAPI = (dispatch) => {
-  auth.onAuthStateChanged((user) => {
-    dispatch(authCurrentUserSucceed(user));
+export const getAuthChannelAPI = () => {
+  return eventChannel((emit) => {
+    return auth.onAuthStateChanged((user) => {
+      db.collection("users")
+        .where("uid", "==", user.uid)
+        .get()
+        .then((usersCollection) => {
+          const customUser = usersCollection.docs[0].data();
+          emit({
+            user: {
+              uid: user.uid,
+              email: user.email,
+              firstName: customUser.firstName,
+              lastName: customUser.lastName,
+              requestOnDelete: customUser.requestOnDelete,
+              role: customUser.role,
+            },
+          });
+        });
+    });
   });
-  return auth.currentUser;
 };

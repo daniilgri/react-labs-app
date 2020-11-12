@@ -1,9 +1,9 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, take } from "redux-saga/effects";
 
 import {
   signUpAPI,
   signInAPI,
-  authCurrentUserAPI,
+  getAuthChannelAPI,
 } from "../../services/authAPI";
 import {
   signUpSucceed,
@@ -11,6 +11,7 @@ import {
   signInSucceed,
   signInFailed,
   authCurrentUserFailed,
+  authCurrentUserSucceed,
 } from "../actions/authActions";
 
 export function* signUp({ payload }) {
@@ -31,9 +32,14 @@ export function* signIn({ payload }) {
   }
 }
 
-export function* authCurrentUser(dispatch) {
+export function* authCurrentUser() {
   try {
-    yield call(authCurrentUserAPI, dispatch);
+    const authChannel = yield call(getAuthChannelAPI);
+
+    while (true) {
+      const { user } = yield take(authChannel);
+      yield put(authCurrentUserSucceed(user));
+    }
   } catch (error) {
     yield put(authCurrentUserFailed(error));
   }

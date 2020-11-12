@@ -39,10 +39,32 @@ export const authCurrentUserRequested = createAction(
 );
 
 export const signOutRequested = createAction("@AUTH/SIGN_OUT_REQUESTED");
-
 export const signOutSucceed = createAction("@AUTH/SIGN_OUT_SUCCEED");
-
 export const signOutFailed = createAction(
   "@AUTH/SIGN_OUT_FAILED",
+  (payload) => payload
+);
+
+export const requestOnDeleteRequested = createAction(
+  "@AUTH/REQUEST_ON_DELETE_REQUESTED",
+  (payload) => payload
+);
+export const requestOnDeleteSucceed = createAction(
+  "@AUTH/REQUEST_ON_DELETE_SUCCEED"
+);
+export const requestOnDeleteFailed = createAction(
+  "@AUTH/REQUEST_ON_DELETE_FAILED",
+  (payload) => payload
+);
+
+export const cancelRequestOnDeleteRequested = createAction(
+  "@AUTH/CANCEL_REQUEST_ON_DELETE_REQUESTED",
+  (payload) => payload
+);
+export const cancelRequestOnDeleteSucceed = createAction(
+  "@AUTH/CANCEL_REQUEST_ON_DELETE_SUCCEED"
+);
+export const cancelRequestOnDeleteFailed = createAction(
+  "@AUTH/CANCEL_REQUEST_ON_DELETE_FAILED",
   (payload) => payload
 );

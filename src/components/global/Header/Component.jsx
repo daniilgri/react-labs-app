@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import { faBars, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,7 +17,7 @@ import {
   StyledLink,
 } from "./styles";
 
-const Component = () => {
+const Component = ({ user, loading, error, signOutRequested }) => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeProfileSelect, setActiveProfileSelect] = useState(false);
 
@@ -44,6 +45,12 @@ const Component = () => {
     setActiveProfileSelect(false);
   };
 
+  const handleSignOutOptionOnClick = (event) => {
+    event.preventDefault();
+    signOutRequested();
+    setActiveProfileSelect(false);
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -62,23 +69,51 @@ const Component = () => {
           <StyledNavLink to="/">All films</StyledNavLink>
         </MenuItem>
       </Menu>
-      <Select active={activeMenu} ref={profileSelectRef}>
-        <SelectIcon onClick={handleProfileSelectOnClick}>
-          <FontAwesomeIcon icon={faUserCircle} />
-        </SelectIcon>
-        <OptionsList active={activeProfileSelect}>
-          <Option onClick={handleDefaultCloseOptionOnClick}>
-            <StyledLink to="/profile">Profile</StyledLink>
-          </Option>
-          <Option onClick={handleDefaultCloseOptionOnClick}>
-            <StyledLink to="/profile/orders">Orders</StyledLink>
-          </Option>
-          <Option onClick={handleDefaultCloseOptionOnClick}>Sign out</Option>
-          {/* Login or sign up links */}
-        </OptionsList>
-      </Select>
+      {!loading && (
+        <Select active={activeMenu} ref={profileSelectRef}>
+          <SelectIcon onClick={handleProfileSelectOnClick}>
+            <FontAwesomeIcon icon={faUserCircle} />
+          </SelectIcon>
+          <OptionsList active={activeProfileSelect}>
+            {user ? (
+              <React.Fragment>
+                <Option onClick={handleDefaultCloseOptionOnClick}>
+                  <StyledLink to="/profile">Profile</StyledLink>
+                </Option>
+                <Option onClick={handleDefaultCloseOptionOnClick}>
+                  <StyledLink to="/profile/orders">Orders</StyledLink>
+                </Option>
+                <Option onClick={handleSignOutOptionOnClick}>Sign out</Option>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Option onClick={handleDefaultCloseOptionOnClick}>
+                  <StyledLink to="/login">Login</StyledLink>
+                </Option>
+                <Option onClick={handleDefaultCloseOptionOnClick}>
+                  <StyledLink to="/signup">Sign up</StyledLink>
+                </Option>
+              </React.Fragment>
+            )}
+          </OptionsList>
+        </Select>
+      )}
     </Wrapper>
   );
+};
+
+Component.defaultProps = {
+  user: null,
+  loading: false,
+  error: "",
+  signOutRequested: () => {},
+};
+
+Component.propTypes = {
+  user: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  signOutRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

@@ -21,6 +21,7 @@ export const Label = styled.p`
 
 export const Bold = styled.span`
   font-weight: 600;
+  margin: 0 4px;
 `;
 
 export const Input = styled.input`
@@ -52,7 +53,7 @@ export const FilledButton = styled.button`
   border-radius: 3px;
   border: 0;
   outline: none;
-  background-color: #f85d4b;
+  ${({ bgColor }) => `background-color: ${bgColor};`};
   color: #fff;
   font-family: Quicksand;
   font-style: normal;
@@ -67,6 +68,11 @@ export const FilledButton = styled.button`
   &:hover {
     background-color: #e75646;
     transition: all 0.5s;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: #ff9b8f;
   }
 `;
 

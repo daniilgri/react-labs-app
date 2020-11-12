@@ -33,22 +33,45 @@ export const updatePasswordAPI = async (payload) => {
 export const getAuthChannelAPI = () => {
   return eventChannel((emit) => {
     return auth.onAuthStateChanged((user) => {
-      db.collection("users")
-        .where("uid", "==", user.uid)
-        .get()
-        .then((usersCollection) => {
-          const customUser = usersCollection.docs[0].data();
-          emit({
-            user: {
-              uid: user.uid,
-              email: user.email,
-              firstName: customUser.firstName,
-              lastName: customUser.lastName,
-              requestOnDelete: customUser.requestOnDelete,
-              role: customUser.role,
-            },
+      if (user) {
+        db.collection("users")
+          .where("uid", "==", user.uid)
+          .get()
+          .then((usersCollection) => {
+            const customUser = usersCollection.docs[0].data();
+            emit({
+              user: {
+                uid: user.uid,
+                email: user.email,
+                firstName: customUser.firstName,
+                lastName: customUser.lastName,
+                requestOnDelete: customUser.requestOnDelete,
+                role: customUser.role,
+              },
+            });
           });
-        });
+      }
+      emit({ user });
     });
+  });
+};
+
+export const requestOnDeleteAPI = async ({ uid }) => {
+  const usersCollection = await db
+    .collection("users")
+    .where("uid", "==", uid)
+    .get();
+  await usersCollection.docs[0].ref.update({
+    requestOnDelete: true,
+  });
+};
+
+export const cancelRequestOnDeleteAPI = async ({ uid }) => {
+  const usersCollection = await db
+    .collection("users")
+    .where("uid", "==", uid)
+    .get();
+  await usersCollection.docs[0].ref.update({
+    requestOnDelete: false,
   });
 };

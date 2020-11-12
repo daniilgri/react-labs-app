@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Route, Redirect } from "react-router-dom";
 
 const PublicRoute = ({
@@ -19,6 +21,18 @@ const PublicRoute = ({
       />
     )
   );
+};
+
+PublicRoute.defaultProps = {
+  loading: false,
+  user: null,
+  error: "",
+};
+
+PublicRoute.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  error: PropTypes.string,
 };
 
 export default PublicRoute;

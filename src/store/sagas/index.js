@@ -4,6 +4,8 @@ import {
   signUpRequested,
   signInRequested,
   signOutRequested,
+  requestOnDeleteRequested,
+  cancelRequestOnDeleteRequested,
 } from "../actions/authActions";
 import {
   addFilmRequested,
@@ -15,7 +17,14 @@ import { fetchUsersAdminPanelInitialRequested } from "../actions/usersAdminPanel
 
 import { addFilm, fetchFilmsInitial, fetchFilmById } from "./filmsSagas";
 import { fetchUsersAdminPanelInitial } from "./usersAdminPanel";
-import { signUp, signIn, authCurrentUser, signOut } from "./authSagas";
+import {
+  signUp,
+  signIn,
+  authCurrentUser,
+  signOut,
+  requestOnDelete,
+  cancelRequestOnDelete,
+} from "./authSagas";
 import { fetchFilmsAdminPanelInitial } from "./filmsAdminPanel";
 
 function* rootSaga() {
@@ -29,6 +38,8 @@ function* rootSaga() {
     yield takeLatest(signUpRequested, signUp),
     yield takeLatest(signInRequested, signIn),
     yield takeLatest(signOutRequested, signOut),
+    yield takeLatest(requestOnDeleteRequested, requestOnDelete),
+    yield takeLatest(cancelRequestOnDeleteRequested, cancelRequestOnDelete),
 
     yield takeLatest(
       fetchFilmsAdminPanelInitialRequested,

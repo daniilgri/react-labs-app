@@ -5,6 +5,8 @@ import {
   signInAPI,
   getAuthChannelAPI,
   signOutAPI,
+  requestOnDeleteAPI,
+  cancelRequestOnDeleteAPI,
 } from "../../services/authAPI";
 import {
   signUpSucceed,
@@ -16,6 +18,10 @@ import {
   authCurrentUserRequested,
   signOutFailed,
   signOutSucceed,
+  requestOnDeleteFailed,
+  requestOnDeleteSucceed,
+  cancelRequestOnDeleteSucceed,
+  cancelRequestOnDeleteFailed,
 } from "../actions/authActions";
 
 export function* signUp({ payload }) {
@@ -57,5 +63,23 @@ export function* authCurrentUser() {
     }
   } catch (error) {
     yield put(authCurrentUserFailed(error));
+  }
+}
+
+export function* requestOnDelete({ payload }) {
+  try {
+    yield call(requestOnDeleteAPI, payload);
+    yield put(requestOnDeleteSucceed());
+  } catch (error) {
+    yield put(requestOnDeleteFailed(error));
+  }
+}
+
+export function* cancelRequestOnDelete({ payload }) {
+  try {
+    yield call(cancelRequestOnDeleteAPI, payload);
+    yield put(cancelRequestOnDeleteSucceed());
+  } catch (error) {
+    yield put(cancelRequestOnDeleteFailed(error));
   }
 }

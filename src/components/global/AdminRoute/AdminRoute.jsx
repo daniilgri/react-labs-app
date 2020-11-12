@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Route, Redirect } from "react-router-dom";
 
 const AdminRoute = ({
@@ -22,6 +24,18 @@ const AdminRoute = ({
       />
     )
   );
+};
+
+AdminRoute.defaultProps = {
+  loading: false,
+  user: null,
+  error: "",
+};
+
+AdminRoute.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  error: PropTypes.string,
 };
 
 export default AdminRoute;

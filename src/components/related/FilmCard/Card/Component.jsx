@@ -9,14 +9,26 @@ const Component = ({
   filmId,
   fetchFilmByIdRequested,
   film,
-  error,
+  filmError,
   loading,
+  user,
+  makeOrderRequested,
+  orderError,
+  orderLoading,
 }) => {
+  const handleOrder = ({ chosenDate }) => {
+    makeOrderRequested({
+      filmId: film.id,
+      screeningDate: chosenDate,
+      userUid: user.uid,
+    });
+  };
+
   useEffect(() => {
     fetchFilmByIdRequested(filmId);
   }, []);
 
-  if (loading) {
+  if (loading || filmError) {
     return <Pending>Loading</Pending>;
   }
 
@@ -25,27 +37,43 @@ const Component = ({
       <FilmBox
         title={film.title}
         description={film.description}
-        imageSrc={film.imageAsFile}
+        image={film.image}
+        ticketPrice={film.ticketPrice}
+        tags={film.tags}
       />
-      <TicketBox />
+      <TicketBox
+        screeningDates={film.screeningDates}
+        user={user}
+        onOrder={handleOrder}
+        orderLoading={orderLoading}
+        orderError={orderError}
+      />
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
-  filmId: "",
   fetchFilmByIdRequested: () => {},
+  makeOrderRequested: () => {},
+  filmId: "",
   film: {},
-  error: "",
+  filmError: "",
   loading: false,
+  user: null,
+  orderError: "",
+  orderLoading: false,
 };
 
 Component.propTypes = {
   filmId: PropTypes.string.isRequired,
   fetchFilmByIdRequested: PropTypes.func.isRequired,
   film: PropTypes.object,
-  error: PropTypes.string,
+  filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  makeOrderRequested: PropTypes.func.isRequired,
+  orderError: PropTypes.string,
+  orderLoading: PropTypes.bool.isRequired,
 };
 
 export default Component;

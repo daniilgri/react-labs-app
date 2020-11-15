@@ -30,8 +30,6 @@ export const addFilmAPI = async (payload) => {
         .child(payload.imageAsFile.name)
         .getDownloadURL()
         .then((imageUrl) => {
-          console.log(newFilmDoc.id);
-          console.log(imageUrl);
           newFilmDoc.update({
             image: imageUrl,
           });
@@ -51,5 +49,5 @@ export const getFilmsNextAPI = async (payload) => {};
 
 export const getFilmByIdAPI = async (payload) => {
   const snapshot = await db.collection("films").doc(payload).get();
-  return snapshot.data();
+  return { id: snapshot.id, ...snapshot.data() };
 };

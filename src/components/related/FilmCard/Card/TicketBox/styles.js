@@ -27,11 +27,15 @@ export const OptionList = styled.ul`
   list-style: none;
   margin: 30px 0;
   padding: 0;
+
+  display: flex;
 `;
 
-export const Option = styled.li`
-  padding: 10px 0;
+export const ButtonOption = styled.li`
+  margin: 10px 0;
 `;
+
+export const DateValue = styled.div``;
 
 export const OrderButton = styled.button`
   background: #f85d4b;
@@ -46,4 +50,30 @@ export const OrderButton = styled.button`
   height: 60px;
 
   cursor: pointer;
+`;
+
+export const TimesList = styled.ul`
+  list-style: none;
+`;
+
+export const TimeOptionButton = styled.li`
+  margin: 10px 0;
+
+  color: #fff;
+  background-color: #aa6f51c7;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  ${({ chosen }) => chosen && `background-color: #7d4d34c7;`};
+
+  &:hover {
+    background-color: #bf8567;
+    transition: all 0.1s;
+  }
+`;
+
+export const Loading = styled.label`
+  color: red;
 `;

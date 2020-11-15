@@ -20,7 +20,6 @@ const filmsBoard = handleActions(
     }),
     [fetchFilmByIdSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      console.log(payload);
       state.film = payload;
     }),
     [fetchFilmByIdFailed]: produce((state, { payload: { message } }) => {

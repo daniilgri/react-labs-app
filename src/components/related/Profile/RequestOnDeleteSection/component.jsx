@@ -53,13 +53,15 @@ const Component = ({
         >
           Confirm
         </FilledButton>
-        <FilledButton
-          bgColor="#e24545"
-          type="button"
-          onClick={handleCancelButtonOnClick}
-        >
-          Cancel
-        </FilledButton>
+        {user.requestOnDelete && (
+          <FilledButton
+            bgColor="#e24545"
+            type="button"
+            onClick={handleCancelButtonOnClick}
+          >
+            Cancel
+          </FilledButton>
+        )}
       </Form>
     </Wrapper>
   );

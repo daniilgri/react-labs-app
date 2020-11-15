@@ -16,13 +16,13 @@ const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
   const handleConfirmDeleteRequestButtonOnClick = (event) => {
     event.preventDefault();
 
-    onConfirmDeleteRequest(user.id);
+    onConfirmDeleteRequest({ uid: user.uid });
   };
 
   const handleDeleteButtonOnClick = (event) => {
     event.preventDefault();
 
-    onDelete(user.id);
+    onDelete({ uid: user.uid });
   };
 
   return (
@@ -32,10 +32,10 @@ const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
         <NameSection>
           {user.firstName} {user.lastName}
         </NameSection>
-        <EmailAddress>grishaev.daniil1@gmail.com</EmailAddress>
+        <EmailAddress>{user.email}</EmailAddress>
         <Controllers>
           <FilledButton
-            disabled={!user.deleteRequest}
+            disabled={!user.requestOnDelete}
             onClick={handleConfirmDeleteRequestButtonOnClick}
           >
             Confirm delete request

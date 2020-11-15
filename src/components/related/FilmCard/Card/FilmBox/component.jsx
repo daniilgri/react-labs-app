@@ -1,11 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Wrapper, ImageWrapper, InfoList, Title, Description } from "./styles";
+import { v4 as uuidv4 } from "uuid";
 
-const component = ({ title, description, imageSrc }) => (
+import {
+  Wrapper,
+  ImageWrapper,
+  InfoList,
+  Title,
+  Description,
+  Price,
+  Tags,
+  OneTag,
+} from "./styles";
+
+const component = ({ title, description, image, ticketPrice, tags }) => (
   <Wrapper>
-    <ImageWrapper src={imageSrc} />
+    <ImageWrapper src={image} />
     <InfoList>
+      <Tags>
+        {tags.map((el) => (
+          <OneTag key={uuidv4()}>{el}</OneTag>
+        ))}
+      </Tags>
+      <Price>{ticketPrice} $</Price>
       <Title>{title}</Title>
       <Description>{description}</Description>
     </InfoList>
@@ -15,13 +32,17 @@ const component = ({ title, description, imageSrc }) => (
 component.defaultProps = {
   title: "",
   description: "",
-  imageSrc: "",
+  image: "",
+  ticketPrice: "0",
+  tags: [],
 };
 
 component.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  ticketPrice: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default component;

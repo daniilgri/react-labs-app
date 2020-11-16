@@ -6,21 +6,40 @@ import {
   Image,
   InfoSection,
   Title,
-  ScreeningDate,
   Controllers,
   Button,
 } from "./styles";
-const component = ({ film }) => (
-  <Wrapper>
-    <Image src="https://picsum.photos/800/1200" />
-    <InfoSection>
-      <Title>{film.title}</Title>
-      <Controllers>
-        <Button color="#000">Edit</Button>
-        <Button color="#ff6868">Delete</Button>
-      </Controllers>
-    </InfoSection>
-  </Wrapper>
-);
+
+const component = ({ film, onDelete }) => {
+  const handleDeleteButtonOnClick = (event) => {
+    event.preventDefault();
+    onDelete({ filmId: film.id });
+  };
+
+  return (
+    <Wrapper>
+      <Image src={film.image} />
+      <InfoSection>
+        <Title>{film.title}</Title>
+        <Controllers>
+          <Button color="#000">Edit</Button>
+          <Button color="#ff6868" onClick={handleDeleteButtonOnClick}>
+            Delete
+          </Button>
+        </Controllers>
+      </InfoSection>
+    </Wrapper>
+  );
+};
+
+component.defaultProps = {
+  film: {},
+  onDelete: () => {},
+};
+
+component.propTypes = {
+  film: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default component;

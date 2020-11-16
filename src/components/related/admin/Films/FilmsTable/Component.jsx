@@ -10,6 +10,7 @@ const Component = ({
   fetchFilmsAdminPanelInitialRequested,
   films,
   error,
+  deleteFilmRequested,
 }) => {
   useEffect(() => {
     fetchFilmsAdminPanelInitialRequested({ count: 25 });
@@ -17,12 +18,14 @@ const Component = ({
 
   let content;
 
-  if (loading) {
+  if (loading || error) {
     content = <Loading>Loading</Loading>;
   } else {
     content =
       films.length > 0 ? (
-        films.map((item) => <Card key={uuidv4()} film={item} />)
+        films.map((item) => (
+          <Card key={uuidv4()} film={item} onDelete={deleteFilmRequested} />
+        ))
       ) : (
         <Loading>Empty</Loading>
       );
@@ -36,6 +39,7 @@ Component.defaultProps = {
   loading: true,
   error: "",
   fetchFilmsAdminPanelInitialRequested: () => {},
+  deleteFilmRequested: () => {},
 };
 
 Component.propTypes = {
@@ -43,6 +47,7 @@ Component.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   fetchFilmsAdminPanelInitialRequested: PropTypes.func.isRequired,
+  deleteFilmRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

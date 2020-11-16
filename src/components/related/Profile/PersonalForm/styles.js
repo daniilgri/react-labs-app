@@ -98,3 +98,5 @@ export const FilledButton = styled.button`
     transition: all 0.5s;
   }
 `;
+
+export const Loading = styled.label``;

@@ -51,3 +51,7 @@ export const getFilmByIdAPI = async (payload) => {
   const snapshot = await db.collection("films").doc(payload).get();
   return { id: snapshot.id, ...snapshot.data() };
 };
+
+export const deleteFilmAPI = async (payload) => {
+  await db.collection("films").doc(payload.filmId).delete();
+};

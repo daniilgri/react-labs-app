@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useFormik } from "formik";
+
 import {
   Wrapper,
   Head,
@@ -10,15 +12,24 @@ import {
   Input,
   ErrorText,
   FilledButton,
+  Loading,
 } from "./styles";
 
-const Component = () => {
+const Component = ({ user, loading, error }) => {
   const formik = useFormik({
-    initialValues: { firstName: "", lastName: "", email: "" },
+    initialValues: {
+      firstName: user.firstName, // fix
+      lastName: user.lastName, // fix
+      email: user.email,
+    },
     onSubmit: (values) => {
       console.log(values);
     },
   });
+
+  if (loading || error) {
+    return <Loading>Loading...</Loading>;
+  }
 
   return (
     <Wrapper>
@@ -67,9 +78,21 @@ const Component = () => {
           {formik.errors.email && <ErrorText>{formik.errors.email}</ErrorText>}
         </Field>
       </Body>
-      <FilledButton>Save</FilledButton>
+      <FilledButton type="submit">Save</FilledButton>
     </Wrapper>
   );
+};
+
+Component.defaultProps = {
+  user: null,
+  loading: false,
+  error: "",
+};
+
+Component.propTypes = {
+  user: PropTypes.object,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
 };
 
 export default Component;

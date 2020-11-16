@@ -1,7 +1,10 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { fetchFilmsAdminPanelInitialRequested } from "../../../../../store/actions/filmsAdminPanelActions";
+import {
+  fetchFilmsAdminPanelInitialRequested,
+  deleteFilmRequested,
+} from "../../../../../store/actions/filmsAdminPanelActions";
 import Component from "./Component.jsx";
 
 const mapStateToProps = (state) => ({
@@ -11,7 +14,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({ fetchFilmsAdminPanelInitialRequested }, dispatch),
+  ...bindActionCreators(
+    { fetchFilmsAdminPanelInitialRequested, deleteFilmRequested },
+    dispatch
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

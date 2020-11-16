@@ -14,7 +14,11 @@ import {
 } from "../actions/filmsActions";
 import { fetchFilmsAdminPanelInitialRequested } from "../actions/filmsAdminPanelActions";
 import { fetchUsersAdminPanelInitialRequested } from "../actions/usersAdminPanelActions";
-import { makeOrderRequested } from "../actions/ordersActions";
+import {
+  makeOrderRequested,
+  fetchOrdersInitialRequested,
+  cancelOrderRequested,
+} from "../actions/ordersActions";
 
 import { addFilm, fetchFilmsInitial, fetchFilmById } from "./filmsSagas";
 import { fetchUsersAdminPanelInitial } from "./usersAdminPanel";
@@ -27,7 +31,7 @@ import {
   cancelRequestOnDelete,
 } from "./authSagas";
 import { fetchFilmsAdminPanelInitial } from "./filmsAdminPanel";
-import { makeOrder } from "./ordersSaga";
+import { makeOrder, fetchOrdersInitial, cancelOrder } from "./ordersSaga";
 
 function* rootSaga() {
   yield all([
@@ -53,6 +57,8 @@ function* rootSaga() {
     ),
 
     yield takeLatest(makeOrderRequested, makeOrder),
+    yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),
+    yield takeLatest(cancelOrderRequested, cancelOrder),
   ]);
 }
 

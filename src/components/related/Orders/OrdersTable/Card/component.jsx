@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   Wrapper,
   Image,
@@ -8,15 +9,34 @@ import {
   CancelButton,
 } from "./styles";
 
-const component = ({ value }) => (
-  <Wrapper>
-    <Image src="https://picsum.photos/800/1200" />
-    <InfoSection>
-      <Title>Iron man</Title>
-      <ScreeningDate>23.11.2020 - 12:00</ScreeningDate>
-      <CancelButton>Cancel</CancelButton>
-    </InfoSection>
-  </Wrapper>
-);
+const component = ({ value, onCancel }) => {
+  const handleCancelButtonOnClick = (event) => {
+    event.preventDefault();
+    onCancel({ orderId: value.id });
+  };
+
+  return (
+    <Wrapper>
+      <Image src={value.film.image} />
+      <InfoSection>
+        <Title>{value.film.title}</Title>
+        <ScreeningDate>
+          {value.screeningDate.date}-{value.screeningDate.time}
+        </ScreeningDate>
+        <CancelButton onClick={handleCancelButtonOnClick}>Cancel</CancelButton>
+      </InfoSection>
+    </Wrapper>
+  );
+};
+
+component.defaultProps = {
+  value: {},
+  onCancel: () => {},
+};
+
+component.propTypes = {
+  value: PropTypes.object.isRequired,
+  onCancel: PropTypes.func.isRequired,
+};
 
 export default component;

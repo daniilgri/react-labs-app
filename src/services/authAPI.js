@@ -1,5 +1,5 @@
 import { auth, db } from "./firestore";
-import { eventChannel, END } from "redux-saga";
+import { eventChannel } from "redux-saga";
 
 export const signUpAPI = async (payload) => {
   const registeredUser = await auth.createUserWithEmailAndPassword(

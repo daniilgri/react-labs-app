@@ -8,6 +8,7 @@ import addScreeningDateModal from "./addScreeningDateModal";
 import filmsAdminPanel from "./filmsAdminPanel";
 import usersAdminPanel from "./usersAdminPanel";
 import newOrder from "./newOrder";
+import orders from "./orders";
 
 export default combineReducers({
   addFilm,
@@ -18,4 +19,5 @@ export default combineReducers({
   filmsAdminPanel,
   usersAdminPanel,
   newOrder,
+  orders,
 });

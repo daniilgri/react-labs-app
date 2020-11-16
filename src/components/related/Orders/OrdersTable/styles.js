@@ -6,3 +6,5 @@ export const Wrapper = styled.div`
   grid-auto-rows: auto;
   grid-gap: 1rem;
 `;
+
+export const Loading = styled.label``;

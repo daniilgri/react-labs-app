@@ -34,7 +34,7 @@ const component = ({
       </Tags>
       {user ? (
         <StarRatings
-          rating={rating}
+          rating={2}
           starRatedColor="blue"
           changeRating={onRatingChange}
           numberOfStars={5}

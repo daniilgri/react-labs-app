@@ -54,7 +54,13 @@ export const getFilmByIdAPI = async (payload) => {
 
 export const deleteFilmAPI = async (payload) => {
   await db.collection("films").doc(payload.filmId).delete();
-  await db.collection("orders").where("filmId", "==", payload.filmId).get(); // delete order by filmId
+  const ordersSnapshot = await db
+    .collection("orders")
+    .where("filmId", "==", payload.filmId)
+    .get();
+  await ordersSnapshot.docs.forEach((doc) => {
+    doc.ref.delete();
+  });
 };
 
 export const updateFilmRatingAPI = async (payload) => {

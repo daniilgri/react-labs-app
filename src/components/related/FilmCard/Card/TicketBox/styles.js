@@ -29,6 +29,7 @@ export const OptionList = styled.ul`
   padding: 0;
 
   display: flex;
+  flex-direction: column;
 `;
 
 export const ButtonOption = styled.li`

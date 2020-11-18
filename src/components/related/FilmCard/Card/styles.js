@@ -3,6 +3,7 @@ import { device } from "../../../../constants/mediaBreakpoints";
 
 export const Wrapper = styled.div`
   display: grid;
+  align-items: start;
 
   grid-template-columns: 1fr;
   grid-template-rows: 3fr auto;

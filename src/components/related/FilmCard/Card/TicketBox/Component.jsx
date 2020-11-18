@@ -47,7 +47,9 @@ const Component = ({
   const listTimes = (dateItem) => {
     return (timeItem) => (
       <TimeOptionButton
-        chosen={chosenDate.time === timeItem}
+        chosen={
+          chosenDate.time === timeItem && chosenDate.date === dateItem.date
+        }
         key={uuidv4()}
         onClick={handleTimeOptionButtonOnClick({
           date: dateItem.date,
@@ -58,8 +60,6 @@ const Component = ({
       </TimeOptionButton>
     );
   };
-
-  useEffect(() => {}, [orderLoading]);
 
   return (
     <Wrapper>

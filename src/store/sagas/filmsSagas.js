@@ -4,6 +4,7 @@ import {
   addFilmAPI,
   getFilmByIdAPI,
   getFilmsInitialAPI,
+  updateFilmRatingAPI,
 } from "../../services/filmsAPI";
 
 import {
@@ -13,6 +14,8 @@ import {
   fetchFilmsInitialFailed,
   fetchFilmByIdSucceed,
   fetchFilmByIdFailed,
+  updateFilmRatingFailed,
+  updateFilmRatingSucceed,
 } from "../actions/filmsActions";
 
 export function* addFilm({ payload }) {
@@ -39,5 +42,14 @@ export function* fetchFilmById({ payload }) {
     yield put(fetchFilmByIdSucceed(data));
   } catch (error) {
     yield put(fetchFilmByIdFailed(error));
+  }
+}
+
+export function* updateFilmRating({ payload }) {
+  try {
+    yield call(updateFilmRatingAPI, payload);
+    yield put(updateFilmRatingSucceed());
+  } catch (error) {
+    yield put(updateFilmRatingFailed(error));
   }
 }

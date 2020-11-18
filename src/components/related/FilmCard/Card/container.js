@@ -1,7 +1,10 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { fetchFilmByIdRequested } from "../../../../store/actions/filmsActions";
+import {
+  fetchFilmByIdRequested,
+  updateFilmRatingRequested,
+} from "../../../../store/actions/filmsActions";
 import { makeOrderRequested } from "../../../../store/actions/ordersActions";
 import Component from "./Component.jsx";
 
@@ -16,7 +19,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(
-    { fetchFilmByIdRequested, makeOrderRequested },
+    { fetchFilmByIdRequested, makeOrderRequested, updateFilmRatingRequested },
     dispatch
   ),
 });

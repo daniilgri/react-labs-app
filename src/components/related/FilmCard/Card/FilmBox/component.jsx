@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import StarRatings from "react-star-ratings";
 
 import {
   Wrapper,
@@ -13,7 +14,16 @@ import {
   OneTag,
 } from "./styles";
 
-const component = ({ title, description, image, ticketPrice, tags }) => (
+const component = ({
+  title,
+  description,
+  image,
+  ticketPrice,
+  tags,
+  user,
+  rating,
+  onRatingChange,
+}) => (
   <Wrapper>
     <ImageWrapper src={image} />
     <InfoList>
@@ -22,6 +32,22 @@ const component = ({ title, description, image, ticketPrice, tags }) => (
           <OneTag key={uuidv4()}>{el}</OneTag>
         ))}
       </Tags>
+      {user ? (
+        <StarRatings
+          rating={rating}
+          starRatedColor="blue"
+          changeRating={onRatingChange}
+          numberOfStars={5}
+          name="rating"
+        />
+      ) : (
+        <StarRatings
+          rating={rating}
+          starRatedColor="blue"
+          numberOfStars={5}
+          name="rating"
+        />
+      )}
       <Price>{ticketPrice} $</Price>
       <Title>{title}</Title>
       <Description>{description}</Description>
@@ -35,6 +61,9 @@ component.defaultProps = {
   image: "",
   ticketPrice: "0",
   tags: [],
+  user: null,
+  rating: null,
+  onRatingChange: () => {},
 };
 
 component.propTypes = {
@@ -43,6 +72,9 @@ component.propTypes = {
   image: PropTypes.string.isRequired,
   ticketPrice: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
+  user: PropTypes.object,
+  rating: PropTypes.object,
+  onRatingChange: PropTypes.func.isRequired,
 };
 
 export default component;

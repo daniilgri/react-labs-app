@@ -15,6 +15,7 @@ const Component = ({
   makeOrderRequested,
   orderError,
   orderLoading,
+  updateFilmRatingRequested,
 }) => {
   const handleOrder = ({ chosenDate }) => {
     makeOrderRequested({
@@ -22,6 +23,10 @@ const Component = ({
       screeningDate: chosenDate,
       userUid: user.uid,
     });
+  };
+
+  const handleRatingChange = (rating) => {
+    updateFilmRatingRequested({ rating, filmId: film.id, userUid: user.uid });
   };
 
   useEffect(() => {
@@ -40,6 +45,9 @@ const Component = ({
         image={film.image}
         ticketPrice={film.ticketPrice}
         tags={film.tags}
+        user={user}
+        rating={film.rate}
+        onRatingChange={handleRatingChange}
       />
       <TicketBox
         screeningDates={film.screeningDates}
@@ -62,6 +70,7 @@ Component.defaultProps = {
   user: null,
   orderError: "",
   orderLoading: false,
+  updateFilmRatingRequested: () => {},
 };
 
 Component.propTypes = {
@@ -74,6 +83,7 @@ Component.propTypes = {
   makeOrderRequested: PropTypes.func.isRequired,
   orderError: PropTypes.string,
   orderLoading: PropTypes.bool.isRequired,
+  updateFilmRatingRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

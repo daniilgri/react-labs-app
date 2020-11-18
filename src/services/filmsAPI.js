@@ -9,7 +9,7 @@ export const addFilmAPI = async (payload) => {
     image: "",
     tags: payload.tags,
     screeningDates: payload.screeningDates,
-    rate: 0,
+    rate: null,
   });
 
   const uploadTask = storage
@@ -54,4 +54,11 @@ export const getFilmByIdAPI = async (payload) => {
 
 export const deleteFilmAPI = async (payload) => {
   await db.collection("films").doc(payload.filmId).delete();
+  await db.collection("orders").where("filmId", "==", payload.filmId).get(); // delete order by filmId
+};
+
+export const updateFilmRatingAPI = async (payload) => {
+  const filmSnapshot = await db.collection("films").doc(payload.filmId).get();
+
+  console.log(filmSnapshot.data());
 };

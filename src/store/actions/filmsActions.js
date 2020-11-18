@@ -32,3 +32,15 @@ export const fetchFilmByIdFailed = createAction(
   "@FILMS/FETCH_FILM_BY_ID_FAILED",
   (payload) => payload
 );
+
+export const updateFilmRatingRequested = createAction(
+  "@FILMS/UPDATES_FILM_RATING_REQUESTED",
+  (payload) => payload
+);
+export const updateFilmRatingSucceed = createAction(
+  "@FILMS/UPDATES_FILM_RATING_SUCCEED"
+);
+export const updateFilmRatingFailed = createAction(
+  "@FILMS/UPDATES_FILM_RATING_FAILED",
+  (payload) => payload
+);

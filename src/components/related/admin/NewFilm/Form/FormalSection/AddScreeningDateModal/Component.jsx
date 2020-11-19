@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 
+import addScreeningDateSchema from "../../../../../../../validations/addScreeningDateSchema";
 import {
   Wrapper,
   Content,
@@ -31,6 +32,7 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
       date: "",
       times: [],
     },
+    validationSchema: addScreeningDateSchema,
     onSubmit: (values, { resetForm }) => {
       onScreeningDateAdd(values);
 

@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { useFormik } from "formik";
+
+import signupSchema from "../../../../validations/signupSchema";
 import {
   Wrapper,
   Label,
@@ -23,6 +25,7 @@ const Component = ({ signUpRequested, history }) => {
       password: "",
       confirmPassword: "",
     },
+    validationSchema: signupSchema,
     onSubmit: (values, { resetForm }) => {
       signUpRequested(values);
       resetForm();

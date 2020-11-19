@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { useFormik } from "formik";
 
+import loginSchema from "../../../../validations/loginSchema";
 import {
   Wrapper,
   Label,
@@ -21,6 +22,7 @@ const Component = ({ signInRequested, history }) => {
       email: "",
       password: "",
     },
+    validationSchema: loginSchema,
     onSubmit: (values) => {
       signInRequested(values);
       history.push("/");

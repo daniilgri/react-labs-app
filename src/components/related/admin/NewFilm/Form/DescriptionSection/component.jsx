@@ -16,7 +16,6 @@ import {
 } from "./styles";
 
 const Component = ({ onChange, values, errors, onTagAdd, onTagDelete }) => {
-  console.log(values.tags);
   return (
     <Wrapper>
       <Head>

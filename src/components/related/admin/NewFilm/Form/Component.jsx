@@ -7,6 +7,7 @@ import DescriptionSection from "./DescriptionSection";
 import MediaSection from "./MediaSection";
 import FormalSection from "./FormalSection";
 
+import newFilmSchema from "../../../../../validations/newFilmSchema";
 import { Wrapper, Head, Title, Body, FilledButton } from "./styles";
 
 const Component = ({
@@ -23,9 +24,8 @@ const Component = ({
       tags: [],
       screeningDates: [],
     },
+    validationSchema: newFilmSchema,
     onSubmit: (values) => {
-      console.log(values);
-
       addFilmRequested(values);
       history.push("/");
     },
@@ -53,7 +53,6 @@ const Component = ({
   };
 
   const handleTagAddition = (tag) => {
-    console.log(tag);
     formik.setFieldValue("tags", [...formik.values.tags, tag]);
     console.log(formik.values.tags);
   };

@@ -19,7 +19,7 @@ export const signUpAPI = async (payload) => {
 };
 
 export const signInAPI = async (payload) => {
-  return await auth.signInWithEmailAndPassword(payload.email, payload.password);
+  await auth.signInWithEmailAndPassword(payload.email, payload.password);
 };
 
 export const signOutAPI = async () => {

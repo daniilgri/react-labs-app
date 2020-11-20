@@ -28,9 +28,8 @@ const auth = handleActions(
     [signUpRequested]: produce((state) => {
       state.loading = true;
     }),
-    [signUpSucceed]: produce((state, { payload }) => {
+    [signUpSucceed]: produce((state) => {
       state.loading = false;
-      state.user = payload;
     }),
     [signUpFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
@@ -40,9 +39,8 @@ const auth = handleActions(
     [signInRequested]: produce((state) => {
       state.loading = true;
     }),
-    [signInSucceed]: produce((state, { payload }) => {
+    [signInSucceed]: produce((state) => {
       state.loading = false;
-      state.user = payload;
     }),
     [signInFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
@@ -95,7 +93,6 @@ const auth = handleActions(
     }),
     [cancelRequestOnDeleteFailed]: produce(
       (state, { payload: { message } }) => {
-        console.log(message);
         state.loading = false;
         state.error = message;
       }

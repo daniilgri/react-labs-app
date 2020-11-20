@@ -92,7 +92,7 @@ const Component = ({ signUpRequested, history }) => {
       </FieldsWrapper>
 
       <FilledButton type="submit">Register</FilledButton>
-      <OutlineButton to="/signup">Sign in</OutlineButton>
+      <OutlineButton to="/login">Sign in</OutlineButton>
     </Wrapper>
   );
 };

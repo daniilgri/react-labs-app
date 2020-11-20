@@ -74,4 +74,11 @@ export const Input = styled.input`
   }
 `;
 
-export const ErrorText = styled.label``;
+export const ErrorText = styled.label`
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: red;
+`;

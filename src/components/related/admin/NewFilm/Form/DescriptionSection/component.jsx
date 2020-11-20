@@ -47,7 +47,12 @@ const Component = ({ onChange, values, errors, onTagAdd, onTagDelete }) => {
           {errors.description && <ErrorText>{errors.description}</ErrorText>}
         </Field>
         <TagsField>
-          <Tags onSet={onTagAdd} onDelete={onTagDelete} values={values.tags} />
+          <Tags
+            onSet={onTagAdd}
+            onDelete={onTagDelete}
+            values={values.tags}
+            errors={errors}
+          />
         </TagsField>
       </Body>
     </Wrapper>

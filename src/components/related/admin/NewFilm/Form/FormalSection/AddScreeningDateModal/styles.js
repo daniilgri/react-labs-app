@@ -174,3 +174,12 @@ export const SaveButton = styled.button`
 `;
 
 export const ScreeningTimeEditButtons = styled.div``;
+
+export const ErrorText = styled.label`
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: red;
+`;

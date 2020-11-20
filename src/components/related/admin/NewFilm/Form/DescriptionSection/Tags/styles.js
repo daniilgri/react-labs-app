@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const List = styled.ul`
   list-style: none;
@@ -50,4 +53,13 @@ export const Input = styled.input`
   &::placeholder {
     text-align: center;
   }
+`;
+
+export const ErrorText = styled.label`
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: red;
 `;

@@ -29,51 +29,6 @@ export const Body = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const Label = styled.label`
-  font-family: Quicksand;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  margin-bottom: 10px;
-`;
-
-export const Input = styled.input`
-  border: 1px solid #aa6f51;
-  border-radius: 3px;
-
-  font-family: Quicksand;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-
-  padding: 10px 10px;
-
-  outline: none;
-
-  width: 100%;
-  &::placeholder {
-    text-align: center;
-  }
-
-  @media ${device.laptop} {
-    width: 50%;
-  }
-`;
-
-export const ErrorText = styled.label``;
-
 export const FilledButton = styled.button`
   cursor: pointer;
   border-radius: 3px;

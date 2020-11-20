@@ -19,6 +19,7 @@ import {
   ScreeningTimeInputWrapper,
   ConfirmTimeAddButton,
   ScreeningTimeEditButtons,
+  ErrorText,
 } from "./styles";
 
 const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
@@ -96,6 +97,7 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
             onChange={formik.handleChange}
             value={formik.values.date}
           />
+          {formik.errors.date && <ErrorText>{formik.errors.date}</ErrorText>}
         </Field>
         <FilledButton type="button" onClick={handleAddTimeButtonOnClick}>
           Add time
@@ -129,6 +131,7 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
               </ScreeningTimeEditButtons>
             </ScreeningTime>
           ))}
+          {formik.errors.times && <ErrorText>{formik.errors.times}</ErrorText>}
         </TimeSection>
         <SaveButton type="submit">Save</SaveButton>
       </Content>

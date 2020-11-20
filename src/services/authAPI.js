@@ -51,7 +51,6 @@ export const getAuthChannelAPI = () => {
             });
           });
       }
-      emit({ user });
     });
   });
 };

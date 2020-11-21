@@ -74,7 +74,15 @@ export const Input = styled.input`
   }
 `;
 
-export const ErrorText = styled.label``;
+export const ErrorText = styled.label`
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #f46f60;
+`;
 
 export const FilledButton = styled.button`
   cursor: pointer;

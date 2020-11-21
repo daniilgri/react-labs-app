@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
+import personalInfoSchema from "../../../../validations/personalInfoSchema";
 import {
   Wrapper,
   Head,
@@ -15,15 +16,26 @@ import {
   Loading,
 } from "./styles";
 
-const Component = ({ user, loading, error }) => {
+const Component = ({ user, loading, error, updateProfileRequested }) => {
   const formik = useFormik({
     initialValues: {
-      firstName: user.firstName, // fix
-      lastName: user.lastName, // fix
-      email: user.email,
+      firstNameChange: user.firstName,
+      lastNameChange: user.lastName,
     },
+    validationSchema: personalInfoSchema,
     onSubmit: (values) => {
-      console.log(values);
+      let changedValues = {};
+      for (const [key, value] of Object.entries(values)) {
+        if (formik.initialValues[key] !== value) {
+          changedValues[key] = value;
+        }
+      }
+      if (
+        Object.keys(changedValues).length !== 0 &&
+        changedValues.constructor === Object
+      ) {
+        updateProfileRequested(changedValues);
+      }
     },
   });
 
@@ -32,50 +44,38 @@ const Component = ({ user, loading, error }) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper onSubmit={formik.handleSubmit}>
       <Head>
         <Title>Personal information</Title>
       </Head>
       <Body>
         <Field>
-          <Label htmlFor="firstName">First name</Label>
+          <Label htmlFor="firstNameChange">First name</Label>
           <Input
-            id="firstName"
-            name="firstName"
+            id="firstNameChange"
+            name="firstNameChange"
             placeholder="First name"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.firstName}
+            value={formik.values.firstNameChange}
           />
-          {formik.errors.firstName && (
-            <ErrorText>{formik.errors.firstName}</ErrorText>
+          {formik.errors.firstNameChange && (
+            <ErrorText>{formik.errors.firstNameChange}</ErrorText>
           )}
         </Field>
         <Field>
-          <Label htmlFor="lastName">Last name</Label>
+          <Label htmlFor="lastNameChange">Last name</Label>
           <Input
-            id="lastName"
-            name="lastName"
+            id="lastNameChange"
+            name="lastNameChange"
             placeholder="Last name"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.lastName}
+            value={formik.values.lastNameChange}
           />
-          {formik.errors.lastName && (
-            <ErrorText>{formik.errors.lastName}</ErrorText>
+          {formik.errors.lastNameChange && (
+            <ErrorText>{formik.errors.lastNameChange}</ErrorText>
           )}
-        </Field>
-        <Field>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            placeholder="email"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-          {formik.errors.email && <ErrorText>{formik.errors.email}</ErrorText>}
         </Field>
       </Body>
       <FilledButton type="submit">Save</FilledButton>
@@ -87,12 +87,14 @@ Component.defaultProps = {
   user: null,
   loading: false,
   error: "",
+  updateProfileRequested: () => {},
 };
 
 Component.propTypes = {
   user: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
+  updateProfileRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

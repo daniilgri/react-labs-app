@@ -19,12 +19,15 @@ import {
 const Component = ({ signInRequested, history }) => {
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      emailLogin: "",
+      passwordLogin: "",
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      signInRequested(values);
+      signInRequested({
+        email: values.emailLogin,
+        password: values.passwordLogin,
+      });
       history.push("/");
     },
   });
@@ -34,28 +37,32 @@ const Component = ({ signInRequested, history }) => {
       <Title>Login</Title>
       <FieldsWrapper>
         <Field>
-          <Label htmlFor="email">E-mail*</Label>
+          <Label htmlFor="emailLogin">E-mail*</Label>
           <Input
-            id="email"
-            name="email"
+            id="emailLogin"
+            name="emailLogin"
             placeholder="email"
             type="email"
             onChange={formik.handleChange}
-            value={formik.values.email}
+            value={formik.values.emailLogin}
           />
-          {formik.errors.email && <ErrorText>{formik.errors.email}</ErrorText>}
+          {formik.errors.emailLogin && (
+            <ErrorText>{formik.errors.emailLogin}</ErrorText>
+          )}
         </Field>
         <Field>
-          <Label htmlFor="password">Password*</Label>
+          <Label htmlFor="passwordLogin">Password*</Label>
           <Input
-            id="password"
-            name="password"
+            id="passwordLogin"
+            name="passwordLogin"
             placeholder="password"
             type="password"
             onChange={formik.handleChange}
-            value={formik.values.password}
+            value={formik.values.passwordLogin}
           />
-          {formik.errors.email && <ErrorText>{formik.errors.email}</ErrorText>}
+          {formik.errors.passwordLogin && (
+            <ErrorText>{formik.errors.passwordLogin}</ErrorText>
+          )}
         </Field>
       </FieldsWrapper>
 

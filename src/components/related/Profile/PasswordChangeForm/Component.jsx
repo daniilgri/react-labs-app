@@ -1,5 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
+import PropTypes from "prop-types";
+
+import changePasswordSchema from "../../../../validations/changePasswordSchema";
 import {
   Wrapper,
   Head,
@@ -12,20 +15,24 @@ import {
   FilledButton,
 } from "./styles";
 
-const Component = () => {
+const Component = ({ changePasswordRequested }) => {
   const formik = useFormik({
     initialValues: {
       currentPassword: "",
       newPassword: "",
-      confirmPassword: "",
+      confirmPasswordChange: "",
     },
+    validationSchema: changePasswordSchema,
     onSubmit: (values) => {
-      console.log(values);
+      changePasswordRequested({
+        password: values.currentPassword,
+        newPassword: values.newPassword,
+      });
     },
   });
 
   return (
-    <Wrapper>
+    <Wrapper onSubmit={formik.handleSubmit}>
       <Head>
         <Title>Password change</Title>
       </Head>
@@ -59,23 +66,31 @@ const Component = () => {
           )}
         </Field>
         <Field>
-          <Label htmlFor="confirmPassword">Confirm password</Label>
+          <Label htmlFor="confirmPasswordChange">Confirm password</Label>
           <Input
-            id="confirmPassword"
-            name="confirmPassword"
+            id="confirmPasswordChange"
+            name="confirmPasswordChange"
             placeholder="Confirm password"
             type="password"
             onChange={formik.handleChange}
-            value={formik.values.confirmPassword}
+            value={formik.values.confirmPasswordChange}
           />
-          {formik.errors.confirmPassword && (
-            <ErrorText>{formik.errors.confirmPassword}</ErrorText>
+          {formik.errors.confirmPasswordChange && (
+            <ErrorText>{formik.errors.confirmPasswordChange}</ErrorText>
           )}
         </Field>
       </Body>
       <FilledButton>Change</FilledButton>
     </Wrapper>
   );
+};
+
+Component.defaultProps = {
+  changePasswordRequested: () => {},
+};
+
+Component.propTypes = {
+  changePasswordRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

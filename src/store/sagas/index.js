@@ -23,6 +23,11 @@ import {
   fetchOrdersInitialRequested,
   cancelOrderRequested,
 } from "../actions/ordersActions";
+import {
+  updateProfileRequested,
+  changeEmailRequested,
+  changePasswordRequested,
+} from "../actions/profileActions";
 
 import {
   addFilm,
@@ -38,6 +43,9 @@ import {
   signOut,
   requestOnDelete,
   cancelRequestOnDelete,
+  updateProfile,
+  changeEmail,
+  changePassword,
 } from "./authSagas";
 import { fetchFilmsAdminPanelInitial, deleteFilm } from "./filmsAdminPanel";
 import { makeOrder, fetchOrdersInitial, cancelOrder } from "./ordersSaga";
@@ -70,6 +78,10 @@ function* rootSaga() {
     yield takeLatest(makeOrderRequested, makeOrder),
     yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),
     yield takeLatest(cancelOrderRequested, cancelOrder),
+
+    yield takeLatest(updateProfileRequested, updateProfile),
+    yield takeLatest(changeEmailRequested, changeEmail),
+    yield takeLatest(changePasswordRequested, changePassword),
   ]);
 }
 

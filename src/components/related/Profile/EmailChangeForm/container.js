@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { updateProfileRequested } from "../../../../store/actions/profileActions";
+import { changeEmailRequested } from "../../../../store/actions/profileActions";
 import Component from "./Component";
 
 const mapStateToProps = (state) => ({
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({ updateProfileRequested }, dispatch),
+  ...bindActionCreators({ changeEmailRequested }, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

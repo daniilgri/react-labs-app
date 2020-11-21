@@ -1,4 +1,4 @@
-import { call, put, take } from "redux-saga/effects";
+import { call, fork, put, take } from "redux-saga/effects";
 
 import {
   signUpAPI,
@@ -7,6 +7,9 @@ import {
   signOutAPI,
   requestOnDeleteAPI,
   cancelRequestOnDeleteAPI,
+  updateProfileAPI,
+  changeEmailAPI,
+  changePasswordAPI,
 } from "../../services/authAPI";
 import {
   signUpSucceed,
@@ -23,6 +26,14 @@ import {
   cancelRequestOnDeleteSucceed,
   cancelRequestOnDeleteFailed,
 } from "../actions/authActions";
+import {
+  changeEmailFailed,
+  changeEmailSucceed,
+  updateProfileFailed,
+  updateProfileSucceed,
+  changePasswordFailed,
+  changePasswordSucceed,
+} from "../actions/profileActions";
 
 export function* signUp({ payload }) {
   try {
@@ -81,5 +92,36 @@ export function* cancelRequestOnDelete({ payload }) {
     yield put(cancelRequestOnDeleteSucceed());
   } catch (error) {
     yield put(cancelRequestOnDeleteFailed(error));
+  }
+}
+
+export function* updateProfile({ payload }) {
+  try {
+    yield call(updateProfileAPI, payload);
+    yield fork(authCurrentUser);
+    yield put(updateProfileSucceed());
+  } catch (error) {
+    yield put(updateProfileFailed(error));
+  }
+}
+
+export function* changeEmail({ payload }) {
+  try {
+    yield call(changeEmailAPI, payload);
+    yield fork(authCurrentUser);
+    yield put(changeEmailSucceed());
+  } catch (error) {
+    yield put(changeEmailFailed(error));
+  }
+}
+
+export function* changePassword({ payload }) {
+  try {
+    console.log(payload);
+    yield call(changePasswordAPI, payload);
+    yield put(changePasswordSucceed());
+  } catch (error) {
+    console.log(error);
+    yield put(changePasswordFailed(error));
   }
 }

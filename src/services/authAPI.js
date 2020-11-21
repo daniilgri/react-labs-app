@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import { auth, db } from "./firestore";
 import { eventChannel } from "redux-saga";
 
@@ -24,10 +25,6 @@ export const signInAPI = async (payload) => {
 
 export const signOutAPI = async () => {
   await auth.signOut();
-};
-
-export const updatePasswordAPI = async (payload) => {
-  await auth.currentUser.updatePassword(payload.newPassword);
 };
 
 export const getAuthChannelAPI = () => {
@@ -73,4 +70,32 @@ export const cancelRequestOnDeleteAPI = async ({ uid }) => {
   await usersCollection.docs[0].ref.update({
     requestOnDelete: false,
   });
+};
+
+export const updateProfileAPI = async (payload) => {
+  const curUser = auth.currentUser;
+
+  const usersCollection = await db
+    .collection("users")
+    .where("uid", "==", curUser.uid)
+    .get();
+  await usersCollection.docs[0].ref.update(payload);
+};
+
+export const changeEmailAPI = async (payload) => {
+  const userCredential = await auth.signInWithEmailAndPassword(
+    auth.currentUser.email,
+    payload.password
+  );
+
+  await userCredential.user.updateEmail(payload.email);
+};
+
+export const changePasswordAPI = async (payload) => {
+  const userCredential = await auth.signInWithEmailAndPassword(
+    auth.currentUser.email,
+    payload.password
+  );
+
+  await userCredential.user.updatePassword(payload.newPassword);
 };

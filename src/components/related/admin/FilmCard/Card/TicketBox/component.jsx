@@ -1,36 +1,55 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
+import { withRouter } from "react-router-dom";
+
 import {
   Wrapper,
   Title,
   Content,
   OptionList,
   OptionTitle,
-  Option,
+  ButtonOption,
   Box,
+  TimesList,
+  TimeOptionButton,
+  DateValue,
 } from "./styles";
 
-const component = () => (
-  <Wrapper>
-    <Title>Ticketing</Title>
-    <Content>
-      <Box>
-        <OptionTitle>Day</OptionTitle>
-        <OptionList>
-          <Option>13.01.2020</Option>
-          <Option>13.01.2020</Option>
-          <Option>13.01.2020</Option>
-        </OptionList>
-      </Box>
-      <Box>
-        <OptionTitle>Time</OptionTitle>
-        <OptionList>
-          <Option>23:00</Option>
-          <Option>23:00</Option>
-          <Option>23:00</Option>
-        </OptionList>
-      </Box>
-    </Content>
-  </Wrapper>
-);
+const Component = ({ screeningDates }) => {
+  return (
+    <Wrapper>
+      <Title>Ticketing</Title>
+      <Content>
+        <Box>
+          <OptionTitle>Day</OptionTitle>
+          <OptionList>
+            {screeningDates.length > 0 &&
+              screeningDates.map((dateItem) => (
+                <ButtonOption key={uuidv4()}>
+                  <DateValue>{dateItem.date}</DateValue>
+                  <TimesList>
+                    {dateItem.times.map((timeItem) => (
+                      <TimeOptionButton key={uuidv4()}>
+                        {timeItem}
+                      </TimeOptionButton>
+                    ))}
+                  </TimesList>
+                </ButtonOption>
+              ))}
+          </OptionList>
+        </Box>
+      </Content>
+    </Wrapper>
+  );
+};
 
-export default component;
+Component.defaultProps = {
+  screeningDates: [],
+};
+
+Component.propTypes = {
+  screeningDates: PropTypes.array.isRequired,
+};
+
+export default withRouter(Component);

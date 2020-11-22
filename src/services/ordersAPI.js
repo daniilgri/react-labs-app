@@ -1,5 +1,3 @@
-import { Dvr } from "@material-ui/icons";
-import { database } from "firebase";
 import { db, auth } from "./firestore";
 
 export const makeOrderAPI = async (payload) => {

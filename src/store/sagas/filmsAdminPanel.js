@@ -1,6 +1,11 @@
 import { call, put } from "redux-saga/effects";
 
-import { getFilmsInitialAPI, deleteFilmAPI } from "../../services/filmsAPI";
+import {
+  getFilmsInitialAPI,
+  deleteFilmAPI,
+  getFilmByIdAPI,
+} from "../../services/filmsAPI";
+import { fetchFilmSubscribersAPI } from "../../services/usersAPI";
 
 import {
   fetchFilmsAdminPanelInitialSucceed,
@@ -8,7 +13,13 @@ import {
   deleteFilmFailed,
   deleteFilmSucceed,
   fetchFilmsAdminPanelInitialRequested,
+  fetchFilmByIdAdminPanelFailed,
+  fetchFilmByIdAdminPanelSucceed,
 } from "../actions/filmsAdminPanelActions";
+import {
+  fetchSubscribersSucceed,
+  fetchSubscribersFailed,
+} from "../actions/filmSubscribersActions";
 
 export function* fetchFilmsAdminPanelInitial({ payload }) {
   try {
@@ -26,5 +37,24 @@ export function* deleteFilm({ payload }) {
     yield put(fetchFilmsAdminPanelInitialRequested({ count: 25 }));
   } catch (error) {
     yield put(deleteFilmFailed(error));
+  }
+}
+
+export function* fetchFilmByIdAdminPanel({ payload }) {
+  try {
+    const data = yield call(getFilmByIdAPI, payload);
+    yield put(fetchFilmByIdAdminPanelSucceed(data));
+  } catch (error) {
+    yield put(fetchFilmByIdAdminPanelFailed(error));
+  }
+}
+
+export function* fetchSubscribers({ payload }) {
+  try {
+    const data = yield call(fetchFilmSubscribersAPI, payload);
+    yield put(fetchSubscribersSucceed(data));
+  } catch (error) {
+    console.log(error);
+    yield put(fetchSubscribersFailed(error));
   }
 }

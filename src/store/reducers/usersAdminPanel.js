@@ -5,7 +5,7 @@ import {
   fetchUsersAdminPanelInitialFailed,
   fetchUsersAdminPanelInitialRequested,
   fetchUsersAdminPanelInitialSucceed,
-} from "../actions/usersAdminPanelActions.js";
+} from "../actions/usersAdminPanelActions";
 
 const initialState = {
   loading: false,
@@ -20,7 +20,6 @@ const usersAdminPanel = handleActions(
     }),
     [fetchUsersAdminPanelInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      console.log(payload);
       state.users = payload;
     }),
     [fetchUsersAdminPanelInitialFailed]: produce(

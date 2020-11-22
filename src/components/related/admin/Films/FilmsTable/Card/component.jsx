@@ -17,7 +17,7 @@ const component = ({ film, onDelete }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper to={`/admin/film/${film.id}`}>
       <Image src={film.image} />
       <InfoSection>
         <Title>{film.title}</Title>

@@ -7,16 +7,16 @@ import { Wrapper, Pending } from "./styles";
 
 const Component = ({
   filmId,
-  fetchFilmByIdRequested,
+  fetchFilmByIdAdminPanelRequested,
   film,
-  error,
+  filmError,
   loading,
 }) => {
   useEffect(() => {
-    fetchFilmByIdRequested(filmId);
+    fetchFilmByIdAdminPanelRequested(filmId);
   }, []);
 
-  if (loading) {
+  if (loading || filmError) {
     return <Pending>Loading</Pending>;
   }
 
@@ -25,26 +25,28 @@ const Component = ({
       <FilmBox
         title={film.title}
         description={film.description}
-        imageSrc="https://picsum.photos/900/1400"
+        image={film.image}
+        ticketPrice={film.ticketPrice}
+        tags={film.tags}
       />
-      <TicketBox />
+      <TicketBox screeningDates={film.screeningDates} />
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
+  fetchFilmByIdAdminPanelRequested: () => {},
   filmId: "",
-  fetchFilmByIdRequested: () => {},
   film: {},
-  error: "",
+  filmError: "",
   loading: false,
 };
 
 Component.propTypes = {
   filmId: PropTypes.string.isRequired,
-  fetchFilmByIdRequested: PropTypes.func.isRequired,
+  fetchFilmByIdAdminPanelRequested: PropTypes.func.isRequired,
   film: PropTypes.object,
-  error: PropTypes.string,
+  filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
 };
 

@@ -13,7 +13,7 @@ const Component = () => {
     <React.Fragment>
       <AdminHeader />
       <Wrapper>
-        <Card />
+        <Card filmId={id} />
         <Subscribers filmId={id} />
       </Wrapper>
     </React.Fragment>

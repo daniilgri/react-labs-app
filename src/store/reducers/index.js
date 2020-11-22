@@ -9,6 +9,8 @@ import filmsAdminPanel from "./filmsAdminPanel";
 import usersAdminPanel from "./usersAdminPanel";
 import newOrder from "./newOrder";
 import orders from "./orders";
+import filmSubscribers from "./filmSubscribers";
+import filmCardAdminPanel from "./filmCardAdminPanel";
 
 export default combineReducers({
   addFilm,
@@ -20,4 +22,6 @@ export default combineReducers({
   usersAdminPanel,
   newOrder,
   orders,
+  filmSubscribers,
+  filmCardAdminPanel,
 });

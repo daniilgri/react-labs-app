@@ -24,3 +24,16 @@ export const deleteFilmFailed = createAction(
   "@FILMS_ADMIN_PANEL/DELETE_FILM_FAILED",
   (payload) => payload
 );
+
+export const fetchFilmByIdAdminPanelRequested = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILM_BY_ID_ADMIN_PANEL_REQUESTED",
+  (payload) => payload
+);
+export const fetchFilmByIdAdminPanelSucceed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILM_BY_ID_ADMIN_PANEL_SUCCEED",
+  (payload) => payload
+);
+export const fetchFilmByIdAdminPanelFailed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILM_BY_ID_ADMIN_PANEL_FAILED",
+  (payload) => payload
+);

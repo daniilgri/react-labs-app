@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  width: 100%;
   background-color: #fff;
   box-shadow: 5px 10px 60px rgba(170, 111, 81, 0.1);
   padding: 20px 40px;
@@ -27,8 +28,49 @@ export const OptionList = styled.ul`
   list-style: none;
   margin: 30px 0;
   padding: 0;
+
+  display: flex;
+  flex-direction: column;
 `;
 
-export const Option = styled.li`
-  padding: 10px 0;
+export const ButtonOption = styled.li`
+  margin: 10px 0;
+`;
+
+export const DateValue = styled.div``;
+
+export const OrderButton = styled.button`
+  background: #f85d4b;
+  border-radius: 4px;
+
+  font-size: 18px;
+  color: #ffffff;
+
+  border: 0;
+
+  width: 330px;
+  height: 60px;
+
+  cursor: pointer;
+`;
+
+export const TimesList = styled.ul`
+  list-style: none;
+`;
+
+export const TimeOptionButton = styled.li`
+  margin: 10px 0;
+
+  color: #fff;
+  background-color: #aa6f51c7;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  ${({ chosen }) => chosen && `background-color: #7d4d34c7;`};
+`;
+
+export const Loading = styled.label`
+  color: red;
 `;

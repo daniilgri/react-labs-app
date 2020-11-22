@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   background-color: #fff;
   box-shadow: 5px 10px 60px rgba(170, 111, 81, 0.1);
+  text-decoration: none;
 `;
 
 export const Image = styled.div`
@@ -20,6 +22,7 @@ export const InfoSection = styled.div`
 
 export const Title = styled.h4`
   margin: 0 0 40px 0;
+  color: #000;
 `;
 
 export const ScreeningDate = styled.p``;

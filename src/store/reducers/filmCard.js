@@ -13,7 +13,7 @@ const initialState = {
   film: {},
 };
 
-const filmsBoard = handleActions(
+const filmCard = handleActions(
   {
     [fetchFilmByIdRequested]: produce((state) => {
       state.loading = true;
@@ -30,4 +30,4 @@ const filmsBoard = handleActions(
   initialState
 );
 
-export default filmsBoard;
+export default filmCard;

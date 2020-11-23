@@ -18,7 +18,10 @@ import {
   deleteFilmRequested,
   fetchFilmByIdAdminPanelRequested,
 } from "../actions/filmsAdminPanelActions";
-import { fetchUsersAdminPanelInitialRequested } from "../actions/usersAdminPanelActions";
+import {
+  fetchUsersAdminPanelInitialRequested,
+  deleteUserRequested,
+} from "../actions/usersAdminPanelActions";
 import {
   makeOrderRequested,
   fetchOrdersInitialRequested,
@@ -37,7 +40,7 @@ import {
   fetchFilmById,
   updateFilmRating,
 } from "./filmsSagas";
-import { fetchUsersAdminPanelInitial } from "./usersAdminPanel";
+import { fetchUsersAdminPanelInitial, deleteUser } from "./usersAdminPanel";
 import {
   signUp,
   signIn,
@@ -83,6 +86,7 @@ function* rootSaga() {
     ),
     yield takeLatest(deleteFilmRequested, deleteFilm),
     yield takeLatest(fetchSubscribersRequested, fetchSubscribers),
+    yield takeLatest(deleteUserRequested, deleteUser),
 
     yield takeLatest(makeOrderRequested, makeOrder),
     yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),

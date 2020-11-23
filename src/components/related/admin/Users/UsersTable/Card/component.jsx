@@ -16,13 +16,13 @@ const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
   const handleConfirmDeleteRequestButtonOnClick = (event) => {
     event.preventDefault();
 
-    onConfirmDeleteRequest({ uid: user.uid });
+    onConfirmDeleteRequest({ userUid: user.uid });
   };
 
   const handleDeleteButtonOnClick = (event) => {
     event.preventDefault();
 
-    onDelete({ uid: user.uid });
+    onDelete({ userUid: user.uid });
   };
 
   return (

@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import { auth, db } from "./firestore";
 import { eventChannel } from "redux-saga";
 
@@ -14,12 +13,19 @@ export const signUpAPI = async (payload) => {
     lastName: payload.lastName,
     requestOnDelete: false,
     role: "guest",
+    email: payload.email,
   });
-
-  return {};
 };
 
 export const signInAPI = async (payload) => {
+  const userExists = await db
+    .collection("users")
+    .where("email", "==", payload.email)
+    .get();
+  if (userExists.data()) {
+    return {};
+  }
+
   await auth.signInWithEmailAndPassword(payload.email, payload.password);
 };
 

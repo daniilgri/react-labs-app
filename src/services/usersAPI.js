@@ -7,9 +7,14 @@ export const getUsersInitialAPI = async (payload) => {
   });
 };
 
-export const confirmDeleteRequestAPI = async (payload) => {};
+export const deleteUserAPI = async (payload) => {
+  const userSnapshot = await db
+    .collection("users")
+    .where("uid", "==", payload.userUid)
+    .get();
 
-export const deleteUserAPI = async (payload) => {};
+  console.log(userSnapshot.doc[0].data());
+};
 
 export const fetchFilmSubscribersAPI = async (payload) => {
   const ordersByFilm = await db

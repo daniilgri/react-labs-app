@@ -1,7 +1,10 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { fetchUsersAdminPanelInitialRequested } from "../../../../../store/actions/usersAdminPanelActions";
+import {
+  fetchUsersAdminPanelInitialRequested,
+  deleteUserRequested,
+} from "../../../../../store/actions/usersAdminPanelActions";
 import Component from "./Component.jsx";
 
 const mapStateToProps = (state) => ({
@@ -11,7 +14,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({ fetchUsersAdminPanelInitialRequested }, dispatch),
+  ...bindActionCreators(
+    { fetchUsersAdminPanelInitialRequested, deleteUserRequested },
+    dispatch
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

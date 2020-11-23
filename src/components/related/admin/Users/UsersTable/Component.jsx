@@ -10,10 +10,15 @@ const Component = ({
   fetchUsersAdminPanelInitialRequested,
   users,
   error,
+  deleteUserRequested,
 }) => {
-  const handleConfirmDeleteRequest = (userId) => {};
+  const handleConfirmDeleteRequest = (userUid) => {
+    deleteUserRequested(userUid);
+  };
 
-  const handleDeleteUser = (userId) => {};
+  const handleDeleteUser = (userUid) => {
+    deleteUserRequested(userUid);
+  };
 
   useEffect(() => {
     fetchUsersAdminPanelInitialRequested({ count: 25 });

@@ -58,7 +58,7 @@ export const deleteFilmAPI = async (payload) => {
     .collection("orders")
     .where("filmId", "==", payload.filmId)
     .get();
-  await ordersSnapshot.docs.forEach((doc) => {
+  ordersSnapshot.docs.forEach((doc) => {
     doc.ref.delete();
   });
 };

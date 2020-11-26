@@ -18,14 +18,6 @@ export const signUpAPI = async (payload) => {
 };
 
 export const signInAPI = async (payload) => {
-  const userExists = await db
-    .collection("users")
-    .where("email", "==", payload.email)
-    .get();
-  if (userExists.data()) {
-    return {};
-  }
-
   await auth.signInWithEmailAndPassword(payload.email, payload.password);
 };
 
@@ -53,7 +45,8 @@ export const getAuthChannelAPI = () => {
               },
             });
           });
-      } // fix bug
+      }
+      emit({ user: null });
     });
   });
 };
@@ -105,3 +98,30 @@ export const changePasswordAPI = async (payload) => {
 
   await userCredential.user.updatePassword(payload.newPassword);
 };
+
+/*export const getAuthChannelAPI = () => {
+  return eventChannel((emit) => {
+    return auth.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        db.collection("users")
+          .where("uid", "==", user.uid)
+          .get()
+          .then((usersCollection) => {
+            const customUser = usersCollection.docs[0].data();
+            console.log(customUser);
+            emit({
+              user: {
+                uid: user.uid,
+                email: user.email,
+                firstName: customUser.firstName,
+                lastName: customUser.lastName,
+                requestOnDelete: customUser.requestOnDelete,
+                role: customUser.role,
+              },
+            });
+          });
+      }
+    });
+  });
+};*/

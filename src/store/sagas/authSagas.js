@@ -49,6 +49,7 @@ export function* signIn({ payload }) {
     const data = yield call(signInAPI, payload);
     yield put(signInSucceed(data));
   } catch (error) {
+    console.log(error);
     yield put(signInFailed(error));
   }
 }

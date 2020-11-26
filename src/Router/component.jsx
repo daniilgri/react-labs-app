@@ -28,12 +28,7 @@ const component = () => (
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute path="/profile/orders" component={Orders} />
 
-      <PublicRoute
-        restricted={false}
-        exact
-        path="/"
-        component={BulletinBoard}
-      />
+      <Route restricted={false} exact path="/" component={BulletinBoard} />
       <PublicRoute restricted={false} path="/film/:id" component={FilmCard} />
       <PublicRoute restricted={true} path="/login" component={Login} />
       <PublicRoute restricted={true} path="/signup" component={Signup} />

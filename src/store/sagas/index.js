@@ -12,6 +12,7 @@ import {
   fetchFilmByIdRequested,
   fetchFilmsInitialRequested,
   updateFilmRatingRequested,
+  fetchFilmsNextRequested,
 } from "../actions/filmsActions";
 import {
   fetchFilmsAdminPanelInitialRequested,
@@ -39,6 +40,7 @@ import {
   fetchFilmsInitial,
   fetchFilmById,
   updateFilmRating,
+  fetchFilmsNext,
 } from "./filmsSagas";
 import { fetchUsersAdminPanelInitial, deleteUser } from "./usersAdminPanel";
 import {
@@ -66,6 +68,7 @@ function* rootSaga() {
 
     yield takeLatest(addFilmRequested, addFilm),
     yield takeLatest(fetchFilmsInitialRequested, fetchFilmsInitial),
+    yield takeLatest(fetchFilmsNextRequested, fetchFilmsNext),
     yield takeLatest(fetchFilmByIdRequested, fetchFilmById),
     yield takeLatest(updateFilmRatingRequested, updateFilmRating),
 

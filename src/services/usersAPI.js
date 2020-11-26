@@ -1,4 +1,5 @@
 import { db } from "./firestore";
+import API from "./axios";
 
 export const getUsersInitialAPI = async (payload) => {
   const snapshot = await db.collection("users").limit(payload.count).get();
@@ -8,12 +9,8 @@ export const getUsersInitialAPI = async (payload) => {
 };
 
 export const deleteUserAPI = async (payload) => {
-  const userSnapshot = await db
-    .collection("users")
-    .where("uid", "==", payload.userUid)
-    .get();
-
-  console.log(userSnapshot.doc[0].data());
+  console.log(payload);
+  await API.post("auth/delete_user", payload);
 };
 
 export const fetchFilmSubscribersAPI = async (payload) => {

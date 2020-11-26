@@ -53,7 +53,7 @@ export const getAuthChannelAPI = () => {
               },
             });
           });
-      }
+      } // fix bug
     });
   });
 };

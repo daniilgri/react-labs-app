@@ -1,4 +1,15 @@
 import { connect } from "react-redux";
-import Component from "./Component";
+import { bindActionCreators } from "redux";
 
-export default connect()(Component);
+import Component from "./Component";
+import { setFilmsSearchQuery } from "../../../../store/actions/filmsActions";
+
+const mapStateToProps = (state) => ({
+  query: state.filmsBoard.query,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  ...bindActionCreators({ setFilmsSearchQuery }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

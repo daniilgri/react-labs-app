@@ -1,9 +1,10 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 
 import {
   addFilmAPI,
   getFilmByIdAPI,
   getFilmsInitialAPI,
+  getFilmsNextAPI,
   updateFilmRatingAPI,
 } from "../../services/filmsAPI";
 
@@ -16,6 +17,8 @@ import {
   fetchFilmByIdFailed,
   updateFilmRatingFailed,
   updateFilmRatingSucceed,
+  fetchFilmsNextSucceed,
+  fetchFilmsNextFailed,
 } from "../actions/filmsActions";
 
 export function* addFilm({ payload }) {
@@ -29,10 +32,24 @@ export function* addFilm({ payload }) {
 
 export function* fetchFilmsInitial({ payload }) {
   try {
-    const data = yield call(getFilmsInitialAPI, payload);
+    const limit = yield select((state) => state.filmsBoard.limit);
+    const query = yield select((state) => state.filmsBoard.query);
+    const data = yield call(getFilmsInitialAPI, { limit, query });
     yield put(fetchFilmsInitialSucceed(data));
   } catch (error) {
     yield put(fetchFilmsInitialFailed(error));
+  }
+}
+
+export function* fetchFilmsNext() {
+  try {
+    const limit = yield select((state) => state.filmsBoard.limit);
+    const query = yield select((state) => state.filmsBoard.query);
+    const films = yield select((state) => state.filmsBoard.films);
+    const data = yield call(getFilmsNextAPI, { limit, films, query });
+    yield put(fetchFilmsNextSucceed(data));
+  } catch (error) {
+    yield put(fetchFilmsNextFailed(error));
   }
 }
 

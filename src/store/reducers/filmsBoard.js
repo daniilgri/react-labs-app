@@ -5,12 +5,20 @@ import {
   fetchFilmsInitialRequested,
   fetchFilmsInitialFailed,
   fetchFilmsInitialSucceed,
+  fetchFilmsNextRequested,
+  fetchFilmsNextFailed,
+  fetchFilmsNextSucceed,
+  setFilmsSearchQuery,
 } from "../actions/filmsActions";
 
 const initialState = {
   loading: false,
   error: "",
   films: [],
+  limit: 6,
+  allCount: 0,
+  count: 6,
+  query: "",
 };
 
 const filmsBoard = handleActions(
@@ -20,11 +28,27 @@ const filmsBoard = handleActions(
     }),
     [fetchFilmsInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      state.films = payload;
+      state.allCount = payload.allCount;
+      state.films = payload.films;
     }),
     [fetchFilmsInitialFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
       state.error = message;
+    }),
+    [fetchFilmsNextRequested]: produce((state) => {
+      state.loading = true;
+    }),
+    [fetchFilmsNextSucceed]: produce((state, { payload }) => {
+      state.loading = false;
+      state.films = [...state.films, ...payload.films];
+      state.count += state.limit;
+    }),
+    [fetchFilmsNextFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
+    [setFilmsSearchQuery]: produce((state, { payload }) => {
+      state.query = payload;
     }),
   },
   initialState

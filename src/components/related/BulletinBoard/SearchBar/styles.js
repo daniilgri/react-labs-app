@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { device } from "../../../../constants/mediaBreakpoints";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   background-color: #aa6f510d;
   padding: 10px 0;
   display: flex;
@@ -48,7 +48,12 @@ export const Input = styled.input`
   width: 100%;
 `;
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.button`
   margin: 0 15px;
   margin-left: auto;
+
+  cursor: pointer;
+
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
 `;

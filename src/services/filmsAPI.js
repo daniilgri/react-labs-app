@@ -39,13 +39,33 @@ export const addFilmAPI = async (payload) => {
 };
 
 export const getFilmsInitialAPI = async (payload) => {
-  const snapshot = await db.collection("films").limit(payload.count).get();
-  return snapshot.docs.map((doc) => {
-    return { id: doc.id, ...doc.data() };
-  });
+  const allSnapshot = await db.collection("films").get();
+  const snapshot = await db
+    .collection("films")
+    .orderBy("title")
+    .limit(payload.limit)
+    .get();
+  return {
+    films: snapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    }),
+    allCount: allSnapshot.size,
+  };
 };
 
-export const getFilmsNextAPI = async (payload) => {};
+export const getFilmsNextAPI = async (payload) => {
+  const snapshot = await db
+    .collection("films")
+    .orderBy("title")
+    .startAfter(payload.films[payload.films.length - 1].title)
+    .limit(payload.limit)
+    .get();
+  return {
+    films: snapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    }),
+  };
+};
 
 export const getFilmByIdAPI = async (payload) => {
   const snapshot = await db.collection("films").doc(payload).get();

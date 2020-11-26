@@ -67,7 +67,6 @@ export function* authCurrentUser() {
     yield put(authCurrentUserRequested());
 
     const authChannel = yield call(getAuthChannelAPI);
-
     while (true) {
       const { user } = yield take(authChannel);
       yield put(authCurrentUserSucceed(user));

@@ -14,8 +14,7 @@ export const makeOrderFailed = createAction(
 );
 
 export const fetchOrdersInitialRequested = createAction(
-  "@ORDERS/FETCH_ORDERS_INITIAL_REQUESTED",
-  (payload) => payload
+  "@ORDERS/FETCH_ORDERS_INITIAL_REQUESTED"
 );
 export const fetchOrdersInitialSucceed = createAction(
   "@ORDERS/FETCH_ORDERS_INITIAL_SUCCEED",
@@ -23,6 +22,18 @@ export const fetchOrdersInitialSucceed = createAction(
 );
 export const fetchOrdersInitialFailed = createAction(
   "@ORDERS/FETCH_ORDERS_INITIAL_FAILED",
+  (payload) => payload
+);
+
+export const fetchOrdersNextRequested = createAction(
+  "@ORDERS/FETCH_ORDERS_NEXT_REQUESTED"
+);
+export const fetchOrdersNextSucceed = createAction(
+  "@ORDERS/FETCH_ORDERS_NEXT_SUCCEED",
+  (payload) => payload
+);
+export const fetchOrdersNextFailed = createAction(
+  "@ORDERS/FETCH_ORDERS_NEXT_FAILED",
   (payload) => payload
 );
 

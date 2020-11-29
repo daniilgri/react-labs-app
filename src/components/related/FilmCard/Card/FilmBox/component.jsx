@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import StarRatings from "react-star-ratings";
 
 import {
   Wrapper,
@@ -32,22 +31,6 @@ const component = ({
           <OneTag key={uuidv4()}>{el}</OneTag>
         ))}
       </Tags>
-      {user ? (
-        <StarRatings
-          rating={2}
-          starRatedColor="blue"
-          changeRating={onRatingChange}
-          numberOfStars={5}
-          name="rating"
-        />
-      ) : (
-        <StarRatings
-          rating={rating}
-          starRatedColor="blue"
-          numberOfStars={5}
-          name="rating"
-        />
-      )}
       <Price>{ticketPrice} $</Price>
       <Title>{title}</Title>
       <Description>{description}</Description>

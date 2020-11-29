@@ -1,15 +1,21 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 
 import {
   getFilmsInitialAPI,
   deleteFilmAPI,
   getFilmByIdAPI,
+  getFilmsNextAPI,
 } from "../../services/filmsAPI";
-import { fetchFilmSubscribersAPI } from "../../services/usersAPI";
+import {
+  fetchFilmSubscribersNextAPI,
+  fetchFilmSubscribersInitialAPI,
+} from "../../services/usersAPI";
 
 import {
   fetchFilmsAdminPanelInitialSucceed,
   fetchFilmsAdminPanelInitialFailed,
+  fetchFilmsAdminPanelNextFailed,
+  fetchFilmsAdminPanelNextSucceed,
   deleteFilmFailed,
   deleteFilmSucceed,
   fetchFilmsAdminPanelInitialRequested,
@@ -17,16 +23,33 @@ import {
   fetchFilmByIdAdminPanelSucceed,
 } from "../actions/filmsAdminPanelActions";
 import {
-  fetchSubscribersSucceed,
-  fetchSubscribersFailed,
+  fetchSubscribersInitialFailed,
+  fetchSubscribersInitialSucceed,
+  fetchSubscribersNextFailed,
+  fetchSubscribersNextSucceed,
 } from "../actions/filmSubscribersActions";
 
-export function* fetchFilmsAdminPanelInitial({ payload }) {
+export function* fetchFilmsAdminPanelInitial() {
   try {
-    const data = yield call(getFilmsInitialAPI, payload);
+    const limit = yield select((state) => state.filmsAdminPanel.limit);
+    const query = yield select((state) => state.filmsAdminPanel.query);
+    const data = yield call(getFilmsInitialAPI, { limit, query });
     yield put(fetchFilmsAdminPanelInitialSucceed(data));
   } catch (error) {
     yield put(fetchFilmsAdminPanelInitialFailed(error));
+  }
+}
+
+export function* fetchFilmsAdminPanelNext() {
+  try {
+    const limit = yield select((state) => state.filmsAdminPanel.limit);
+    console.log(limit);
+    const query = yield select((state) => state.filmsAdminPanel.query);
+    const films = yield select((state) => state.filmsAdminPanel.films);
+    const data = yield call(getFilmsNextAPI, { limit, films, query });
+    yield put(fetchFilmsAdminPanelNextSucceed(data));
+  } catch (error) {
+    yield put(fetchFilmsAdminPanelNextFailed(error));
   }
 }
 
@@ -49,12 +72,33 @@ export function* fetchFilmByIdAdminPanel({ payload }) {
   }
 }
 
-export function* fetchSubscribers({ payload }) {
+export function* fetchSubscribersInitial({ payload }) {
   try {
-    const data = yield call(fetchFilmSubscribersAPI, payload);
-    yield put(fetchSubscribersSucceed(data));
+    const limit = yield select((state) => state.filmSubscribers.limit);
+    const data = yield call(fetchFilmSubscribersInitialAPI, {
+      limit,
+      filmId: payload.filmId,
+    });
+    yield put(fetchSubscribersInitialSucceed(data));
   } catch (error) {
     console.log(error);
-    yield put(fetchSubscribersFailed(error));
+    yield put(fetchSubscribersInitialFailed(error));
+  }
+}
+
+export function* fetchSubscribersNext({ payload }) {
+  try {
+    const limit = yield select((state) => state.filmSubscribers.limit);
+    const query = yield select((state) => state.filmSubscribers.query);
+    const users = yield select((state) => state.filmSubscribers.orders);
+    const data = yield call(fetchFilmSubscribersNextAPI, {
+      limit,
+      users,
+      query,
+      filmId: payload.filmId,
+    });
+    yield put(fetchSubscribersNextSucceed(data));
+  } catch (error) {
+    yield put(fetchSubscribersNextFailed(error));
   }
 }

@@ -7,24 +7,9 @@ import {
   InfoSection,
   NameSection,
   EmailAddress,
-  Controllers,
-  FilledButton,
-  Button,
 } from "./styles";
 
-const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
-  const handleConfirmDeleteRequestButtonOnClick = (event) => {
-    event.preventDefault();
-
-    onConfirmDeleteRequest({ uid: user.uid });
-  };
-
-  const handleDeleteButtonOnClick = (event) => {
-    event.preventDefault();
-
-    onDelete({ uid: user.uid });
-  };
-
+const component = ({ user }) => {
   return (
     <Wrapper>
       <Image src="https://picsum.photos/800/1200" />
@@ -33,17 +18,6 @@ const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
           {user.firstName} {user.lastName}
         </NameSection>
         <EmailAddress>{user.email}</EmailAddress>
-        <Controllers>
-          <FilledButton
-            disabled={!user.requestOnDelete}
-            onClick={handleConfirmDeleteRequestButtonOnClick}
-          >
-            Confirm delete request
-          </FilledButton>
-          <Button onClick={handleDeleteButtonOnClick} color="#ff6868">
-            Delete user
-          </Button>
-        </Controllers>
       </InfoSection>
     </Wrapper>
   );
@@ -51,14 +25,10 @@ const component = ({ user, onConfirmDeleteRequest, onDelete }) => {
 
 component.defaultProps = {
   user: {},
-  onConfirmDeleteRequest: () => {},
-  onDelete: () => {},
 };
 
 component.propTypes = {
   user: PropTypes.object.isRequired,
-  onConfirmDeleteRequest: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default component;

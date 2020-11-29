@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
-import { Wrapper, Loading, FetchButton } from "./styles";
+import { Wrapper, Loading, FetchButton, CenterContainer } from "./styles";
 
 const Component = ({
   loading,
@@ -27,19 +27,23 @@ const Component = ({
   }, []);
 
   return (
-    <Wrapper>
-      {films.length > 0 &&
-        films.map((item) => <Card key={uuidv4()} film={item} />)}
+    <React.Fragment>
+      <Wrapper>
+        {films.length > 0 &&
+          films.map((item) => <Card key={uuidv4()} film={item} />)}
+      </Wrapper>
       {loading || error ? (
         <Loading>Loading</Loading>
       ) : (
         count < allCount && (
-          <FetchButton onClick={handleGetMoreButtonOnClick}>
-            Get more
-          </FetchButton>
+          <CenterContainer>
+            <FetchButton onClick={handleGetMoreButtonOnClick}>
+              Get more
+            </FetchButton>
+          </CenterContainer>
         )
       )}
-    </Wrapper>
+    </React.Fragment>
   );
 };
 

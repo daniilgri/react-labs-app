@@ -18,12 +18,8 @@ export const addFilmAPI = async (payload) => {
 
   uploadTask.on(
     "state_changed",
-    (snapShot) => {
-      console.log(snapShot);
-    },
-    (err) => {
-      console.log(err);
-    },
+    (snapShot) => {},
+    (err) => {},
     () => {
       storage
         .ref("images")
@@ -54,6 +50,7 @@ export const getFilmsInitialAPI = async (payload) => {
 };
 
 export const getFilmsNextAPI = async (payload) => {
+  console.log(payload);
   const snapshot = await db
     .collection("films")
     .orderBy("title")

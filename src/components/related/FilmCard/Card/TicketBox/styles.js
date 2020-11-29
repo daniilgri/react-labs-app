@@ -51,6 +51,8 @@ export const OrderButton = styled.button`
   height: 60px;
 
   cursor: pointer;
+
+  outline: none;
 `;
 
 export const TimesList = styled.ul`

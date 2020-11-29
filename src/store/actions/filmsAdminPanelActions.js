@@ -1,8 +1,7 @@
 import { createAction } from "redux-actions";
 
 export const fetchFilmsAdminPanelInitialRequested = createAction(
-  "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_INITIAL_REQUESTED",
-  (payload) => payload
+  "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_INITIAL_REQUESTED"
 );
 export const fetchFilmsAdminPanelInitialSucceed = createAction(
   "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_INITIAL_SUCCEED",
@@ -10,6 +9,18 @@ export const fetchFilmsAdminPanelInitialSucceed = createAction(
 );
 export const fetchFilmsAdminPanelInitialFailed = createAction(
   "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_INITIAL_FAILED",
+  (payload) => payload
+);
+
+export const fetchFilmsAdminPanelNextRequested = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_NEXT_REQUESTED"
+);
+export const fetchFilmsAdminPanelNextSucceed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_NEXT_SUCCEED",
+  (payload) => payload
+);
+export const fetchFilmsAdminPanelNextFailed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_FILMS_ADMIN_PANEL_NEXT_FAILED",
   (payload) => payload
 );
 

@@ -1,8 +1,7 @@
 import { createAction } from "redux-actions";
 
 export const fetchUsersAdminPanelInitialRequested = createAction(
-  "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_INITIAL_REQUESTED",
-  (payload) => payload
+  "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_INITIAL_REQUESTED"
 );
 export const fetchUsersAdminPanelInitialSucceed = createAction(
   "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_INITIAL_SUCCEED",
@@ -10,6 +9,18 @@ export const fetchUsersAdminPanelInitialSucceed = createAction(
 );
 export const fetchUsersAdminPanelInitialFailed = createAction(
   "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_INITIAL_FAILED",
+  (payload) => payload
+);
+
+export const fetchUsersAdminPanelNextRequested = createAction(
+  "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_NEXT_REQUESTED"
+);
+export const fetchUsersAdminPanelNextSucceed = createAction(
+  "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_NEXT_SUCCEED",
+  (payload) => payload
+);
+export const fetchUsersAdminPanelNextFailed = createAction(
+  "@USERS_ADMIN_PANEL/FETCH_USERS_ADMIN_PANEL_NEXT_FAILED",
   (payload) => payload
 );
 

@@ -22,16 +22,17 @@ const Component = ({ changeEmailRequested, user, loading, error }) => {
       passwordConfirmEmail: "",
     },
     validationSchema: emailChangeSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       changeEmailRequested({
         email: values.emailChange,
         password: values.passwordConfirmEmail,
       });
+      resetForm();
     },
   });
 
   return (
-    <Wrapper onSubmit={formik.handleSubmit}>
+    <Wrapper onSubmit={formik.handleSubmit} autoComplete="off">
       <Head>
         <Title>Email change</Title>
       </Head>
@@ -45,6 +46,7 @@ const Component = ({ changeEmailRequested, user, loading, error }) => {
             type="text"
             onChange={formik.handleChange}
             value={formik.values.emailChange}
+            autocomplete="nope"
           />
           {formik.errors.emailChange && (
             <ErrorText>{formik.errors.emailChange}</ErrorText>
@@ -61,6 +63,7 @@ const Component = ({ changeEmailRequested, user, loading, error }) => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.passwordConfirmEmail}
+            autocomplete="new-password"
           />
           {formik.errors.passwordConfirmEmail && (
             <ErrorText>{formik.errors.passwordConfirmEmail}</ErrorText>

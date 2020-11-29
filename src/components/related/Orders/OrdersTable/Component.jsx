@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import Card from "./Card";
-import { Wrapper, Loading } from "./styles";
+import { Wrapper, Loading, CenterContainer, FetchButton } from "./styles";
 
 const Component = ({
   orders,
@@ -11,27 +11,43 @@ const Component = ({
   error,
   fetchOrdersInitialRequested,
   cancelOrderRequested,
+  count,
+  allCount,
+  fetchOrdersNextRequested,
 }) => {
+  const handleGetMoreButtonOnClick = (event) => {
+    event.preventDefault();
+
+    if (count < allCount) {
+      fetchOrdersNextRequested();
+    }
+  };
+
   useEffect(() => {
-    fetchOrdersInitialRequested({ count: 25 });
+    fetchOrdersInitialRequested();
   }, []);
 
-  let content;
-
-  if (loading || error) {
-    content = <Loading>Loading</Loading>;
-  } else {
-    content =
-      orders.length > 0 ? (
-        orders.map((item) => (
-          <Card key={uuidv4()} value={item} onCancel={cancelOrderRequested} />
-        ))
+  return (
+    <React.Fragment>
+      <Wrapper>
+        {orders.length > 0 &&
+          orders.map((item) => (
+            <Card key={uuidv4()} value={item} onCancel={cancelOrderRequested} />
+          ))}
+      </Wrapper>
+      {loading || error ? (
+        <Loading>Loading</Loading>
       ) : (
-        <Loading>Empty</Loading>
-      );
-  }
-
-  return <Wrapper>{content}</Wrapper>;
+        count < allCount && (
+          <CenterContainer>
+            <FetchButton onClick={handleGetMoreButtonOnClick}>
+              Get more
+            </FetchButton>
+          </CenterContainer>
+        )
+      )}
+    </React.Fragment>
+  );
 };
 
 Component.defaultProps = {
@@ -40,6 +56,9 @@ Component.defaultProps = {
   error: "",
   fetchOrdersInitialRequested: () => {},
   cancelOrderRequested: () => {},
+  count: 0,
+  allCount: 0,
+  fetchOrdersNextRequested: () => {},
 };
 
 Component.propTypes = {
@@ -48,6 +67,9 @@ Component.propTypes = {
   error: PropTypes.string,
   fetchOrdersInitialRequested: PropTypes.func.isRequired,
   cancelOrderRequested: PropTypes.func.isRequired,
+  count: PropTypes.number,
+  allCount: PropTypes.number,
+  fetchOrdersNextRequested: PropTypes.func.isRequired,
 };
 
 export default Component;

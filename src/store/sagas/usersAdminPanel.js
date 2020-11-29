@@ -1,6 +1,10 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 
-import { getUsersInitialAPI, deleteUserAPI } from "../../services/usersAPI";
+import {
+  getUsersInitialAPI,
+  deleteUserAPI,
+  getUsersNextAPI,
+} from "../../services/usersAPI";
 
 import {
   fetchUsersAdminPanelInitialFailed,
@@ -8,14 +12,29 @@ import {
   fetchUsersAdminPanelInitialRequested,
   deleteUserFailed,
   deleteUserSucceed,
+  fetchUsersAdminPanelNextFailed,
+  fetchUsersAdminPanelNextSucceed,
 } from "../actions/usersAdminPanelActions.js";
 
-export function* fetchUsersAdminPanelInitial({ payload }) {
+export function* fetchUsersAdminPanelInitial() {
   try {
-    const data = yield call(getUsersInitialAPI, payload);
+    const limit = yield select((state) => state.usersAdminPanel.limit);
+    const data = yield call(getUsersInitialAPI, { limit });
     yield put(fetchUsersAdminPanelInitialSucceed(data));
   } catch (error) {
     yield put(fetchUsersAdminPanelInitialFailed(error));
+  }
+}
+
+export function* fetchUsersAdminPanelNext() {
+  try {
+    const limit = yield select((state) => state.usersAdminPanel.limit);
+    const query = yield select((state) => state.usersAdminPanel.query);
+    const users = yield select((state) => state.usersAdminPanel.users);
+    const data = yield call(getUsersNextAPI, { limit, users, query });
+    yield put(fetchUsersAdminPanelNextSucceed(data));
+  } catch (error) {
+    yield put(fetchUsersAdminPanelNextFailed(error));
   }
 }
 

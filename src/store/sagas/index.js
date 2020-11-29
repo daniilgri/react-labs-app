@@ -18,22 +18,28 @@ import {
   fetchFilmsAdminPanelInitialRequested,
   deleteFilmRequested,
   fetchFilmByIdAdminPanelRequested,
+  fetchFilmsAdminPanelNextRequested,
 } from "../actions/filmsAdminPanelActions";
 import {
   fetchUsersAdminPanelInitialRequested,
   deleteUserRequested,
+  fetchUsersAdminPanelNextRequested,
 } from "../actions/usersAdminPanelActions";
 import {
   makeOrderRequested,
   fetchOrdersInitialRequested,
   cancelOrderRequested,
+  fetchOrdersNextRequested,
 } from "../actions/ordersActions";
 import {
   updateProfileRequested,
   changeEmailRequested,
   changePasswordRequested,
 } from "../actions/profileActions";
-import { fetchSubscribersRequested } from "../actions/filmSubscribersActions";
+import {
+  fetchSubscribersInitialRequested,
+  fetchSubscribersNextRequested,
+} from "../actions/filmSubscribersActions";
 
 import {
   addFilm,
@@ -42,7 +48,11 @@ import {
   updateFilmRating,
   fetchFilmsNext,
 } from "./filmsSagas";
-import { fetchUsersAdminPanelInitial, deleteUser } from "./usersAdminPanel";
+import {
+  fetchUsersAdminPanelInitial,
+  deleteUser,
+  fetchUsersAdminPanelNext,
+} from "./usersAdminPanel";
 import {
   signUp,
   signIn,
@@ -58,9 +68,16 @@ import {
   fetchFilmsAdminPanelInitial,
   deleteFilm,
   fetchFilmByIdAdminPanel,
-  fetchSubscribers,
+  fetchFilmsAdminPanelNext,
+  fetchSubscribersInitial,
+  fetchSubscribersNext,
 } from "./filmsAdminPanel";
-import { makeOrder, fetchOrdersInitial, cancelOrder } from "./ordersSaga";
+import {
+  makeOrder,
+  fetchOrdersInitial,
+  cancelOrder,
+  fetchOrdersNext,
+} from "./ordersSaga";
 
 function* rootSaga() {
   yield all([
@@ -87,13 +104,23 @@ function* rootSaga() {
       fetchUsersAdminPanelInitialRequested,
       fetchUsersAdminPanelInitial
     ),
+    yield takeLatest(
+      fetchUsersAdminPanelNextRequested,
+      fetchUsersAdminPanelNext
+    ),
     yield takeLatest(deleteFilmRequested, deleteFilm),
-    yield takeLatest(fetchSubscribersRequested, fetchSubscribers),
+    yield takeLatest(fetchSubscribersInitialRequested, fetchSubscribersInitial),
+    yield takeLatest(fetchSubscribersNextRequested, fetchSubscribersNext),
     yield takeLatest(deleteUserRequested, deleteUser),
+    yield takeLatest(
+      fetchFilmsAdminPanelNextRequested,
+      fetchFilmsAdminPanelNext
+    ),
 
     yield takeLatest(makeOrderRequested, makeOrder),
     yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),
     yield takeLatest(cancelOrderRequested, cancelOrder),
+    yield takeLatest(fetchOrdersNextRequested, fetchOrdersNext),
 
     yield takeLatest(updateProfileRequested, updateProfile),
     yield takeLatest(changeEmailRequested, changeEmail),

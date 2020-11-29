@@ -23,11 +23,12 @@ const Component = ({ changePasswordRequested }) => {
       confirmPasswordChange: "",
     },
     validationSchema: changePasswordSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       changePasswordRequested({
         password: values.currentPassword,
         newPassword: values.newPassword,
       });
+      resetForm();
     },
   });
 
@@ -46,6 +47,7 @@ const Component = ({ changePasswordRequested }) => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.currentPassword}
+            autoComplete="off"
           />
           {formik.errors.currentPassword && (
             <ErrorText>{formik.errors.currentPassword}</ErrorText>
@@ -60,6 +62,7 @@ const Component = ({ changePasswordRequested }) => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.newPassword}
+            autoComplete="off"
           />
           {formik.errors.newPassword && (
             <ErrorText>{formik.errors.newPassword}</ErrorText>
@@ -74,6 +77,7 @@ const Component = ({ changePasswordRequested }) => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.confirmPasswordChange}
+            autoComplete="off"
           />
           {formik.errors.confirmPasswordChange && (
             <ErrorText>{formik.errors.confirmPasswordChange}</ErrorText>

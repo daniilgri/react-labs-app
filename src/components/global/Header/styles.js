@@ -139,15 +139,12 @@ export const SelectIcon = styled.div`
   }
 `;
 
-export const OptionsList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
+export const OptionsList = styled.div`
   display: none;
 
   width: auto;
 
-  ${({ active }) => active && `display: block;`};
+  ${({ active }) => active && `display: flex; flex-direction: column;`};
 
   @media ${device.laptop} {
     position: absolute;
@@ -157,7 +154,31 @@ export const OptionsList = styled.ul`
   }
 `;
 
-export const Option = styled.li`
+export const OptionLink = styled(Link)`
+  cursor: pointer;
+
+  padding: 15px;
+
+  text-align: center;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+
+  white-space: nowrap;
+
+  @media ${device.laptop} {
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+`;
+
+export const Option = styled.div`
   cursor: pointer;
 
   padding: 15px;

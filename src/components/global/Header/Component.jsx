@@ -15,6 +15,7 @@ import {
   OptionsList,
   Option,
   StyledLink,
+  OptionLink,
 } from "./styles";
 
 const Component = ({ user, loading, error, signOutRequested }) => {
@@ -77,22 +78,34 @@ const Component = ({ user, loading, error, signOutRequested }) => {
           <OptionsList active={activeProfileSelect}>
             {user ? (
               <React.Fragment>
-                <Option onClick={handleDefaultCloseOptionOnClick}>
-                  <StyledLink to="/profile">Profile</StyledLink>
-                </Option>
-                <Option onClick={handleDefaultCloseOptionOnClick}>
-                  <StyledLink to="/profile/orders">Orders</StyledLink>
-                </Option>
+                <OptionLink
+                  to="/profile"
+                  onClick={handleDefaultCloseOptionOnClick}
+                >
+                  Profile
+                </OptionLink>
+                <OptionLink
+                  to="/profile/orders"
+                  onClick={handleDefaultCloseOptionOnClick}
+                >
+                  Orders
+                </OptionLink>
                 <Option onClick={handleSignOutOptionOnClick}>Sign out</Option>
               </React.Fragment>
             ) : (
               <React.Fragment>
-                <Option onClick={handleDefaultCloseOptionOnClick}>
-                  <StyledLink to="/login">Login</StyledLink>
-                </Option>
-                <Option onClick={handleDefaultCloseOptionOnClick}>
-                  <StyledLink to="/signup">Sign up</StyledLink>
-                </Option>
+                <OptionLink
+                  to="/login"
+                  onClick={handleDefaultCloseOptionOnClick}
+                >
+                  Login
+                </OptionLink>
+                <OptionLink
+                  to="/signup"
+                  onClick={handleDefaultCloseOptionOnClick}
+                >
+                  Sign up
+                </OptionLink>
               </React.Fragment>
             )}
           </OptionsList>

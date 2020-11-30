@@ -5,7 +5,7 @@ import {
   addFilmRequested,
   addFilmSucceed,
   addFilmFailed,
-} from "../actions/filmsActions";
+} from "../actions/filmsAdminPanelActions";
 
 const initialState = {
   loading: false,
@@ -22,7 +22,6 @@ const addFilm = handleActions(
     }),
     [addFilmFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
-      console.log(message);
       state.error = message;
     }),
   },

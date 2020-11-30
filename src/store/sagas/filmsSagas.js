@@ -1,7 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 
 import {
-  addFilmAPI,
   getFilmByIdAPI,
   getFilmsInitialAPI,
   getFilmsNextAPI,
@@ -9,8 +8,6 @@ import {
 } from "../../services/filmsAPI";
 
 import {
-  addFilmSucceed,
-  addFilmFailed,
   fetchFilmsInitialSucceed,
   fetchFilmsInitialFailed,
   fetchFilmByIdSucceed,
@@ -20,15 +17,6 @@ import {
   fetchFilmsNextSucceed,
   fetchFilmsNextFailed,
 } from "../actions/filmsActions";
-
-export function* addFilm({ payload }) {
-  try {
-    yield call(addFilmAPI, payload);
-    yield put(addFilmSucceed());
-  } catch (error) {
-    yield put(addFilmFailed(error));
-  }
-}
 
 export function* fetchFilmsInitial({ payload }) {
   try {

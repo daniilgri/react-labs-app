@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import {
   Wrapper,
+  ImageWrapper,
   Image,
   InfoSection,
   Title,
   Controllers,
   Button,
+  LinkButton,
 } from "./styles";
 
 const component = ({ film, onDelete }) => {
@@ -17,12 +19,16 @@ const component = ({ film, onDelete }) => {
   };
 
   return (
-    <Wrapper to={`/admin/film/${film.id}`}>
-      <Image src={film.image} />
+    <Wrapper>
+      <ImageWrapper to={`/admin/film/${film.id}`}>
+        <Image src={film.image} />
+      </ImageWrapper>
       <InfoSection>
         <Title>{film.title}</Title>
         <Controllers>
-          <Button color="#000">Edit</Button>
+          <LinkButton color="#000" to={`/admin/film/edit/${film.id}`}>
+            Edit
+          </LinkButton>
           <Button color="#ff6868" onClick={handleDeleteButtonOnClick}>
             Delete
           </Button>

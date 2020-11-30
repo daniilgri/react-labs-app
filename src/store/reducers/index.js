@@ -11,6 +11,7 @@ import newOrder from "./newOrder";
 import orders from "./orders";
 import filmSubscribers from "./filmSubscribers";
 import filmCardAdminPanel from "./filmCardAdminPanel";
+import editFilm from "./editFilm";
 
 export default combineReducers({
   addFilm,
@@ -24,4 +25,5 @@ export default combineReducers({
   orders,
   filmSubscribers,
   filmCardAdminPanel,
+  editFilm,
 });

@@ -5,6 +5,8 @@ import {
   deleteFilmAPI,
   getFilmByIdAPI,
   getFilmsNextAPI,
+  addFilmAPI,
+  editFilmAPI,
 } from "../../services/filmsAPI";
 import {
   fetchFilmSubscribersNextAPI,
@@ -21,6 +23,12 @@ import {
   fetchFilmsAdminPanelInitialRequested,
   fetchFilmByIdAdminPanelFailed,
   fetchFilmByIdAdminPanelSucceed,
+  addFilmFailed,
+  addFilmSucceed,
+  editFilmFailed,
+  editFilmSucceed,
+  fetchEditFilmFailed,
+  fetchEditFilmSucceed,
 } from "../actions/filmsAdminPanelActions";
 import {
   fetchSubscribersInitialFailed,
@@ -28,6 +36,33 @@ import {
   fetchSubscribersNextFailed,
   fetchSubscribersNextSucceed,
 } from "../actions/filmSubscribersActions";
+
+export function* addFilm({ payload }) {
+  try {
+    yield call(addFilmAPI, payload);
+    yield put(addFilmSucceed());
+  } catch (error) {
+    yield put(addFilmFailed(error));
+  }
+}
+
+export function* editFilm({ payload }) {
+  try {
+    yield call(editFilmAPI, payload);
+    yield put(editFilmSucceed());
+  } catch (error) {
+    yield put(editFilmFailed(error));
+  }
+}
+
+export function* fetchEditFilm({ payload }) {
+  try {
+    const data = yield call(getFilmByIdAPI, payload);
+    yield put(fetchEditFilmSucceed(data));
+  } catch (error) {
+    yield put(fetchEditFilmFailed(error));
+  }
+}
 
 export function* fetchFilmsAdminPanelInitial() {
   try {
@@ -43,7 +78,6 @@ export function* fetchFilmsAdminPanelInitial() {
 export function* fetchFilmsAdminPanelNext() {
   try {
     const limit = yield select((state) => state.filmsAdminPanel.limit);
-    console.log(limit);
     const query = yield select((state) => state.filmsAdminPanel.query);
     const films = yield select((state) => state.filmsAdminPanel.films);
     const data = yield call(getFilmsNextAPI, { limit, films, query });
@@ -81,7 +115,6 @@ export function* fetchSubscribersInitial({ payload }) {
     });
     yield put(fetchSubscribersInitialSucceed(data));
   } catch (error) {
-    console.log(error);
     yield put(fetchSubscribersInitialFailed(error));
   }
 }

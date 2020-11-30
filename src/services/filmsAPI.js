@@ -34,6 +34,36 @@ export const addFilmAPI = async (payload) => {
   );
 };
 
+export const editFilmAPI = async (payload) => {
+  const filmDoc = await db.collection("films").doc(payload.filmId).get();
+
+  if (payload.changedValues.hasOwnProperty("imageAsFile")) {
+    const uploadTask = storage
+      .ref(`/images/${payload.changedValues.imageAsFile.name}`)
+      .put(payload.imageAsFile);
+
+    uploadTask.on(
+      "state_changed",
+      (snapShot) => {},
+      (err) => {},
+      () => {
+        storage
+          .ref("images")
+          .child(payload.changedValues.imageAsFile.name)
+          .getDownloadURL()
+          .then((imageUrl) => {
+            filmDoc.update({
+              image: imageUrl,
+            });
+          });
+      }
+    );
+    delete payload.changedValues.imageAsFile;
+  }
+
+  await filmDoc.ref.update(payload.values);
+};
+
 export const getFilmsInitialAPI = async (payload) => {
   const allSnapshot = await db.collection("films").get();
   const snapshot = await db
@@ -50,7 +80,6 @@ export const getFilmsInitialAPI = async (payload) => {
 };
 
 export const getFilmsNextAPI = async (payload) => {
-  console.log(payload);
   const snapshot = await db
     .collection("films")
     .orderBy("title")

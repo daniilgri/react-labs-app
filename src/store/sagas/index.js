@@ -8,7 +8,6 @@ import {
   cancelRequestOnDeleteRequested,
 } from "../actions/authActions";
 import {
-  addFilmRequested,
   fetchFilmByIdRequested,
   fetchFilmsInitialRequested,
   updateFilmRatingRequested,
@@ -19,6 +18,9 @@ import {
   deleteFilmRequested,
   fetchFilmByIdAdminPanelRequested,
   fetchFilmsAdminPanelNextRequested,
+  addFilmRequested,
+  editFilmRequested,
+  fetchEditFilmRequested,
 } from "../actions/filmsAdminPanelActions";
 import {
   fetchUsersAdminPanelInitialRequested,
@@ -42,7 +44,6 @@ import {
 } from "../actions/filmSubscribersActions";
 
 import {
-  addFilm,
   fetchFilmsInitial,
   fetchFilmById,
   updateFilmRating,
@@ -52,7 +53,7 @@ import {
   fetchUsersAdminPanelInitial,
   deleteUser,
   fetchUsersAdminPanelNext,
-} from "./usersAdminPanel";
+} from "./usersAdminPanelSagas";
 import {
   signUp,
   signIn,
@@ -71,7 +72,10 @@ import {
   fetchFilmsAdminPanelNext,
   fetchSubscribersInitial,
   fetchSubscribersNext,
-} from "./filmsAdminPanel";
+  addFilm,
+  editFilm,
+  fetchEditFilm,
+} from "./filmsAdminPanelSagas";
 import {
   makeOrder,
   fetchOrdersInitial,
@@ -116,6 +120,8 @@ function* rootSaga() {
       fetchFilmsAdminPanelNextRequested,
       fetchFilmsAdminPanelNext
     ),
+    yield takeLatest(editFilmRequested, editFilm),
+    yield takeLatest(fetchEditFilmRequested, fetchEditFilm),
 
     yield takeLatest(makeOrderRequested, makeOrder),
     yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),

@@ -36,7 +36,7 @@ const component = () => (
       <AdminRoute exact path="/admin/films" component={FilmsAdminPanel} />
       <AdminRoute path="/admin/films/new" component={NewFilmAdminPanel} />
       <AdminRoute path="/admin/users" component={UsersAdminPanel} />
-      <AdminRoute path="/admin/film/:id" component={FilmCardAdminPanel} />
+      <AdminRoute exact path="/admin/film/:id" component={FilmCardAdminPanel} />
       <AdminRoute path="/admin/film/edit/:id" component={EditFilmAdminPanel} />
 
       <Route component={Error404} />

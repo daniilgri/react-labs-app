@@ -48,3 +48,38 @@ export const fetchFilmByIdAdminPanelFailed = createAction(
   "@FILMS_ADMIN_PANEL/FETCH_FILM_BY_ID_ADMIN_PANEL_FAILED",
   (payload) => payload
 );
+
+export const addFilmRequested = createAction(
+  "@FILMS_ADMIN_PANEL/ADD_FILM_REQUESTED",
+  (payload) => payload
+);
+export const addFilmSucceed = createAction(
+  "@FILMS_ADMIN_PANEL/ADD_FILM_SUCCEED"
+);
+export const addFilmFailed = createAction(
+  "@FILMS_ADMIN_PANEL/ADD_FILM_FAILED",
+  (payload) => payload
+);
+
+export const editFilmRequested = createAction(
+  "@FILMS_ADMIN_PANEL/EDIT_FILM_REQUESTED",
+  (payload) => payload
+);
+export const editFilmSucceed = createAction(
+  "@FILMS_ADMIN_PANEL/EDIT_FILM_SUCCEED"
+);
+export const editFilmFailed = createAction(
+  "@FILMS_ADMIN_PANEL/EDIT_FILM_FAILED",
+  (payload) => payload
+);
+
+export const fetchEditFilmRequested = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_EDIT_FILM_REQUESTED",
+  (payload) => payload
+);
+export const fetchEditFilmSucceed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_EDIT_FILM_SUCCEED"
+);
+export const fetchEditFilmFailed = createAction(
+  "@FILMS_ADMIN_PANEL/FETCH_EDIT_FILM_FAILED"
+);

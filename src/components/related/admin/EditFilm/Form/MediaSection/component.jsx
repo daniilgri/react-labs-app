@@ -14,14 +14,14 @@ import {
   ImagePreview,
 } from "./styles";
 
-const Component = ({ onImageUpload, errors, imagePreviewSrc }) => {
+const Component = ({ onImageUpload, errors, previewImage }) => {
   return (
     <Wrapper>
       <Head>
         <Title>Add media info</Title>
       </Head>
       <Body>
-        <ImagePreview alt="preview" src={imagePreviewSrc} />
+        <ImagePreview alt="preview" src={previewImage} />
         <Field>
           <Label htmlFor="imageAsFile">Image</Label>
           <Input
@@ -40,12 +40,12 @@ const Component = ({ onImageUpload, errors, imagePreviewSrc }) => {
 Component.defaultProps = {
   onImageUpload: () => {},
   errors: {},
-  imagePreviewSrc: "",
+  previewImage: "",
 };
 
 Component.propTypes = {
   onImageUpload: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  imagePreviewSrc: PropTypes.string.isRequired,
+  previewImage: PropTypes.string.isRequired,
 };
 export default withRouter(Component);

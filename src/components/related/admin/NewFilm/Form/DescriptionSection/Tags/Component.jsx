@@ -58,14 +58,14 @@ Component.defaultProps = {
   onSet: () => {},
   onDelete: () => {},
   values: [],
-  errors: [],
+  errors: {},
 };
 
 Component.propTypes = {
   onSet: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   values: PropTypes.array.isRequired,
-  errors: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default Component;

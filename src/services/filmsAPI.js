@@ -40,7 +40,7 @@ export const editFilmAPI = async (payload) => {
   if (payload.changedValues.hasOwnProperty("imageAsFile")) {
     const uploadTask = storage
       .ref(`/images/${payload.changedValues.imageAsFile.name}`)
-      .put(payload.imageAsFile);
+      .put(payload.changedValues.imageAsFile);
 
     uploadTask.on(
       "state_changed",
@@ -52,16 +52,15 @@ export const editFilmAPI = async (payload) => {
           .child(payload.changedValues.imageAsFile.name)
           .getDownloadURL()
           .then((imageUrl) => {
-            filmDoc.update({
+            delete payload.values.imageAsFile;
+            filmDoc.ref.update({
               image: imageUrl,
+              ...payload.values,
             });
           });
       }
     );
-    delete payload.changedValues.imageAsFile;
   }
-
-  await filmDoc.ref.update(payload.values);
 };
 
 export const getFilmsInitialAPI = async (payload) => {

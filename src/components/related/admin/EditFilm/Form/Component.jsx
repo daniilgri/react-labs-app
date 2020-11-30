@@ -38,6 +38,7 @@ const Component = ({
       description: film.description,
       ticketPrice: film.ticketPrice,
       imageAsFile: film.image,
+      previewImage: film.image,
       tags: film.tags,
       screeningDates: film.screeningDates,
     },
@@ -121,7 +122,7 @@ const Component = ({
         <MediaSection
           errors={formik.errors}
           onImageUpload={handleImageUpload}
-          imagePreviewSrc={formik.values.imageAsFile}
+          previewImage={formik.values.previewImage}
         />
         <FormalSection
           screeningDates={formik.values.screeningDates}

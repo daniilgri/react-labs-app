@@ -6,17 +6,20 @@ import {
   deleteUserRequested,
   fetchUsersAdminPanelNextRequested,
 } from "../../../../../store/actions/usersAdminPanelActions";
-import Component from "./Component.jsx";
+import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.usersAdminPanel.loading,
   users: state.usersAdminPanel.users,
   error: state.usersAdminPanel.error,
   allCount: state.usersAdminPanel.allCount,
   count: state.usersAdminPanel.count,
+  currentUser: state.auth.user,
+  loadingCurrentUser: state.auth.loading,
+  errorCurrentUser: state.auth.error,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     {
       fetchUsersAdminPanelInitialRequested,

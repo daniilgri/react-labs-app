@@ -1,12 +1,12 @@
 import { db, auth } from "./firestore";
 
-export const makeOrderAPI = async (payload) => {
+export const makeOrderAPI = async payload => {
   const newOrderDoc = db.collection("orders").doc();
   const slug = `${payload.filmId} - ${payload.userUid} - ${payload.screeningDate.date} - ${payload.screeningDate.time}`;
   await newOrderDoc.set({ ...payload, slug });
 };
 
-export const getOrdersInitialAPI = async (payload) => {
+export const getOrdersInitialAPI = async payload => {
   const allSnapshot = await db
     .collection("orders")
     .where("userUid", "==", auth.currentUser.uid)
@@ -21,7 +21,7 @@ export const getOrdersInitialAPI = async (payload) => {
 
   return {
     orders: await Promise.all(
-      snapshot.docs.map(async (doc) => {
+      snapshot.docs.map(async doc => {
         const film = await db.collection("films").doc(doc.data().filmId).get();
         return { id: doc.id, film: film.data(), ...doc.data() };
       })
@@ -30,7 +30,7 @@ export const getOrdersInitialAPI = async (payload) => {
   };
 };
 
-export const getOrdersNextAPI = async (payload) => {
+export const getOrdersNextAPI = async payload => {
   const snapshot = await db
     .collection("orders")
     .orderBy("slug")
@@ -41,7 +41,7 @@ export const getOrdersNextAPI = async (payload) => {
 
   return {
     orders: await Promise.all(
-      snapshot.docs.map(async (doc) => {
+      snapshot.docs.map(async doc => {
         const film = await db.collection("films").doc(doc.data().filmId).get();
         return { id: doc.id, film: film.data(), ...doc.data() };
       })
@@ -49,6 +49,6 @@ export const getOrdersNextAPI = async (payload) => {
   };
 };
 
-export const cancelOrderAPI = async (payload) => {
+export const cancelOrderAPI = async payload => {
   await db.collection("orders").doc(payload.orderId).delete();
 };

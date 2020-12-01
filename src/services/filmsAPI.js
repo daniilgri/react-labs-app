@@ -1,6 +1,6 @@
 import { db, storage } from "./firestore";
 
-export const addFilmAPI = async (payload) => {
+export const addFilmAPI = async payload => {
   const newFilmDoc = db.collection("films").doc();
   await newFilmDoc.set({
     title: payload.title,
@@ -12,20 +12,18 @@ export const addFilmAPI = async (payload) => {
     rate: null,
   });
 
-  const uploadTask = storage
-    .ref(`/images/${payload.imageAsFile.name}`)
-    .put(payload.imageAsFile);
+  const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
 
   uploadTask.on(
     "state_changed",
-    (snapShot) => {},
-    (err) => {},
+    () => {},
+    () => {},
     () => {
       storage
         .ref("images")
         .child(payload.imageAsFile.name)
         .getDownloadURL()
-        .then((imageUrl) => {
+        .then(imageUrl => {
           newFilmDoc.update({
             image: imageUrl,
           });
@@ -34,28 +32,29 @@ export const addFilmAPI = async (payload) => {
   );
 };
 
-export const editFilmAPI = async (payload) => {
+export const editFilmAPI = async payload => {
+  const { values, changedValues } = payload;
   const filmDoc = await db.collection("films").doc(payload.filmId).get();
 
-  if (payload.changedValues.hasOwnProperty("imageAsFile")) {
+  if ("imageAsFile" in changedValues) {
     const uploadTask = storage
-      .ref(`/images/${payload.changedValues.imageAsFile.name}`)
-      .put(payload.changedValues.imageAsFile);
+      .ref(`/images/${changedValues.imageAsFile.name}`)
+      .put(changedValues.imageAsFile);
 
     uploadTask.on(
       "state_changed",
-      (snapShot) => {},
-      (err) => {},
+      () => {},
+      () => {},
       () => {
         storage
           .ref("images")
-          .child(payload.changedValues.imageAsFile.name)
+          .child(changedValues.imageAsFile.name)
           .getDownloadURL()
-          .then((imageUrl) => {
-            delete payload.values.imageAsFile;
+          .then(imageUrl => {
+            delete values.imageAsFile;
             filmDoc.ref.update({
               image: imageUrl,
-              ...payload.values,
+              ...values,
             });
           });
       }
@@ -63,22 +62,18 @@ export const editFilmAPI = async (payload) => {
   }
 };
 
-export const getFilmsInitialAPI = async (payload) => {
+export const getFilmsInitialAPI = async payload => {
   const allSnapshot = await db.collection("films").get();
-  const snapshot = await db
-    .collection("films")
-    .orderBy("title")
-    .limit(payload.limit)
-    .get();
+  const snapshot = await db.collection("films").orderBy("title").limit(payload.limit).get();
   return {
-    films: snapshot.docs.map((doc) => {
+    films: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };
     }),
     allCount: allSnapshot.size,
   };
 };
 
-export const getFilmsNextAPI = async (payload) => {
+export const getFilmsNextAPI = async payload => {
   const snapshot = await db
     .collection("films")
     .orderBy("title")
@@ -86,30 +81,23 @@ export const getFilmsNextAPI = async (payload) => {
     .limit(payload.limit)
     .get();
   return {
-    films: snapshot.docs.map((doc) => {
+    films: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };
     }),
   };
 };
 
-export const getFilmByIdAPI = async (payload) => {
+export const getFilmByIdAPI = async payload => {
   const snapshot = await db.collection("films").doc(payload).get();
   return { id: snapshot.id, ...snapshot.data() };
 };
 
-export const deleteFilmAPI = async (payload) => {
+export const deleteFilmAPI = async payload => {
   await db.collection("films").doc(payload.filmId).delete();
-  const ordersSnapshot = await db
-    .collection("orders")
-    .where("filmId", "==", payload.filmId)
-    .get();
-  ordersSnapshot.docs.forEach((doc) => {
+  const ordersSnapshot = await db.collection("orders").where("filmId", "==", payload.filmId).get();
+  ordersSnapshot.docs.forEach(doc => {
     doc.ref.delete();
   });
 };
 
-export const updateFilmRatingAPI = async (payload) => {
-  const filmSnapshot = await db.collection("films").doc(payload.filmId).get();
-
-  console.log(filmSnapshot.data());
-};
+export const updateFilmRatingAPI = async () => {};

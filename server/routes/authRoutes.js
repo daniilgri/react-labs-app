@@ -13,28 +13,26 @@ routes.post("/delete_user", async (req, res) => {
       });
     }
 
-    //await admin.auth().deleteUser(userUid);
-    console.log(userUid);
+    await admin.auth().deleteUser(userUid);
     const userSnapshot = await admin
       .firestore()
       .collection("users")
       .where("uid", "==", userUid)
       .get();
 
-    console.log(userSnapshot.docs);
+    userSnapshot.docs[0].ref.delete();
 
-    /*const ordersSnapshot = await admin
+    const ordersSnapshot = await admin
       .firestore()
       .collection("orders")
       .where("userUid", "==", userUid)
       .get();
-    ordersSnapshot.docs.forEach((doc) => {
+    ordersSnapshot.docs.forEach(doc => {
       doc.ref.delete();
-    });*/
+    });
 
     res.status(200).send({});
   } catch (error) {
-    console.log(error);
     res.status(400).send({ error: error.message });
   }
 });

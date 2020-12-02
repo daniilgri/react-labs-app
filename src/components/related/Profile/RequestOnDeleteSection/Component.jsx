@@ -23,12 +23,12 @@ const Component = ({
     },
   });
 
-  const handleCancelButtonOnClick = (event) => {
+  const handleCancelButtonOnClick = event => {
     event.preventDefault();
     cancelRequestOnDeleteRequested({ uid: user.uid });
   };
 
-  if (loading) {
+  if (loading || error) {
     return null;
   }
 
@@ -36,7 +36,8 @@ const Component = ({
     <Wrapper>
       <Label>
         Wanna delete your account? Enter your e-mail address
-        <Bold>({user.email})</Bold>to confirm
+        <Bold>{user.email}</Bold>
+        to confirm
       </Label>
       <Form onSubmit={formik.handleSubmit}>
         <Input
@@ -46,19 +47,11 @@ const Component = ({
           value={formik.values.requestOnDeleteEmail}
           disabled={user.requestOnDelete}
         />
-        <FilledButton
-          bgColor="#f85d4b"
-          disabled={user.requestOnDelete}
-          type="submit"
-        >
+        <FilledButton bgColor="#f85d4b" disabled={user.requestOnDelete} type="submit">
           Confirm
         </FilledButton>
         {user.requestOnDelete && (
-          <FilledButton
-            bgColor="#e24545"
-            type="button"
-            onClick={handleCancelButtonOnClick}
-          >
+          <FilledButton bgColor="#e24545" type="button" onClick={handleCancelButtonOnClick}>
             Cancel
           </FilledButton>
         )}
@@ -69,14 +62,11 @@ const Component = ({
 
 Component.defaultProps = {
   user: null,
-  loading: false,
   error: "",
-  requestOnDeleteRequested: () => {},
-  cancelRequestOnDeleteRequested: () => {},
 };
 
 Component.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   requestOnDeleteRequested: PropTypes.func.isRequired,

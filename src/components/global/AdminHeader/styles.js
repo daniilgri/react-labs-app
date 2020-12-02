@@ -59,7 +59,7 @@ export const MenuItem = styled.li`
 const activeClassName = "active";
 
 export const StyledNavLink = styled(NavLink).attrs({
-  activeClassName: activeClassName,
+  activeClassName,
 })`
   text-decoration: none;
 

@@ -61,10 +61,10 @@ component.defaultProps = {
 };
 
 component.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.objectOf(PropTypes.object).isRequired,
   onConfirmDeleteRequest: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default component;

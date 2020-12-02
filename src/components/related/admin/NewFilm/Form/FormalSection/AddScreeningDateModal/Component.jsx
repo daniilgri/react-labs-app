@@ -23,9 +23,7 @@ import {
 } from "./styles";
 
 const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
-  const [screeningTimeInputActive, setScreeningTimeInputActive] = useState(
-    false
-  );
+  const [screeningTimeInputActive, setScreeningTimeInputActive] = useState(false);
   const [screeningTimeValue, setScreeningTimeValue] = useState("");
 
   const formik = useFormik({
@@ -44,7 +42,7 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
     },
   });
 
-  const handleScreeningTimeAddition = (event) => {
+  const handleScreeningTimeAddition = event => {
     event.preventDefault();
 
     formik.setFieldValue("times", [screeningTimeValue, ...formik.values.times]);
@@ -53,39 +51,35 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
     setScreeningTimeInputActive(false);
   };
 
-  const handleScreeningTimeCancel = (event) => {
+  const handleScreeningTimeCancel = event => {
     event.preventDefault();
 
     setScreeningTimeValue("");
     setScreeningTimeInputActive(false);
   };
 
-  const handleAddTimeButtonOnClick = (event) => {
+  const handleAddTimeButtonOnClick = event => {
     event.preventDefault();
 
     setScreeningTimeValue("");
-    setScreeningTimeInputActive((prevState) => !prevState);
+    setScreeningTimeInputActive(prevState => !prevState);
   };
 
-  const handleScreeningTimeOnChange = (event) => {
+  const handleScreeningTimeOnChange = event => {
     setScreeningTimeValue(event.target.value);
   };
 
-  const handleScreeningTimeItemDelete = (sdTime) => (event) => {
+  const handleScreeningTimeItemDelete = sdTime => event => {
     event.preventDefault();
 
     formik.setFieldValue(
       "times",
-      formik.values.times.filter((el) => el !== sdTime)
+      formik.values.times.filter(el => el !== sdTime)
     );
   };
 
   return (
-    <Wrapper
-      isOpen={isOpen}
-      onBackgroundClick={closeModal}
-      onEscapeKeydown={closeModal}
-    >
+    <Wrapper isOpen={isOpen} onBackgroundClick={closeModal} onEscapeKeydown={closeModal}>
       <Content onSubmit={formik.handleSubmit}>
         <Title>Add screening date</Title>
         <Field>
@@ -111,21 +105,15 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
                 onChange={handleScreeningTimeOnChange}
                 value={screeningTimeValue}
               />
-              <ConfirmTimeAddButton onClick={handleScreeningTimeAddition}>
-                +
-              </ConfirmTimeAddButton>
-              <ConfirmTimeAddButton onClick={handleScreeningTimeCancel}>
-                -
-              </ConfirmTimeAddButton>
+              <ConfirmTimeAddButton onClick={handleScreeningTimeAddition}>+</ConfirmTimeAddButton>
+              <ConfirmTimeAddButton onClick={handleScreeningTimeCancel}>-</ConfirmTimeAddButton>
             </ScreeningTimeInputWrapper>
           )}
-          {formik.values.times.map((el) => (
+          {formik.values.times.map(el => (
             <ScreeningTime key={uuidv4()}>
               {el}
               <ScreeningTimeEditButtons>
-                <ConfirmTimeAddButton
-                  onClick={handleScreeningTimeItemDelete(el)}
-                >
+                <ConfirmTimeAddButton onClick={handleScreeningTimeItemDelete(el)}>
                   -
                 </ConfirmTimeAddButton>
               </ScreeningTimeEditButtons>
@@ -137,12 +125,6 @@ const Component = ({ closeModal, isOpen, onScreeningDateAdd }) => {
       </Content>
     </Wrapper>
   );
-};
-
-Component.defaultProps = {
-  closeModal: () => {},
-  isOpen: false,
-  onScreeningDateAdd: () => {},
 };
 
 Component.propTypes = {

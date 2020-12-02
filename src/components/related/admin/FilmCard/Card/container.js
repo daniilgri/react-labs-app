@@ -2,16 +2,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { fetchFilmByIdAdminPanelRequested } from "../../../../../store/actions/filmsAdminPanelActions";
-import Component from "./Component.jsx";
+import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.filmCardAdminPanel.loading,
   film: state.filmCardAdminPanel.film,
   filmError: state.filmCardAdminPanel.error,
   user: state.auth.user,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({ fetchFilmByIdAdminPanelRequested }, dispatch),
 });
 

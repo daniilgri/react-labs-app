@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { Redirect, withRouter } from "react-router-dom";
@@ -18,17 +18,10 @@ import {
   Loading,
 } from "./styles";
 
-const Component = ({
-  screeningDates,
-  user,
-  onOrder,
-  orderLoading,
-  orderError,
-  history,
-}) => {
+const Component = ({ screeningDates, user, onOrder, orderLoading, orderError, history }) => {
   const [chosenDate, setChosenDate] = useState({ date: "", time: "" });
 
-  const handleOrderButtonOnClick = (event) => {
+  const handleOrderButtonOnClick = event => {
     event.preventDefault();
     if (user) {
       if (chosenDate.date !== "") {
@@ -40,16 +33,14 @@ const Component = ({
     }
   };
 
-  const handleTimeOptionButtonOnClick = (sd) => (event) => {
+  const handleTimeOptionButtonOnClick = sd => () => {
     setChosenDate(sd);
   };
 
-  const listTimes = (dateItem) => {
-    return (timeItem) => (
+  const listTimes = dateItem => {
+    return timeItem => (
       <TimeOptionButton
-        chosen={
-          chosenDate.time === timeItem && chosenDate.date === dateItem.date
-        }
+        chosen={chosenDate.time === timeItem && chosenDate.date === dateItem.date}
         key={uuidv4()}
         onClick={handleTimeOptionButtonOnClick({
           date: dateItem.date,
@@ -61,6 +52,10 @@ const Component = ({
     );
   };
 
+  if (orderError) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <Title>Ticketing</Title>
@@ -69,14 +64,10 @@ const Component = ({
           <OptionTitle>Day</OptionTitle>
           <OptionList>
             {screeningDates.length > 0 &&
-              screeningDates.map((dateItem) => (
+              screeningDates.map(dateItem => (
                 <ButtonOption key={uuidv4()}>
-                  <DateValue chosen={chosenDate.date === dateItem.date}>
-                    {dateItem.date}
-                  </DateValue>
-                  <TimesList>
-                    {dateItem.times.map(listTimes(dateItem))}
-                  </TimesList>
+                  <DateValue chosen={chosenDate.date === dateItem.date}>{dateItem.date}</DateValue>
+                  <TimesList>{dateItem.times.map(listTimes(dateItem))}</TimesList>
                 </ButtonOption>
               ))}
           </OptionList>
@@ -91,19 +82,17 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  screeningDates: [],
   user: null,
-  onOrder: () => {},
-  orderLoading: false,
   orderError: "",
 };
 
 Component.propTypes = {
-  screeningDates: PropTypes.array.isRequired,
-  user: PropTypes.object,
+  screeningDates: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.objectOf(PropTypes.object),
   onOrder: PropTypes.func.isRequired,
   orderLoading: PropTypes.bool.isRequired,
   orderError: PropTypes.string,
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default withRouter(Component);

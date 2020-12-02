@@ -22,7 +22,7 @@ const initialState = {
 
 const usersAdminPanel = handleActions(
   {
-    [fetchSubscribersInitialRequested]: produce((state) => {
+    [fetchSubscribersInitialRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchSubscribersInitialSucceed]: produce((state, { payload }) => {
@@ -32,13 +32,11 @@ const usersAdminPanel = handleActions(
       state.allCount = payload.allCount;
       state.orders = payload.orders;
     }),
-    [fetchSubscribersInitialFailed]: produce(
-      (state, { payload: { message } }) => {
-        state.loading = false;
-        state.error = message;
-      }
-    ),
-    [fetchSubscribersNextRequested]: produce((state) => {
+    [fetchSubscribersInitialFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
+    [fetchSubscribersNextRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchSubscribersNextSucceed]: produce((state, { payload }) => {

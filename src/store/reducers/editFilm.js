@@ -18,17 +18,17 @@ const initialState = {
 
 const editFilm = handleActions(
   {
-    [editFilmRequested]: produce((state) => {
+    [editFilmRequested]: produce(state => {
       state.loading = true;
     }),
-    [editFilmSucceed]: produce((state) => {
+    [editFilmSucceed]: produce(state => {
       state.loading = false;
     }),
     [editFilmFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
       state.error = message;
     }),
-    [fetchEditFilmRequested]: produce((state) => {
+    [fetchEditFilmRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchEditFilmSucceed]: produce((state, { payload }) => {

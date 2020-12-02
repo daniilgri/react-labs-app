@@ -22,7 +22,7 @@ const initialState = {
 
 const filmsAdminPanel = handleActions(
   {
-    [fetchFilmsAdminPanelInitialRequested]: produce((state) => {
+    [fetchFilmsAdminPanelInitialRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchFilmsAdminPanelInitialSucceed]: produce((state, { payload }) => {
@@ -30,13 +30,11 @@ const filmsAdminPanel = handleActions(
       state.films = payload.films;
       state.allCount = payload.allCount;
     }),
-    [fetchFilmsAdminPanelInitialFailed]: produce(
-      (state, { payload: { message } }) => {
-        state.loading = false;
-        state.error = message;
-      }
-    ),
-    [fetchFilmsAdminPanelNextRequested]: produce((state) => {
+    [fetchFilmsAdminPanelInitialFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
+    [fetchFilmsAdminPanelNextRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchFilmsAdminPanelNextSucceed]: produce((state, { payload }) => {
@@ -44,12 +42,10 @@ const filmsAdminPanel = handleActions(
       state.films = [...state.films, ...payload.films];
       state.count += state.limit;
     }),
-    [fetchFilmsAdminPanelNextFailed]: produce(
-      (state, { payload: { message } }) => {
-        state.loading = false;
-        state.error = message;
-      }
-    ),
+    [fetchFilmsAdminPanelNextFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
   },
   initialState
 );

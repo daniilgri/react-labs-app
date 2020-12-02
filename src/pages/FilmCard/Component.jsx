@@ -9,12 +9,12 @@ const Component = () => {
   const { id } = useParams();
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Wrapper>
         <Card filmId={id} />
       </Wrapper>
-    </React.Fragment>
+    </>
   );
 };
 

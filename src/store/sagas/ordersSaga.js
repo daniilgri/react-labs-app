@@ -30,8 +30,8 @@ export function* makeOrder({ payload }) {
 
 export function* fetchOrdersInitial() {
   try {
-    const limit = yield select((state) => state.orders.limit);
-    const query = yield select((state) => state.orders.query);
+    const limit = yield select(state => state.orders.limit);
+    const query = yield select(state => state.orders.query);
     const data = yield call(getOrdersInitialAPI, { limit, query });
     yield put(fetchOrdersInitialSucceed(data));
   } catch (error) {
@@ -41,9 +41,9 @@ export function* fetchOrdersInitial() {
 
 export function* fetchOrdersNext() {
   try {
-    const limit = yield select((state) => state.orders.limit);
-    const query = yield select((state) => state.orders.query);
-    const orders = yield select((state) => state.orders.orders);
+    const limit = yield select(state => state.orders.limit);
+    const query = yield select(state => state.orders.query);
+    const orders = yield select(state => state.orders.orders);
     const data = yield call(getOrdersNextAPI, { limit, orders, query });
     yield put(fetchOrdersNextSucceed(data));
   } catch (error) {

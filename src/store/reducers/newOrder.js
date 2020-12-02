@@ -1,11 +1,7 @@
 import { handleActions } from "redux-actions";
 import produce from "immer";
 
-import {
-  makeOrderFailed,
-  makeOrderSucceed,
-  makeOrderRequested,
-} from "../actions/ordersActions";
+import { makeOrderFailed, makeOrderSucceed, makeOrderRequested } from "../actions/ordersActions";
 
 const initialState = {
   loading: false,
@@ -14,10 +10,10 @@ const initialState = {
 
 const newOrder = handleActions(
   {
-    [makeOrderRequested]: produce((state) => {
+    [makeOrderRequested]: produce(state => {
       state.loading = true;
     }),
-    [makeOrderSucceed]: produce((state) => {
+    [makeOrderSucceed]: produce(state => {
       state.loading = false;
     }),
     [makeOrderFailed]: produce((state, { payload: { message } }) => {

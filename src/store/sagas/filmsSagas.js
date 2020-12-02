@@ -18,10 +18,10 @@ import {
   fetchFilmsNextFailed,
 } from "../actions/filmsActions";
 
-export function* fetchFilmsInitial({ payload }) {
+export function* fetchFilmsInitial() {
   try {
-    const limit = yield select((state) => state.filmsBoard.limit);
-    const query = yield select((state) => state.filmsBoard.query);
+    const limit = yield select(state => state.filmsBoard.limit);
+    const query = yield select(state => state.filmsBoard.query);
     const data = yield call(getFilmsInitialAPI, { limit, query });
     yield put(fetchFilmsInitialSucceed(data));
   } catch (error) {
@@ -31,9 +31,9 @@ export function* fetchFilmsInitial({ payload }) {
 
 export function* fetchFilmsNext() {
   try {
-    const limit = yield select((state) => state.filmsBoard.limit);
-    const query = yield select((state) => state.filmsBoard.query);
-    const films = yield select((state) => state.filmsBoard.films);
+    const limit = yield select(state => state.filmsBoard.limit);
+    const query = yield select(state => state.filmsBoard.query);
+    const films = yield select(state => state.filmsBoard.films);
     const data = yield call(getFilmsNextAPI, { limit, films, query });
     yield put(fetchFilmsNextSucceed(data));
   } catch (error) {

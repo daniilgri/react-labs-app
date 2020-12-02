@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Wrapper, Head, Title, Body, FilledButton } from "./styles";
 
 const component = ({ user, loading, error }) => {
-  return !loading && user.role === "admin" ? (
+  return !loading && user.role === "admin" && !error ? (
     <Wrapper>
       <Head>
         <Title>Admin panel</Title>
@@ -25,7 +25,7 @@ component.defaultProps = {
 };
 
 component.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };

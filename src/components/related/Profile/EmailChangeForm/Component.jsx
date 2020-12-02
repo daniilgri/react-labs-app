@@ -3,19 +3,9 @@ import { useFormik } from "formik";
 import PropTypes from "prop-types";
 
 import emailChangeSchema from "../../../../validations/emailChangeSchema";
-import {
-  Wrapper,
-  Head,
-  Title,
-  Body,
-  Field,
-  Label,
-  Input,
-  ErrorText,
-  FilledButton,
-} from "./styles";
+import { Wrapper, Head, Title, Body, Field, Label, Input, ErrorText, FilledButton } from "./styles";
 
-const Component = ({ changeEmailRequested, user, loading, error }) => {
+const Component = ({ changeEmailRequested }) => {
   const formik = useFormik({
     initialValues: {
       emailChange: "",
@@ -48,14 +38,10 @@ const Component = ({ changeEmailRequested, user, loading, error }) => {
             value={formik.values.emailChange}
             autocomplete="nope"
           />
-          {formik.errors.emailChange && (
-            <ErrorText>{formik.errors.emailChange}</ErrorText>
-          )}
+          {formik.errors.emailChange && <ErrorText>{formik.errors.emailChange}</ErrorText>}
         </Field>
         <Field>
-          <Label htmlFor="passwordConfirmEmail">
-            Password to confirm email change
-          </Label>
+          <Label htmlFor="passwordConfirmEmail">Password to confirm email change</Label>
           <Input
             id="passwordConfirmEmail"
             name="passwordConfirmEmail"
@@ -75,18 +61,8 @@ const Component = ({ changeEmailRequested, user, loading, error }) => {
   );
 };
 
-Component.defaultProps = {
-  changeEmailRequested: () => {},
-  user: null,
-  loading: false,
-  error: "",
-};
-
 Component.propTypes = {
   changeEmailRequested: PropTypes.func.isRequired,
-  user: PropTypes.object,
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string,
 };
 
 export default Component;

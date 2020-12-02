@@ -10,11 +10,7 @@ import FormalSection from "./FormalSection";
 import newFilmSchema from "../../../../../validations/newFilmSchema";
 import { Wrapper, Head, Title, Body, FilledButton } from "./styles";
 
-const Component = ({
-  addFilmRequested,
-  history,
-  openAddScreeningDateModal,
-}) => {
+const Component = ({ addFilmRequested, history, openAddScreeningDateModal }) => {
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -25,46 +21,40 @@ const Component = ({
       screeningDates: [],
     },
     validationSchema: newFilmSchema,
-    onSubmit: (values) => {
+    onSubmit: values => {
       addFilmRequested(values);
       history.push("/");
     },
   });
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = event => {
     event.preventDefault();
     formik.setFieldValue("imageAsFile", event.currentTarget.files[0]);
   };
 
-  const handleScreeningDateAddition = (screeningDate) => {
-    formik.setFieldValue("screeningDates", [
-      ...formik.values.screeningDates,
-      screeningDate,
-    ]);
+  const handleScreeningDateAddition = screeningDate => {
+    formik.setFieldValue("screeningDates", [...formik.values.screeningDates, screeningDate]);
   };
 
-  const handleScreeningDateDelete = (screeningDate) => {
+  const handleScreeningDateDelete = screeningDate => {
     formik.setFieldValue(
       "screeningDates",
-      formik.values.screeningDates.filter(
-        (sd) => sd.date !== screeningDate.date
-      )
+      formik.values.screeningDates.filter(sd => sd.date !== screeningDate.date)
     );
   };
 
-  const handleTagAddition = (tag) => {
+  const handleTagAddition = tag => {
     formik.setFieldValue("tags", [...formik.values.tags, tag]);
-    console.log(formik.values.tags);
   };
 
-  const handleTagDelete = (tag) => {
+  const handleTagDelete = tag => {
     formik.setFieldValue(
       "tags",
-      formik.values.tags.filter((elTag) => elTag !== tag)
+      formik.values.tags.filter(elTag => elTag !== tag)
     );
   };
 
-  const handleFormOnKeyDown = (event) => {
+  const handleFormOnKeyDown = event => {
     if (event.key === "Enter") {
       event.preventDefault();
     }
@@ -83,10 +73,7 @@ const Component = ({
           onTagAdd={handleTagAddition}
           onTagDelete={handleTagDelete}
         />
-        <MediaSection
-          errors={formik.errors}
-          onImageUpload={handleImageUpload}
-        />
+        <MediaSection errors={formik.errors} onImageUpload={handleImageUpload} />
         <FormalSection
           values={formik.values}
           errors={formik.errors}
@@ -102,14 +89,9 @@ const Component = ({
   );
 };
 
-Component.defaultProps = {
-  addFilmRequested: () => {},
-  openAddScreeningDateModal: () => {},
-};
-
 Component.propTypes = {
   addFilmRequested: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
   openAddScreeningDateModal: PropTypes.func.isRequired,
 };
 

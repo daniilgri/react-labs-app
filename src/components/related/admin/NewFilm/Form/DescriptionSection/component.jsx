@@ -47,30 +47,17 @@ const Component = ({ onChange, values, errors, onTagAdd, onTagDelete }) => {
           {errors.description && <ErrorText>{errors.description}</ErrorText>}
         </Field>
         <TagsField>
-          <Tags
-            onSet={onTagAdd}
-            onDelete={onTagDelete}
-            values={values.tags}
-            errors={errors}
-          />
+          <Tags onSet={onTagAdd} onDelete={onTagDelete} values={values.tags} errors={errors} />
         </TagsField>
       </Body>
     </Wrapper>
   );
 };
 
-Component.defaultProps = {
-  onChange: () => {},
-  values: {},
-  errors: {},
-  onTagAdd: () => {},
-  onTagDelete: () => {},
-};
-
 Component.propTypes = {
   onChange: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  values: PropTypes.objectOf(PropTypes.object).isRequired,
+  errors: PropTypes.objectOf(PropTypes.object).isRequired,
   onTagAdd: PropTypes.func.isRequired,
   onTagDelete: PropTypes.func.isRequired,
 };

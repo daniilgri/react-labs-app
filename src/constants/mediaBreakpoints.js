@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 const size = {
   mobileS: "320px",
   mobileM: "375px",

@@ -7,7 +7,7 @@ import { Wrapper, List, Item, TagButton, Input, ErrorText } from "./styles";
 const Component = ({ onSet, onDelete, values, errors }) => {
   const [tagInput, setTagInput] = useState("");
 
-  const handleInputOnKeyDown = (event) => {
+  const handleInputOnKeyDown = event => {
     if (event.key === "Enter") {
       if (!values.includes(tagInput) && !(tagInput === "")) {
         onSet(tagInput);
@@ -16,11 +16,11 @@ const Component = ({ onSet, onDelete, values, errors }) => {
     }
   };
 
-  const handleDeleteTagButtonOnClick = (tag) => (event) => {
+  const handleDeleteTagButtonOnClick = tag => () => {
     onDelete(tag);
   };
 
-  const handleInputOnChange = (event) => {
+  const handleInputOnChange = event => {
     setTagInput(event.target.value);
   };
 
@@ -28,13 +28,11 @@ const Component = ({ onSet, onDelete, values, errors }) => {
     <Wrapper>
       <List>
         {values.length > 0
-          ? values.map((el) => (
+          ? values.map(el => (
+              // eslint-disable-next-line react/jsx-indent
               <Item key={uuidv4()}>
                 {el}
-                <TagButton
-                  type="button"
-                  onClick={handleDeleteTagButtonOnClick(el)}
-                >
+                <TagButton type="button" onClick={handleDeleteTagButtonOnClick(el)}>
                   -
                 </TagButton>
               </Item>
@@ -54,18 +52,11 @@ const Component = ({ onSet, onDelete, values, errors }) => {
   );
 };
 
-Component.defaultProps = {
-  onSet: () => {},
-  onDelete: () => {},
-  values: [],
-  errors: {},
-};
-
 Component.propTypes = {
   onSet: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  values: PropTypes.array.isRequired,
-  errors: PropTypes.object.isRequired,
+  values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  errors: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Component;

@@ -67,20 +67,14 @@ const Component = ({
 
 Component.defaultProps = {
   users: [],
-  loading: true,
   error: "",
-  fetchUsersAdminPanelInitialRequested: () => {},
-  fetchUsersAdminPanelNextRequested: () => {},
   count: 0,
   allCount: 0,
-  deleteUserRequested: () => {},
-  currentUser: {},
-  loadingCurrentUser: false,
   errorCurrentUser: "",
 };
 
 Component.propTypes = {
-  users: PropTypes.array,
+  users: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   fetchUsersAdminPanelInitialRequested: PropTypes.func.isRequired,
@@ -88,7 +82,7 @@ Component.propTypes = {
   count: PropTypes.number,
   allCount: PropTypes.number,
   deleteUserRequested: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
   loadingCurrentUser: PropTypes.bool.isRequired,
   errorCurrentUser: PropTypes.string,
 };

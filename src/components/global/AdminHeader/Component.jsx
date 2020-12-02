@@ -2,14 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  Wrapper,
-  BackLink,
-  MenuItem,
-  Menu,
-  StyledNavLink,
-  MenuToggle,
-} from "./styles";
+import { Wrapper, BackLink, MenuItem, Menu, StyledNavLink, MenuToggle } from "./styles";
 
 const Component = () => {
   const [activeMenu, setActiveMenu] = useState(false);
@@ -17,11 +10,11 @@ const Component = () => {
 
   const profileSelectRef = useRef(null);
 
-  const handleMenuToggleOnClick = (event) => {
-    setActiveMenu((prevState) => !prevState);
+  const handleMenuToggleOnClick = () => {
+    setActiveMenu(prevState => !prevState);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = event => {
     if (
       activeProfileSelect &&
       profileSelectRef.current &&
@@ -39,7 +32,7 @@ const Component = () => {
   });
 
   return (
-    <Wrapper role="custom-dropdown">
+    <Wrapper>
       <MenuToggle onClick={handleMenuToggleOnClick}>
         <FontAwesomeIcon icon={faBars} />
       </MenuToggle>

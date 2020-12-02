@@ -7,10 +7,10 @@ const initialState = {
 
 const addScreeningDateModal = handleActions(
   {
-    [openModal]: (state) => {
+    [openModal]: state => {
       return { ...state, open: true };
     },
-    [closeModal]: (state) => {
+    [closeModal]: state => {
       return { ...state, open: false };
     },
   },

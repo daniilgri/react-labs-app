@@ -2,17 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import {
-  Wrapper,
-  Head,
-  Title,
-  Body,
-  Field,
-  Label,
-  Input,
-  ErrorText,
-  ImagePreview,
-} from "./styles";
+import { Wrapper, Head, Title, Body, Field, Label, Input, ErrorText, ImagePreview } from "./styles";
 
 const Component = ({ onImageUpload, errors, previewImage }) => {
   return (
@@ -24,12 +14,7 @@ const Component = ({ onImageUpload, errors, previewImage }) => {
         <ImagePreview alt="preview" src={previewImage} />
         <Field>
           <Label htmlFor="imageAsFile">Image</Label>
-          <Input
-            id="imageAsFile"
-            name="imageAsFile"
-            type="file"
-            onChange={onImageUpload}
-          />
+          <Input id="imageAsFile" name="imageAsFile" type="file" onChange={onImageUpload} />
           {errors.imageAsFile && <ErrorText>{errors.imageAsFile}</ErrorText>}
         </Field>
       </Body>
@@ -37,15 +22,9 @@ const Component = ({ onImageUpload, errors, previewImage }) => {
   );
 };
 
-Component.defaultProps = {
-  onImageUpload: () => {},
-  errors: {},
-  previewImage: "",
-};
-
 Component.propTypes = {
   onImageUpload: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.objectOf(PropTypes.object).isRequired,
   previewImage: PropTypes.string.isRequired,
 };
 export default withRouter(Component);

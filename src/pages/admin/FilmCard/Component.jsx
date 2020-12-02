@@ -10,13 +10,13 @@ const Component = () => {
   const { id } = useParams();
 
   return (
-    <React.Fragment>
+    <>
       <AdminHeader />
       <Wrapper>
         <Card filmId={id} />
         <Subscribers filmId={id} />
       </Wrapper>
-    </React.Fragment>
+    </>
   );
 };
 

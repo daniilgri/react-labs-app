@@ -7,19 +7,9 @@ import DescriptionSection from "./DescriptionSection";
 import MediaSection from "./MediaSection";
 import FormalSection from "./FormalSection";
 
-import editFilmSchema from "../../../../../validations/editFilmSchema";
-import {
-  Wrapper,
-  Head,
-  Title,
-  Body,
-  FilledButton,
-  Loading,
-  RedirectLink,
-} from "./styles";
+import { Wrapper, Head, Title, Body, FilledButton, Loading, RedirectLink } from "./styles";
 
 const Component = ({
-  history,
   openAddScreeningDateModal,
   filmId,
   film,
@@ -42,56 +32,48 @@ const Component = ({
       tags: film.tags,
       screeningDates: film.screeningDates,
     },
-    onSubmit: (values) => {
-      let changedValues = {};
-      for (const [key, value] of Object.entries(values)) {
+    onSubmit: values => {
+      const changedValues = {};
+      Object.entries(values).forEach((value, key) => {
         if (formik.initialValues[key] !== value) {
           changedValues[key] = value;
         }
-      }
-      if (
-        Object.keys(changedValues).length !== 0 &&
-        changedValues.constructor === Object
-      ) {
+      });
+      if (Object.keys(changedValues).length !== 0 && changedValues.constructor === Object) {
         editFilmRequested({ values, changedValues, filmId: film.id });
       }
     },
     enableReinitialize: true,
   });
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = event => {
     event.preventDefault();
     formik.setFieldValue("imageAsFile", event.currentTarget.files[0]);
   };
 
-  const handleScreeningDateAddition = (screeningDate) => {
-    formik.setFieldValue("screeningDates", [
-      ...formik.values.screeningDates,
-      screeningDate,
-    ]);
+  const handleScreeningDateAddition = screeningDate => {
+    formik.setFieldValue("screeningDates", [...formik.values.screeningDates, screeningDate]);
   };
 
-  const handleScreeningDateDelete = (screeningDate) => {
+  const handleScreeningDateDelete = screeningDate => {
     formik.setFieldValue(
       "screeningDates",
-      formik.values.screeningDates.filter(
-        (sd) => sd.date !== screeningDate.date
-      )
+      formik.values.screeningDates.filter(sd => sd.date !== screeningDate.date)
     );
   };
 
-  const handleTagAddition = (tag) => {
+  const handleTagAddition = tag => {
     formik.setFieldValue("tags", [...formik.values.tags, tag]);
   };
 
-  const handleTagDelete = (tag) => {
+  const handleTagDelete = tag => {
     formik.setFieldValue(
       "tags",
-      formik.values.tags.filter((elTag) => elTag !== tag)
+      formik.values.tags.filter(elTag => elTag !== tag)
     );
   };
 
-  const handleFormOnKeyDown = (event) => {
+  const handleFormOnKeyDown = event => {
     if (event.key === "Enter") {
       event.preventDefault();
     }
@@ -105,9 +87,7 @@ const Component = ({
     <Wrapper onKeyDown={handleFormOnKeyDown} onSubmit={formik.handleSubmit}>
       <Head>
         <Title>Edit film - {film.title}</Title>{" "}
-        <RedirectLink to={`/admin/film/${film.id}`}>
-          Go to film card
-        </RedirectLink>
+        <RedirectLink to={`/admin/film/${film.id}`}>Go to film card</RedirectLink>
       </Head>
       <Body>
         <DescriptionSection
@@ -141,21 +121,14 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  editFilmRequested: () => {},
-  openAddScreeningDateModal: () => {},
-  filmId: "",
-  film: {},
-  fetchEditFilmRequested: () => {},
-  loading: false,
   error: "",
 };
 
 Component.propTypes = {
   editFilmRequested: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
   openAddScreeningDateModal: PropTypes.func.isRequired,
   filmId: PropTypes.string.isRequired,
-  film: PropTypes.object.isRequired,
+  film: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchEditFilmRequested: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,

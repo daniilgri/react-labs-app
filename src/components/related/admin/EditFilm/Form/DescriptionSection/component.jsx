@@ -15,15 +15,7 @@ import {
   Textarea,
 } from "./styles";
 
-const Component = ({
-  onChange,
-  title,
-  description,
-  tags,
-  errors,
-  onTagAdd,
-  onTagDelete,
-}) => {
+const Component = ({ onChange, title, description, tags, errors, onTagAdd, onTagDelete }) => {
   return (
     <Wrapper>
       <Head>
@@ -55,34 +47,19 @@ const Component = ({
           {errors.description && <ErrorText>{errors.description}</ErrorText>}
         </Field>
         <TagsField>
-          <Tags
-            onSet={onTagAdd}
-            onDelete={onTagDelete}
-            values={tags}
-            errors={errors}
-          />
+          <Tags onSet={onTagAdd} onDelete={onTagDelete} values={tags} errors={errors} />
         </TagsField>
       </Body>
     </Wrapper>
   );
 };
 
-Component.defaultProps = {
-  onChange: () => {},
-  title: "",
-  description: "",
-  tags: [],
-  errors: {},
-  onTagAdd: () => {},
-  onTagDelete: () => {},
-};
-
 Component.propTypes = {
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  tags: PropTypes.array.isRequired,
-  errors: PropTypes.object.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  errors: PropTypes.objectOf(PropTypes.object).isRequired,
   onTagAdd: PropTypes.func.isRequired,
   onTagDelete: PropTypes.func.isRequired,
 };

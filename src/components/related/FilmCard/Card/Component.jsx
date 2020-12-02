@@ -25,7 +25,7 @@ const Component = ({
     });
   };
 
-  const handleRatingChange = (rating) => {
+  const handleRatingChange = rating => {
     updateFilmRatingRequested({ rating, filmId: film.id, userUid: user.uid });
   };
 
@@ -61,25 +61,19 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  fetchFilmByIdRequested: () => {},
-  makeOrderRequested: () => {},
-  filmId: "",
   film: {},
   filmError: "",
-  loading: false,
   user: null,
   orderError: "",
-  orderLoading: false,
-  updateFilmRatingRequested: () => {},
 };
 
 Component.propTypes = {
   filmId: PropTypes.string.isRequired,
   fetchFilmByIdRequested: PropTypes.func.isRequired,
-  film: PropTypes.object,
+  film: PropTypes.objectOf(PropTypes.object),
   filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.object),
   makeOrderRequested: PropTypes.func.isRequired,
   orderError: PropTypes.string,
   orderLoading: PropTypes.bool.isRequired,

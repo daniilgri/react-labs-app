@@ -14,7 +14,7 @@ const Component = ({
   allCount,
   count,
 }) => {
-  const handleGetMoreButtonOnClick = (event) => {
+  const handleGetMoreButtonOnClick = event => {
     event.preventDefault();
 
     if (count < allCount) {
@@ -27,38 +27,30 @@ const Component = ({
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Wrapper>
-        {films.length > 0 &&
-          films.map((item) => <Card key={uuidv4()} film={item} />)}
+        {films.length > 0 && films.map(item => <Card key={uuidv4()} film={item} />)}
       </Wrapper>
       {loading || error ? (
         <Loading>Loading</Loading>
       ) : (
         count < allCount && (
           <CenterContainer>
-            <FetchButton onClick={handleGetMoreButtonOnClick}>
-              Get more
-            </FetchButton>
+            <FetchButton onClick={handleGetMoreButtonOnClick}>Get more</FetchButton>
           </CenterContainer>
         )
       )}
-    </React.Fragment>
+    </>
   );
 };
 
 Component.defaultProps = {
   films: [],
-  loading: true,
   error: "",
-  fetchFilmsInitialRequested: () => {},
-  fetchFilmsNextRequested: () => {},
-  allCount: 0,
-  count: 0,
 };
 
 Component.propTypes = {
-  films: PropTypes.array,
+  films: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   fetchFilmsInitialRequested: PropTypes.func.isRequired,

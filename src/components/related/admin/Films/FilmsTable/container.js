@@ -6,9 +6,9 @@ import {
   deleteFilmRequested,
   fetchFilmsAdminPanelNextRequested,
 } from "../../../../../store/actions/filmsAdminPanelActions";
-import Component from "./Component.jsx";
+import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.filmsAdminPanel.loading,
   films: state.filmsAdminPanel.films,
   error: state.filmsAdminPanel.error,
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
   count: state.filmsAdminPanel.count,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     {
       fetchFilmsAdminPanelInitialRequested,

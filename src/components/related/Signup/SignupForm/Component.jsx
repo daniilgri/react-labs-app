@@ -47,9 +47,7 @@ const Component = ({ signUpRequested, history }) => {
             onChange={formik.handleChange}
             value={formik.values.firstName}
           />
-          {formik.errors.firstName && (
-            <ErrorText>{formik.errors.firstName}</ErrorText>
-          )}
+          {formik.errors.firstName && <ErrorText>{formik.errors.firstName}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="lastName">Last name*</Label>
@@ -61,9 +59,7 @@ const Component = ({ signUpRequested, history }) => {
             onChange={formik.handleChange}
             value={formik.values.lastName}
           />
-          {formik.errors.lastName && (
-            <ErrorText>{formik.errors.lastName}</ErrorText>
-          )}
+          {formik.errors.lastName && <ErrorText>{formik.errors.lastName}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="email">E-mail*</Label>
@@ -97,12 +93,9 @@ const Component = ({ signUpRequested, history }) => {
   );
 };
 
-Component.defaultProps = {
-  signUpRequested: () => {},
-};
-
 Component.propTypes = {
   signUpRequested: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default withRouter(Component);

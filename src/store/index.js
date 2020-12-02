@@ -7,10 +7,7 @@ import reducers from "./reducers";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
-);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(rootSaga);
 

@@ -8,13 +8,13 @@ import {
 import { openModal as openAddScreeningDateModal } from "../../../../../store/actions/addScreeningDateModalActions";
 import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   loading: state.editFilm.loading,
   error: state.editFilm.error,
   film: state.editFilm.film,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     { editFilmRequested, openAddScreeningDateModal, fetchEditFilmRequested },
     dispatch

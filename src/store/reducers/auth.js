@@ -25,10 +25,10 @@ const initialState = { loading: false, user: null, error: "" };
 
 const auth = handleActions(
   {
-    [signUpRequested]: produce((state) => {
+    [signUpRequested]: produce(state => {
       state.loading = true;
     }),
-    [signUpSucceed]: produce((state) => {
+    [signUpSucceed]: produce(state => {
       state.loading = false;
     }),
     [signUpFailed]: produce((state, { payload: { message } }) => {
@@ -36,10 +36,10 @@ const auth = handleActions(
       state.error = message;
     }),
 
-    [signInRequested]: produce((state) => {
+    [signInRequested]: produce(state => {
       state.loading = true;
     }),
-    [signInSucceed]: produce((state) => {
+    [signInSucceed]: produce(state => {
       state.loading = false;
     }),
     [signInFailed]: produce((state, { payload: { message } }) => {
@@ -47,10 +47,10 @@ const auth = handleActions(
       state.error = message;
     }),
 
-    [signOutRequested]: produce((state) => {
+    [signOutRequested]: produce(state => {
       state.loading = true;
     }),
-    [signOutSucceed]: produce((state) => {
+    [signOutSucceed]: produce(state => {
       state.loading = false;
       state.user = null;
     }),
@@ -59,7 +59,7 @@ const auth = handleActions(
       state.error = message;
     }),
 
-    [authCurrentUserRequested]: produce((state, { payload }) => {
+    [authCurrentUserRequested]: produce(state => {
       state.loading = true;
     }),
     [authCurrentUserSucceed]: produce((state, { payload }) => {
@@ -71,10 +71,10 @@ const auth = handleActions(
       state.error = message;
     }),
 
-    [requestOnDeleteRequested]: produce((state) => {
+    [requestOnDeleteRequested]: produce(state => {
       state.loading = true;
     }),
-    [requestOnDeleteSucceed]: produce((state) => {
+    [requestOnDeleteSucceed]: produce(state => {
       state.loading = false;
       state.user.requestOnDelete = true;
     }),
@@ -83,19 +83,17 @@ const auth = handleActions(
       state.error = message;
     }),
 
-    [cancelRequestOnDeleteRequested]: produce((state) => {
+    [cancelRequestOnDeleteRequested]: produce(state => {
       state.loading = true;
     }),
-    [cancelRequestOnDeleteSucceed]: produce((state) => {
+    [cancelRequestOnDeleteSucceed]: produce(state => {
       state.loading = false;
       state.user.requestOnDelete = false;
     }),
-    [cancelRequestOnDeleteFailed]: produce(
-      (state, { payload: { message } }) => {
-        state.loading = false;
-        state.error = message;
-      }
-    ),
+    [cancelRequestOnDeleteFailed]: produce((state, { payload: { message } }) => {
+      state.loading = false;
+      state.error = message;
+    }),
   },
   initialState
 );

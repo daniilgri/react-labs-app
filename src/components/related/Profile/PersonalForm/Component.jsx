@@ -23,17 +23,15 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
       lastNameChange: user.lastName,
     },
     validationSchema: personalInfoSchema,
-    onSubmit: (values) => {
-      let changedValues = {};
-      for (const [key, value] of Object.entries(values)) {
+    onSubmit: values => {
+      const changedValues = {};
+
+      Object.entries(values).forEach((value, key) => {
         if (formik.initialValues[key] !== value) {
           changedValues[key] = value;
         }
-      }
-      if (
-        Object.keys(changedValues).length !== 0 &&
-        changedValues.constructor === Object
-      ) {
+      });
+      if (Object.keys(changedValues).length !== 0 && changedValues.constructor === Object) {
         updateProfileRequested(changedValues);
       }
     },
@@ -59,9 +57,7 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
             onChange={formik.handleChange}
             value={formik.values.firstNameChange}
           />
-          {formik.errors.firstNameChange && (
-            <ErrorText>{formik.errors.firstNameChange}</ErrorText>
-          )}
+          {formik.errors.firstNameChange && <ErrorText>{formik.errors.firstNameChange}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="lastNameChange">Last name</Label>
@@ -73,9 +69,7 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
             onChange={formik.handleChange}
             value={formik.values.lastNameChange}
           />
-          {formik.errors.lastNameChange && (
-            <ErrorText>{formik.errors.lastNameChange}</ErrorText>
-          )}
+          {formik.errors.lastNameChange && <ErrorText>{formik.errors.lastNameChange}</ErrorText>}
         </Field>
       </Body>
       <FilledButton type="submit">Save</FilledButton>
@@ -85,13 +79,11 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
 
 Component.defaultProps = {
   user: null,
-  loading: false,
   error: "",
-  updateProfileRequested: () => {},
 };
 
 Component.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   updateProfileRequested: PropTypes.func.isRequired,

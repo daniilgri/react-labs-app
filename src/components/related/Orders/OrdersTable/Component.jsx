@@ -15,7 +15,7 @@ const Component = ({
   allCount,
   fetchOrdersNextRequested,
 }) => {
-  const handleGetMoreButtonOnClick = (event) => {
+  const handleGetMoreButtonOnClick = event => {
     event.preventDefault();
 
     if (count < allCount) {
@@ -28,41 +28,32 @@ const Component = ({
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Wrapper>
         {orders.length > 0 &&
-          orders.map((item) => (
-            <Card key={uuidv4()} value={item} onCancel={cancelOrderRequested} />
-          ))}
+          orders.map(item => <Card key={uuidv4()} value={item} onCancel={cancelOrderRequested} />)}
       </Wrapper>
       {loading || error ? (
         <Loading>Loading</Loading>
       ) : (
         count < allCount && (
           <CenterContainer>
-            <FetchButton onClick={handleGetMoreButtonOnClick}>
-              Get more
-            </FetchButton>
+            <FetchButton onClick={handleGetMoreButtonOnClick}>Get more</FetchButton>
           </CenterContainer>
         )
       )}
-    </React.Fragment>
+    </>
   );
 };
 
 Component.defaultProps = {
-  orders: [],
-  loading: false,
   error: "",
-  fetchOrdersInitialRequested: () => {},
-  cancelOrderRequested: () => {},
   count: 0,
   allCount: 0,
-  fetchOrdersNextRequested: () => {},
 };
 
 Component.propTypes = {
-  orders: PropTypes.array.isRequired,
+  orders: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   fetchOrdersInitialRequested: PropTypes.func.isRequired,

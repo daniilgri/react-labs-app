@@ -5,9 +5,9 @@ import {
   fetchSubscribersInitialRequested,
   fetchSubscribersNextRequested,
 } from "../../../../../store/actions/filmSubscribersActions";
-import Component from "./Component.jsx";
+import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   users: state.filmSubscribers.users,
   loading: state.filmSubscribers.loading,
   error: state.filmSubscribers.error,
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
   allCount: state.filmSubscribers.allCount,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     { fetchSubscribersInitialRequested, fetchSubscribersNextRequested },
     dispatch

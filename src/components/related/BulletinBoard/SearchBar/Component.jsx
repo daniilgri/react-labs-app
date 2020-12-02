@@ -9,9 +9,9 @@ import { Wrapper, InputWrapper, Input, IconWrapper } from "./styles";
 const Component = ({ setFilmsSearchQuery, query }) => {
   const formik = useFormik({
     initialValues: {
-      query: query,
+      query,
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       setFilmsSearchQuery(values);
     },
   });
@@ -36,7 +36,6 @@ const Component = ({ setFilmsSearchQuery, query }) => {
 
 Component.defaultProps = {
   query: "",
-  setFilmsSearchQuery: () => {},
 };
 
 Component.propTypes = {

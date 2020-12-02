@@ -22,7 +22,7 @@ const initialState = {
 
 const orders = handleActions(
   {
-    [fetchOrdersInitialRequested]: produce((state) => {
+    [fetchOrdersInitialRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchOrdersInitialSucceed]: produce((state, { payload }) => {
@@ -34,7 +34,7 @@ const orders = handleActions(
       state.loading = false;
       state.error = message;
     }),
-    [fetchOrdersNextRequested]: produce((state) => {
+    [fetchOrdersNextRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchOrdersNextSucceed]: produce((state, { payload }) => {

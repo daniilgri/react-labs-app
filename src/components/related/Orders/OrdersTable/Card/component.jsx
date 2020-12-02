@@ -1,16 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Wrapper,
-  Image,
-  InfoSection,
-  Title,
-  ScreeningDate,
-  CancelButton,
-} from "./styles";
+import { Wrapper, Image, InfoSection, Title, ScreeningDate, CancelButton } from "./styles";
 
 const component = ({ value, onCancel }) => {
-  const handleCancelButtonOnClick = (event) => {
+  const handleCancelButtonOnClick = event => {
     event.preventDefault();
     onCancel({ orderId: value.id });
   };
@@ -29,13 +22,8 @@ const component = ({ value, onCancel }) => {
   );
 };
 
-component.defaultProps = {
-  value: {},
-  onCancel: () => {},
-};
-
 component.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.objectOf(PropTypes.object).isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 

@@ -9,12 +9,12 @@ const Component = () => {
   const { id } = useParams();
 
   return (
-    <React.Fragment>
+    <>
       <AdminHeader />
       <Wrapper>
         <Form filmId={id} />
       </Wrapper>
-    </React.Fragment>
+    </>
   );
 };
 

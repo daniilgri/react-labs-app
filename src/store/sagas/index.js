@@ -43,12 +43,7 @@ import {
   fetchSubscribersNextRequested,
 } from "../actions/filmSubscribersActions";
 
-import {
-  fetchFilmsInitial,
-  fetchFilmById,
-  updateFilmRating,
-  fetchFilmsNext,
-} from "./filmsSagas";
+import { fetchFilmsInitial, fetchFilmById, updateFilmRating, fetchFilmsNext } from "./filmsSagas";
 import {
   fetchUsersAdminPanelInitial,
   deleteUser,
@@ -76,12 +71,7 @@ import {
   editFilm,
   fetchEditFilm,
 } from "./filmsAdminPanelSagas";
-import {
-  makeOrder,
-  fetchOrdersInitial,
-  cancelOrder,
-  fetchOrdersNext,
-} from "./ordersSaga";
+import { makeOrder, fetchOrdersInitial, cancelOrder, fetchOrdersNext } from "./ordersSaga";
 
 function* rootSaga() {
   yield all([
@@ -99,27 +89,15 @@ function* rootSaga() {
     yield takeLatest(requestOnDeleteRequested, requestOnDelete),
     yield takeLatest(cancelRequestOnDeleteRequested, cancelRequestOnDelete),
 
-    yield takeLatest(
-      fetchFilmsAdminPanelInitialRequested,
-      fetchFilmsAdminPanelInitial
-    ),
+    yield takeLatest(fetchFilmsAdminPanelInitialRequested, fetchFilmsAdminPanelInitial),
     yield takeLatest(fetchFilmByIdAdminPanelRequested, fetchFilmByIdAdminPanel),
-    yield takeLatest(
-      fetchUsersAdminPanelInitialRequested,
-      fetchUsersAdminPanelInitial
-    ),
-    yield takeLatest(
-      fetchUsersAdminPanelNextRequested,
-      fetchUsersAdminPanelNext
-    ),
+    yield takeLatest(fetchUsersAdminPanelInitialRequested, fetchUsersAdminPanelInitial),
+    yield takeLatest(fetchUsersAdminPanelNextRequested, fetchUsersAdminPanelNext),
     yield takeLatest(deleteFilmRequested, deleteFilm),
     yield takeLatest(fetchSubscribersInitialRequested, fetchSubscribersInitial),
     yield takeLatest(fetchSubscribersNextRequested, fetchSubscribersNext),
     yield takeLatest(deleteUserRequested, deleteUser),
-    yield takeLatest(
-      fetchFilmsAdminPanelNextRequested,
-      fetchFilmsAdminPanelNext
-    ),
+    yield takeLatest(fetchFilmsAdminPanelNextRequested, fetchFilmsAdminPanelNext),
     yield takeLatest(editFilmRequested, editFilm),
     yield takeLatest(fetchEditFilmRequested, fetchEditFilm),
 

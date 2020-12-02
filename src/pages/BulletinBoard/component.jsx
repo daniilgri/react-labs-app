@@ -5,13 +5,13 @@ import Header from "../../components/global/Header";
 import { Wrapper } from "./styles";
 
 const component = () => (
-  <React.Fragment>
+  <>
     <Header />
     <SearchBar />
     <Wrapper>
       <Board />
     </Wrapper>
-  </React.Fragment>
+  </>
 );
 
 export default component;

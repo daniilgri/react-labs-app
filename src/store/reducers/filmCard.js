@@ -15,7 +15,7 @@ const initialState = {
 
 const filmCard = handleActions(
   {
-    [fetchFilmByIdRequested]: produce((state) => {
+    [fetchFilmByIdRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchFilmByIdSucceed]: produce((state, { payload }) => {

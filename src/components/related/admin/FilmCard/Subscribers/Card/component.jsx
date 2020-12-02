@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  Wrapper,
-  Image,
-  InfoSection,
-  NameSection,
-  EmailAddress,
-} from "./styles";
+import { Wrapper, Image, InfoSection, NameSection, EmailAddress } from "./styles";
 
 const component = ({ user }) => {
   return (
@@ -23,12 +17,8 @@ const component = ({ user }) => {
   );
 };
 
-component.defaultProps = {
-  user: {},
-};
-
 component.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default component;

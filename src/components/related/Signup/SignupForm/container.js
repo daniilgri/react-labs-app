@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { signUpRequested } from "../../../../store/actions/authActions";
-import Component from "./Component.jsx";
+import Component from "./Component";
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({ signUpRequested }, dispatch),
 });
 

@@ -6,13 +6,13 @@ import SearchBar from "../../components/related/Orders/SearchBar";
 import { Wrapper } from "./styles";
 
 const component = () => (
-  <React.Fragment>
+  <>
     <Header />
     <SearchBar />
     <Wrapper>
       <OrdersTable />
     </Wrapper>
-  </React.Fragment>
+  </>
 );
 
 export default component;

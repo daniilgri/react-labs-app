@@ -13,7 +13,7 @@ import {
 } from "./styles";
 
 const component = ({ film, onDelete }) => {
-  const handleDeleteButtonOnClick = (event) => {
+  const handleDeleteButtonOnClick = event => {
     event.preventDefault();
     onDelete({ filmId: film.id });
   };
@@ -38,13 +38,8 @@ const component = ({ film, onDelete }) => {
   );
 };
 
-component.defaultProps = {
-  film: {},
-  onDelete: () => {},
-};
-
 component.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.objectOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

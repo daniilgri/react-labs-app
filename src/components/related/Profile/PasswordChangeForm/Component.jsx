@@ -3,17 +3,7 @@ import { useFormik } from "formik";
 import PropTypes from "prop-types";
 
 import changePasswordSchema from "../../../../validations/changePasswordSchema";
-import {
-  Wrapper,
-  Head,
-  Title,
-  Body,
-  Field,
-  Label,
-  Input,
-  ErrorText,
-  FilledButton,
-} from "./styles";
+import { Wrapper, Head, Title, Body, Field, Label, Input, ErrorText, FilledButton } from "./styles";
 
 const Component = ({ changePasswordRequested }) => {
   const formik = useFormik({
@@ -49,9 +39,7 @@ const Component = ({ changePasswordRequested }) => {
             value={formik.values.currentPassword}
             autoComplete="off"
           />
-          {formik.errors.currentPassword && (
-            <ErrorText>{formik.errors.currentPassword}</ErrorText>
-          )}
+          {formik.errors.currentPassword && <ErrorText>{formik.errors.currentPassword}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="newPassword">New password</Label>
@@ -64,9 +52,7 @@ const Component = ({ changePasswordRequested }) => {
             value={formik.values.newPassword}
             autoComplete="off"
           />
-          {formik.errors.newPassword && (
-            <ErrorText>{formik.errors.newPassword}</ErrorText>
-          )}
+          {formik.errors.newPassword && <ErrorText>{formik.errors.newPassword}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="confirmPasswordChange">Confirm password</Label>
@@ -87,10 +73,6 @@ const Component = ({ changePasswordRequested }) => {
       <FilledButton>Change</FilledButton>
     </Wrapper>
   );
-};
-
-Component.defaultProps = {
-  changePasswordRequested: () => {},
 };
 
 Component.propTypes = {

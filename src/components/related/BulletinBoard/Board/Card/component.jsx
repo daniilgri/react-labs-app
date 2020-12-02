@@ -10,12 +10,8 @@ const component = ({ film }) => (
   </Wrapper>
 );
 
-component.defaultProps = {
-  film: {},
-};
-
 component.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default component;

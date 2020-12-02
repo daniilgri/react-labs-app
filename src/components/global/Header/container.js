@@ -4,13 +4,13 @@ import { bindActionCreators } from "redux";
 import { signOutRequested } from "../../../store/actions/authActions";
 import Component from "./Component";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.auth.user,
   loading: state.auth.loading,
   error: state.auth.error,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({ signOutRequested }, dispatch),
 });
 

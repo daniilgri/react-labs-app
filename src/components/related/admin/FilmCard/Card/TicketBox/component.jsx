@@ -25,14 +25,12 @@ const Component = ({ screeningDates }) => {
           <OptionTitle>Day</OptionTitle>
           <OptionList>
             {screeningDates.length > 0 &&
-              screeningDates.map((dateItem) => (
+              screeningDates.map(dateItem => (
                 <ButtonOption key={uuidv4()}>
                   <DateValue>{dateItem.date}</DateValue>
                   <TimesList>
-                    {dateItem.times.map((timeItem) => (
-                      <TimeOptionButton key={uuidv4()}>
-                        {timeItem}
-                      </TimeOptionButton>
+                    {dateItem.times.map(timeItem => (
+                      <TimeOptionButton key={uuidv4()}>{timeItem}</TimeOptionButton>
                     ))}
                   </TimesList>
                 </ButtonOption>
@@ -44,12 +42,8 @@ const Component = ({ screeningDates }) => {
   );
 };
 
-Component.defaultProps = {
-  screeningDates: [],
-};
-
 Component.propTypes = {
-  screeningDates: PropTypes.array.isRequired,
+  screeningDates: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default withRouter(Component);

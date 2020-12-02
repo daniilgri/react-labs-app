@@ -23,7 +23,7 @@ const Component = ({ signInRequested, history }) => {
       passwordLogin: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
+    onSubmit: values => {
       signInRequested({
         email: values.emailLogin,
         password: values.passwordLogin,
@@ -46,9 +46,7 @@ const Component = ({ signInRequested, history }) => {
             onChange={formik.handleChange}
             value={formik.values.emailLogin}
           />
-          {formik.errors.emailLogin && (
-            <ErrorText>{formik.errors.emailLogin}</ErrorText>
-          )}
+          {formik.errors.emailLogin && <ErrorText>{formik.errors.emailLogin}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="passwordLogin">Password*</Label>
@@ -60,9 +58,7 @@ const Component = ({ signInRequested, history }) => {
             onChange={formik.handleChange}
             value={formik.values.passwordLogin}
           />
-          {formik.errors.passwordLogin && (
-            <ErrorText>{formik.errors.passwordLogin}</ErrorText>
-          )}
+          {formik.errors.passwordLogin && <ErrorText>{formik.errors.passwordLogin}</ErrorText>}
         </Field>
       </FieldsWrapper>
 
@@ -72,12 +68,11 @@ const Component = ({ signInRequested, history }) => {
   );
 };
 
-Component.defaultProps = {
-  signInRequested: () => {},
-};
+Component.defaultProps = {};
 
 Component.propTypes = {
   signInRequested: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default withRouter(Component);

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { changePasswordRequested } from "../../../../store/actions/profileActions";
 import Component from "./Component";
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   ...bindActionCreators({ changePasswordRequested }, dispatch),
 });
 

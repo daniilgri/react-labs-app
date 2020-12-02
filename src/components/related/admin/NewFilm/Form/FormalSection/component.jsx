@@ -34,13 +34,13 @@ const Component = ({
   onScreeningDateAdd,
   onScreeningDateDelete,
 }) => {
-  const handleAddNewScreeningDateButtonOnClick = (event) => {
+  const handleAddNewScreeningDateButtonOnClick = event => {
     event.preventDefault();
 
     onAddScreeningDateModalOpen();
   };
 
-  const handleScreeningDateDeleteButtonOnClick = (sd) => (event) => {
+  const handleScreeningDateDeleteButtonOnClick = sd => event => {
     event.preventDefault();
 
     onScreeningDateDelete(sd);
@@ -58,27 +58,24 @@ const Component = ({
           <Field>
             <Label htmlFor="screeningDates">Screening dates:</Label>
             <ScreeningDatesControllers>
-              <FilledButton
-                type="button"
-                onClick={handleAddNewScreeningDateButtonOnClick}
-              >
+              <FilledButton type="button" onClick={handleAddNewScreeningDateButtonOnClick}>
                 Add
               </FilledButton>
             </ScreeningDatesControllers>
             {values.screeningDates.length > 0 && (
               <ScreeningDatesList>
-                {values.screeningDates.map((el) => (
+                {values.screeningDates.map(elScreeningDate => (
                   <ScreeningDateWrapper key={uuidv4()}>
-                    <ScreeningDate>{el.date}</ScreeningDate>
+                    <ScreeningDate>{elScreeningDate.date}</ScreeningDate>
                     <ScreeningTimeList>
-                      {el.times.map((el) => (
-                        <ScreeningTime key={uuidv4()}>{el}</ScreeningTime>
+                      {elScreeningDate.times.map(elTime => (
+                        <ScreeningTime key={uuidv4()}>{elTime}</ScreeningTime>
                       ))}
                     </ScreeningTimeList>
                     <ScreeningDateButtons>
                       <OutlinedButton type="button">Edit</OutlinedButton>
                       <FilledButton
-                        onClick={handleScreeningDateDeleteButtonOnClick(el)}
+                        onClick={handleScreeningDateDeleteButtonOnClick(elScreeningDate)}
                         type="button"
                       >
                         Delete
@@ -88,9 +85,7 @@ const Component = ({
                 ))}
               </ScreeningDatesList>
             )}
-            {errors.screeningDates && (
-              <ErrorText>{errors.screeningDates}</ErrorText>
-            )}
+            {errors.screeningDates && <ErrorText>{errors.screeningDates}</ErrorText>}
           </Field>
           <Field>
             <Label htmlFor="ticketPrice">Ticket price</Label>
@@ -110,19 +105,10 @@ const Component = ({
   );
 };
 
-Component.defaultProps = {
-  onChange: () => {},
-  values: {},
-  errors: {},
-  onAddScreeningDateModalOpen: () => {},
-  onScreeningDateAdd: () => {},
-  onScreeningDateDelete: () => {},
-};
-
 Component.propTypes = {
   onChange: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  values: PropTypes.objectOf(PropTypes.object).isRequired,
+  errors: PropTypes.objectOf(PropTypes.object).isRequired,
   onAddScreeningDateModalOpen: PropTypes.func.isRequired,
   onScreeningDateAdd: PropTypes.func.isRequired,
   onScreeningDateDelete: PropTypes.func.isRequired,

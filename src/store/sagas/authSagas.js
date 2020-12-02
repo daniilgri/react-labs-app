@@ -49,7 +49,6 @@ export function* signIn({ payload }) {
     const data = yield call(signInAPI, payload);
     yield put(signInSucceed(data));
   } catch (error) {
-    console.log(error);
     yield put(signInFailed(error));
   }
 }
@@ -117,11 +116,9 @@ export function* changeEmail({ payload }) {
 
 export function* changePassword({ payload }) {
   try {
-    console.log(payload);
     yield call(changePasswordAPI, payload);
     yield put(changePasswordSucceed());
   } catch (error) {
-    console.log(error);
     yield put(changePasswordFailed(error));
   }
 }

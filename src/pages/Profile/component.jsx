@@ -9,7 +9,7 @@ import Header from "../../components/global/Header";
 import { Wrapper } from "./styles";
 
 const component = () => (
-  <React.Fragment>
+  <>
     <Header />
     <Wrapper>
       <AdminPanelSection />
@@ -18,7 +18,7 @@ const component = () => (
       <PasswordChangeForm />
       <RequestOnDeleteSection />
     </Wrapper>
-  </React.Fragment>
+  </>
 );
 
 export default component;

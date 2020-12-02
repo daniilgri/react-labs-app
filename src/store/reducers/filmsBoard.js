@@ -23,7 +23,7 @@ const initialState = {
 
 const filmsBoard = handleActions(
   {
-    [fetchFilmsInitialRequested]: produce((state) => {
+    [fetchFilmsInitialRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchFilmsInitialSucceed]: produce((state, { payload }) => {
@@ -35,7 +35,7 @@ const filmsBoard = handleActions(
       state.loading = false;
       state.error = message;
     }),
-    [fetchFilmsNextRequested]: produce((state) => {
+    [fetchFilmsNextRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchFilmsNextSucceed]: produce((state, { payload }) => {

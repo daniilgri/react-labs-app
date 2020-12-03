@@ -16,6 +16,7 @@ import {
   updateFilmRatingSucceed,
   fetchFilmsNextSucceed,
   fetchFilmsNextFailed,
+  fetchFilmByIdRequested,
 } from "../actions/filmsActions";
 
 export function* fetchFilmsInitial() {
@@ -54,6 +55,7 @@ export function* updateFilmRating({ payload }) {
   try {
     yield call(updateFilmRatingAPI, payload);
     yield put(updateFilmRatingSucceed());
+    yield put(fetchFilmByIdRequested(payload.filmId));
   } catch (error) {
     yield put(updateFilmRatingFailed(error));
   }

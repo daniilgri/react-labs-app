@@ -10,7 +10,7 @@ import {
 const initialState = {
   loading: false,
   error: "",
-  film: {},
+  film: null,
 };
 
 const filmCard = handleActions(
@@ -19,8 +19,8 @@ const filmCard = handleActions(
       state.loading = true;
     }),
     [fetchFilmByIdSucceed]: produce((state, { payload }) => {
-      state.loading = false;
       state.film = payload;
+      state.loading = false;
     }),
     [fetchFilmByIdFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;

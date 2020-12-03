@@ -10,7 +10,7 @@ import {
 const initialState = {
   loading: false,
   error: "",
-  film: {},
+  film: null,
 };
 
 const filmCardAdminPanel = handleActions(

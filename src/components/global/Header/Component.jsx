@@ -14,7 +14,6 @@ import {
   SelectIcon,
   OptionsList,
   Option,
-  StyledLink,
   OptionLink,
 } from "./styles";
 
@@ -42,7 +41,7 @@ const Component = ({ user, loading, error, signOutRequested }) => {
     }
   };
 
-  const handleDefaultCloseOptionOnClick = event => {
+  const handleDefaultCloseOptionOnClick = () => {
     setActiveProfileSelect(false);
   };
 
@@ -105,13 +104,11 @@ const Component = ({ user, loading, error, signOutRequested }) => {
 
 Component.defaultProps = {
   user: null,
-  loading: false,
   error: "",
-  signOutRequested: () => {},
 };
 
 Component.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   signOutRequested: PropTypes.func.isRequired,

@@ -9,7 +9,7 @@ export const addFilmAPI = async payload => {
     image: "",
     tags: payload.tags,
     screeningDates: payload.screeningDates,
-    rate: null,
+    rates: [],
   });
 
   const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
@@ -100,4 +100,13 @@ export const deleteFilmAPI = async payload => {
   });
 };
 
-export const updateFilmRatingAPI = async () => {};
+export const updateFilmRatingAPI = async payload => {
+  const filmDoc = await db.collection("films").doc(payload.filmId).get();
+
+  filmDoc.ref.update({
+    rates: [
+      ...filmDoc.data().rates.filter(rate => rate.userUid !== payload.userUid),
+      { userUid: payload.userUid, rate: payload.rate },
+    ],
+  });
+};

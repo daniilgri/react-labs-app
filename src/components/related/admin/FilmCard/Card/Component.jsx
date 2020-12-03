@@ -10,26 +10,20 @@ const Component = ({ filmId, fetchFilmByIdAdminPanelRequested, film, filmError, 
     fetchFilmByIdAdminPanelRequested(filmId);
   }, []);
 
-  if (loading || filmError) {
+  if (loading || filmError || !film) {
     return <Pending>Loading</Pending>;
   }
 
   return (
     <Wrapper>
-      <FilmBox
-        title={film.title}
-        description={film.description}
-        image={film.image}
-        ticketPrice={film.ticketPrice}
-        tags={film.tags}
-      />
+      <FilmBox film={film} />
       <TicketBox screeningDates={film.screeningDates} />
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
-  film: {},
+  film: null,
   filmError: "",
 };
 

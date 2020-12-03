@@ -25,30 +25,17 @@ const Component = ({
     });
   };
 
-  const handleRatingChange = rating => {
-    updateFilmRatingRequested({ rating, filmId: film.id, userUid: user.uid });
-  };
-
   useEffect(() => {
     fetchFilmByIdRequested(filmId);
   }, []);
 
-  if (loading || filmError) {
+  if (loading || filmError || !film) {
     return <Pending>Loading</Pending>;
   }
 
   return (
     <Wrapper>
-      <FilmBox
-        title={film.title}
-        description={film.description}
-        image={film.image}
-        ticketPrice={film.ticketPrice}
-        tags={film.tags}
-        user={user}
-        rating={film.rate}
-        onRatingChange={handleRatingChange}
-      />
+      <FilmBox film={film} user={user} onRatingChange={updateFilmRatingRequested} />
       <TicketBox
         screeningDates={film.screeningDates}
         user={user}
@@ -61,7 +48,7 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  film: {},
+  film: null,
   filmError: "",
   user: null,
   orderError: "",

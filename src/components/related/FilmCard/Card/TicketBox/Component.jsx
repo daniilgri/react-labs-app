@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import {
   Wrapper,
@@ -18,19 +18,16 @@ import {
   Loading,
 } from "./styles";
 
-const Component = ({ screeningDates, user, onOrder, orderLoading, orderError, history }) => {
+const Component = ({ screeningDates, user, onOrder, orderLoading, orderError }) => {
   const [chosenDate, setChosenDate] = useState({ date: "", time: "" });
 
   const handleOrderButtonOnClick = event => {
     event.preventDefault();
-    if (user) {
-      if (chosenDate.date !== "") {
-        onOrder({ chosenDate });
-        history.push("/profile/orders");
-      }
-    } else {
-      return <Redirect to="/login" />;
+    if (user && chosenDate.date !== "") {
+      onOrder({ chosenDate });
+      return <Redirect to="/profile/orders" />;
     }
+    return <Redirect to="/login" />;
   };
 
   const handleTimeOptionButtonOnClick = sd => () => {
@@ -92,7 +89,6 @@ Component.propTypes = {
   onOrder: PropTypes.func.isRequired,
   orderLoading: PropTypes.bool.isRequired,
   orderError: PropTypes.string,
-  history: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
-export default withRouter(Component);
+export default Component;

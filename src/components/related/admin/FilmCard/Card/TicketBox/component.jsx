@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import { withRouter } from "react-router-dom";
 
 import {
   Wrapper,
@@ -17,6 +16,10 @@ import {
 } from "./styles";
 
 const Component = ({ screeningDates }) => {
+  const listTimes = () => {
+    return timeItem => <TimeOptionButton key={uuidv4()}>{timeItem}</TimeOptionButton>;
+  };
+
   return (
     <Wrapper>
       <Title>Ticketing</Title>
@@ -28,11 +31,7 @@ const Component = ({ screeningDates }) => {
               screeningDates.map(dateItem => (
                 <ButtonOption key={uuidv4()}>
                   <DateValue>{dateItem.date}</DateValue>
-                  <TimesList>
-                    {dateItem.times.map(timeItem => (
-                      <TimeOptionButton key={uuidv4()}>{timeItem}</TimeOptionButton>
-                    ))}
-                  </TimesList>
+                  <TimesList>{dateItem.times.map(listTimes(dateItem))}</TimesList>
                 </ButtonOption>
               ))}
           </OptionList>
@@ -46,4 +45,4 @@ Component.propTypes = {
   screeningDates: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default withRouter(Component);
+export default Component;

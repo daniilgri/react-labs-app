@@ -21,9 +21,20 @@ export const InfoList = styled.div`
 
 export const Title = styled.h2`
   font-size: 28px;
+  font-family: Quicksand;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 40px;
+  margin: 0;
 `;
 
-export const Description = styled.p``;
+export const Description = styled.p`
+  font-family: Quicksand;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 40px;
+  margin: 0;
+`;
 
 export const Price = styled.h4`
   font-family: Quicksand;
@@ -50,4 +61,25 @@ export const OneTag = styled.li`
   border-radius: 4px;
 
   margin: 5px;
+`;
+
+export const RatingWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+export const RateNumber = styled.span`
+  font-family: Quicksand;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+  margin-left: 10px;
+`;
+
+export const RateNumberLabel = styled.h5`
+  font-family: Quicksand;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+  display: flex;
+  margin-bottom: 20px;
 `;

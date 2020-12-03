@@ -51,3 +51,24 @@ export const OneTag = styled.li`
 
   margin: 5px;
 `;
+
+export const RatingWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+export const RateNumber = styled.span`
+  font-family: Quicksand;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+  margin-left: 10px;
+`;
+
+export const RateNumberLabel = styled.h5`
+  font-family: Quicksand;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0;
+  display: flex;
+  margin-bottom: 20px;
+`;

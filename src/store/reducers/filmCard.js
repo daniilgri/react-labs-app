@@ -7,10 +7,20 @@ import {
   fetchFilmByIdSucceed,
 } from "../actions/filmsActions";
 
-const initialState = {
+export const emptyFilm = {
+  title: "",
+  description: "",
+  tags: [],
+  image: "",
+  rates: [],
+  screeningDates: [],
+  ticketPrice: "",
+};
+
+export const initialState = {
   loading: false,
   error: "",
-  film: null,
+  film: emptyFilm,
 };
 
 const filmCard = handleActions(

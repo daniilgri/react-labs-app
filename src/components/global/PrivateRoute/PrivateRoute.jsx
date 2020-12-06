@@ -3,26 +3,25 @@ import PropTypes from "prop-types";
 
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, loading, user, error, ...rest }) => {
+const PrivateRoute = ({ component: Component, loading, error, loggedIn, ...rest }) => {
   return (
     !loading && (
       <Route
         {...rest}
-        render={props => (user ? <Component {...props} /> : <Redirect to="/login" />)}
+        render={props => (loggedIn ? <Component {...props} /> : <Redirect to="/login" />)}
       />
     )
   );
 };
 
 PrivateRoute.defaultProps = {
-  user: null,
   error: "",
   component: () => {},
 };
 
 PrivateRoute.propTypes = {
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.objectOf(PropTypes.object),
+  loggedIn: PropTypes.bool.isRequired,
   error: PropTypes.string,
   component: PropTypes.elementType,
 };

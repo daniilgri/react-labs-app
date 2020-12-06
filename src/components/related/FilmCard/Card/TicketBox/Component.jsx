@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import {
   Wrapper,
@@ -16,14 +16,15 @@ import {
   TimeOptionButton,
   DateValue,
   Loading,
+  OrderController,
 } from "./styles";
 
-const Component = ({ screeningDates, user, onOrder, orderLoading, orderError }) => {
+const Component = ({ screeningDates, loggedIn, onOrder, orderLoading, orderError }) => {
   const [chosenDate, setChosenDate] = useState({ date: "", time: "" });
 
   const handleOrderButtonOnClick = event => {
     event.preventDefault();
-    if (user && chosenDate.date !== "") {
+    if (loggedIn && chosenDate.date !== "") {
       onOrder({ chosenDate });
       return <Redirect to="/profile/orders" />;
     }
@@ -70,25 +71,26 @@ const Component = ({ screeningDates, user, onOrder, orderLoading, orderError }) 
           </OptionList>
         </Box>
       </Content>
-      {orderLoading && <Loading>Loading...</Loading>}
-      <OrderButton type="button" onClick={handleOrderButtonOnClick}>
-        Order
-      </OrderButton>
+      <OrderController>
+        {orderLoading && <Loading>Loading...</Loading>}
+        <OrderButton type="button" onClick={handleOrderButtonOnClick}>
+          Order
+        </OrderButton>
+      </OrderController>
     </Wrapper>
   );
 };
 
 Component.defaultProps = {
-  user: null,
   orderError: "",
 };
 
 Component.propTypes = {
   screeningDates: PropTypes.arrayOf(PropTypes.object).isRequired,
-  user: PropTypes.objectOf(PropTypes.object),
   onOrder: PropTypes.func.isRequired,
   orderLoading: PropTypes.bool.isRequired,
   orderError: PropTypes.string,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
-export default Component;
+export default withRouter(Component);

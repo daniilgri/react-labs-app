@@ -10,7 +10,7 @@ import {
   fetchSubscribersNextSucceed,
 } from "../actions/filmSubscribersActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   users: [],
@@ -20,13 +20,12 @@ const initialState = {
   allCount: 0,
 };
 
-const usersAdminPanel = handleActions(
+const filmSubscribers = handleActions(
   {
     [fetchSubscribersInitialRequested]: produce(state => {
       state.loading = true;
     }),
     [fetchSubscribersInitialSucceed]: produce((state, { payload }) => {
-      console.log(payload);
       state.loading = false;
       state.users = payload.users;
       state.allCount = payload.allCount;
@@ -52,4 +51,4 @@ const usersAdminPanel = handleActions(
   initialState
 );
 
-export default usersAdminPanel;
+export default filmSubscribers;

@@ -10,10 +10,20 @@ import {
   fetchEditFilmFailed,
 } from "../actions/filmsAdminPanelActions";
 
-const initialState = {
+export const emptyFilm = {
+  title: "",
+  description: "",
+  tags: [],
+  image: "",
+  rates: [],
+  screeningDates: [],
+  ticketPrice: "",
+};
+
+export const initialState = {
   loading: true,
   error: "",
-  film: {},
+  film: emptyFilm,
 };
 
 const editFilm = handleActions(

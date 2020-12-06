@@ -3,7 +3,7 @@ import produce from "immer";
 
 import { addFilmRequested, addFilmSucceed, addFilmFailed } from "../actions/filmsAdminPanelActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
 };

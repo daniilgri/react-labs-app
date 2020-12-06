@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   user: state.auth.user,
   orderError: state.newOrder.error,
   orderLoading: state.newOrder.loading,
+  loggedIn: state.auth.loggedIn,
 });
 
 const mapDispatchToProps = dispatch => ({

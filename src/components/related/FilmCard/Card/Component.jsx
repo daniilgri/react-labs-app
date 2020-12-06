@@ -16,6 +16,7 @@ const Component = ({
   orderError,
   orderLoading,
   updateFilmRatingRequested,
+  loggedIn,
 }) => {
   const handleOrder = ({ chosenDate }) => {
     makeOrderRequested({
@@ -35,10 +36,15 @@ const Component = ({
 
   return (
     <Wrapper>
-      <FilmBox film={film} user={user} onRatingChange={updateFilmRatingRequested} />
+      <FilmBox
+        film={film}
+        user={user}
+        onRatingChange={updateFilmRatingRequested}
+        loggedIn={loggedIn}
+      />
       <TicketBox
         screeningDates={film.screeningDates}
-        user={user}
+        loggedIn={loggedIn}
         onOrder={handleOrder}
         orderLoading={orderLoading}
         orderError={orderError}
@@ -48,23 +54,22 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  film: null,
   filmError: "",
-  user: null,
   orderError: "",
 };
 
 Component.propTypes = {
   filmId: PropTypes.string.isRequired,
   fetchFilmByIdRequested: PropTypes.func.isRequired,
-  film: PropTypes.objectOf(PropTypes.object),
+  film: PropTypes.objectOf(PropTypes.object).isRequired,
   filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.objectOf(PropTypes.object),
+  user: PropTypes.objectOf(PropTypes.object).isRequired,
   makeOrderRequested: PropTypes.func.isRequired,
   orderError: PropTypes.string,
   orderLoading: PropTypes.bool.isRequired,
   updateFilmRatingRequested: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Component;

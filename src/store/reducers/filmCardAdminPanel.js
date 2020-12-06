@@ -7,10 +7,20 @@ import {
   fetchFilmByIdAdminPanelSucceed,
 } from "../actions/filmsAdminPanelActions";
 
-const initialState = {
+export const emptyFilm = {
+  title: "",
+  description: "",
+  tags: [],
+  image: "",
+  rates: [],
+  screeningDates: [],
+  ticketPrice: "",
+};
+
+export const initialState = {
   loading: false,
   error: "",
-  film: null,
+  film: emptyFilm,
 };
 
 const filmCardAdminPanel = handleActions(

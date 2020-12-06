@@ -17,7 +17,7 @@ import {
   OptionLink,
 } from "./styles";
 
-const Component = ({ user, loading, error, signOutRequested }) => {
+const Component = ({ loggedIn, loading, error, signOutRequested }) => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeProfileSelect, setActiveProfileSelect] = useState(false);
 
@@ -75,7 +75,7 @@ const Component = ({ user, loading, error, signOutRequested }) => {
             <FontAwesomeIcon icon={faUserCircle} />
           </SelectIcon>
           <OptionsList active={activeProfileSelect}>
-            {user ? (
+            {loggedIn ? (
               <>
                 <OptionLink to="/profile" onClick={handleDefaultCloseOptionOnClick}>
                   Profile
@@ -103,15 +103,14 @@ const Component = ({ user, loading, error, signOutRequested }) => {
 };
 
 Component.defaultProps = {
-  user: null,
   error: "",
 };
 
 Component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   signOutRequested: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Component;

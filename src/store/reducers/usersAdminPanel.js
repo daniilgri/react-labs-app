@@ -10,7 +10,7 @@ import {
   fetchUsersAdminPanelNextSucceed,
 } from "../actions/usersAdminPanelActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   users: [],

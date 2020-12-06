@@ -37,7 +37,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "jest",
+    "test": "react-scripts test",
     "test:watch": "npm test -- --watch"
   },
   "husky": {
@@ -78,6 +78,9 @@
   "proxy": "http://localhost:5000/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "enzyme": "^3.11.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.2",
+    "enzyme-to-json": "^3.6.1",
     "eslint": "^7.14.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  loggedIn: state.auth.loggedIn,
   loading: state.auth.loading,
   error: state.auth.error,
 });

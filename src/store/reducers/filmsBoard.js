@@ -11,7 +11,7 @@ import {
   setFilmsSearchQuery,
 } from "../actions/filmsActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   films: [],

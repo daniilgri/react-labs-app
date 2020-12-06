@@ -3,7 +3,7 @@ import produce from "immer";
 
 import { makeOrderFailed, makeOrderSucceed, makeOrderRequested } from "../actions/ordersActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
 };

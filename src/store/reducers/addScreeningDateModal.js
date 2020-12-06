@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
 import { openModal, closeModal } from "../actions/addScreeningDateModalActions";
 
-const initialState = {
+export const initialState = {
   open: false,
 };
 

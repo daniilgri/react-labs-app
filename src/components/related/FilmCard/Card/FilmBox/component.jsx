@@ -19,7 +19,7 @@ import {
   RateNumberLabel,
 } from "./styles";
 
-const component = ({ film, onRatingChange, user }) => {
+const component = ({ film, onRatingChange, user, loggedIn }) => {
   const handleRatingChange = rate => onRatingChange({ rate, filmId: film.id, userUid: user.uid });
 
   return (
@@ -36,7 +36,7 @@ const component = ({ film, onRatingChange, user }) => {
             Rate <RateNumber>{convertFilmRating(film.rates) || "-"}</RateNumber>
           </RateNumberLabel>
 
-          {user && (
+          {loggedIn && (
             <StarRating
               count={5}
               rate={getRateByUser({ rates: film.rates, userUid: user.uid })}
@@ -52,14 +52,11 @@ const component = ({ film, onRatingChange, user }) => {
   );
 };
 
-component.defaultProps = {
-  user: null,
-};
-
 component.propTypes = {
   film: PropTypes.objectOf(PropTypes.object).isRequired,
-  user: PropTypes.objectOf(PropTypes.object),
+  user: PropTypes.objectOf(PropTypes.object).isRequired,
   onRatingChange: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default component;

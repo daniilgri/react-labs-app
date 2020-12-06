@@ -10,7 +10,7 @@ import {
   fetchFilmsAdminPanelNextSucceed,
 } from "../actions/filmsAdminPanelActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   films: [],

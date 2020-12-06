@@ -5,7 +5,7 @@ import { signOutRequested } from "../../../store/actions/authActions";
 import Component from "./Component";
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  loggedIn: state.auth.loggedIn,
   loading: state.auth.loading,
   error: state.auth.error,
 });

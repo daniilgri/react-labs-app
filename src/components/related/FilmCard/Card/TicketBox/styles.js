@@ -80,3 +80,8 @@ export const TimeOptionButton = styled.li`
 export const Loading = styled.label`
   color: red;
 `;
+
+export const OrderController = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

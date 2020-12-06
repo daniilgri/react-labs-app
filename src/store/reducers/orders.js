@@ -10,7 +10,7 @@ import {
   fetchOrdersNextSucceed,
 } from "../actions/ordersActions";
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: "",
   orders: [],

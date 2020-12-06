@@ -21,7 +21,20 @@ import {
   cancelRequestOnDeleteSucceed,
 } from "../actions/authActions";
 
-const initialState = { loading: false, user: null, error: "" };
+export const emptyUser = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  role: "guest",
+  requestOnDelete: false,
+};
+
+export const initialState = {
+  loading: false,
+  user: emptyUser,
+  loggedIn: false,
+  error: "",
+};
 
 const auth = handleActions(
   {
@@ -52,7 +65,8 @@ const auth = handleActions(
     }),
     [signOutSucceed]: produce(state => {
       state.loading = false;
-      state.user = null;
+      state.user = emptyUser;
+      state.loggedIn = false;
     }),
     [signOutFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
@@ -65,6 +79,7 @@ const auth = handleActions(
     [authCurrentUserSucceed]: produce((state, { payload }) => {
       state.loading = false;
       state.user = payload;
+      state.loggedIn = true;
     }),
     [authCurrentUserFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;

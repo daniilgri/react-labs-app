@@ -19,10 +19,14 @@ import {
   fetchFilmByIdRequested,
 } from "../actions/filmsActions";
 
+import getFilms from "../selectors/filmsSelectors/getFilms";
+import getFilmsLimit from "../selectors/filmsSelectors/getFilmsLimit";
+import getFilmsQuery from "../selectors/filmsSelectors/getFilmsQuery";
+
 export function* fetchFilmsInitial() {
   try {
-    const limit = yield select(state => state.filmsBoard.limit);
-    const query = yield select(state => state.filmsBoard.query);
+    const limit = yield select(getFilmsLimit);
+    const query = yield select(getFilmsQuery);
     const data = yield call(getFilmsInitialAPI, { limit, query });
     yield put(fetchFilmsInitialSucceed(data));
   } catch (error) {
@@ -32,9 +36,9 @@ export function* fetchFilmsInitial() {
 
 export function* fetchFilmsNext() {
   try {
-    const limit = yield select(state => state.filmsBoard.limit);
-    const query = yield select(state => state.filmsBoard.query);
-    const films = yield select(state => state.filmsBoard.films);
+    const limit = yield select(getFilmsLimit);
+    const query = yield select(getFilmsQuery);
+    const films = yield select(getFilms);
     const data = yield call(getFilmsNextAPI, { limit, films, query });
     yield put(fetchFilmsNextSucceed(data));
   } catch (error) {

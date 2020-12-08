@@ -48,11 +48,14 @@ describe("filmsSubscribers reducer", () => {
     });
   });
   it("should handle fetchSubscribersNextSucceed", () => {
-    expect(filmSubscribers(initialState, fetchSubscribersNextSucceed({ users: [] }))).toEqual({
+    expect(
+      filmSubscribers(initialState, fetchSubscribersNextSucceed({ users: [], orders: [] }))
+    ).toEqual({
       ...initialState,
       loading: false,
       users: [],
       count: initialState.count + initialState.limit,
+      orders: [],
     });
   });
   it("should handle fetchSubscribersNextFailed", () => {

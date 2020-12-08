@@ -37,6 +37,13 @@ import {
   fetchSubscribersNextSucceed,
 } from "../actions/filmSubscribersActions";
 
+import getFilms from "../selectors/filmsAdminPanelSelectors/getFilms";
+import getFilmsLimit from "../selectors/filmsAdminPanelSelectors/getFilmsLimit";
+import getFilmsQuery from "../selectors/filmsAdminPanelSelectors/getFilmsQuery";
+import getOrdersByFilm from "../selectors/filmSubscribersSelectors/getOrdersByFilm";
+import getOrdersByFilmLimit from "../selectors/filmSubscribersSelectors/getOrdersByFilmLimit";
+import getOrdersByFilmQuery from "../selectors/filmSubscribersSelectors/getOrdersByFilmQuery";
+
 export function* addFilm({ payload }) {
   try {
     yield call(addFilmAPI, payload);
@@ -66,8 +73,8 @@ export function* fetchEditFilm({ payload }) {
 
 export function* fetchFilmsAdminPanelInitial() {
   try {
-    const limit = yield select(state => state.filmsAdminPanel.limit);
-    const query = yield select(state => state.filmsAdminPanel.query);
+    const limit = yield select(getFilmsLimit);
+    const query = yield select(getFilmsQuery);
     const data = yield call(getFilmsInitialAPI, { limit, query });
     yield put(fetchFilmsAdminPanelInitialSucceed(data));
   } catch (error) {
@@ -77,9 +84,9 @@ export function* fetchFilmsAdminPanelInitial() {
 
 export function* fetchFilmsAdminPanelNext() {
   try {
-    const limit = yield select(state => state.filmsAdminPanel.limit);
-    const query = yield select(state => state.filmsAdminPanel.query);
-    const films = yield select(state => state.filmsAdminPanel.films);
+    const limit = yield select(getFilmsLimit);
+    const query = yield select(getFilmsQuery);
+    const films = yield select(getFilms);
     const data = yield call(getFilmsNextAPI, { limit, films, query });
     yield put(fetchFilmsAdminPanelNextSucceed(data));
   } catch (error) {
@@ -121,12 +128,12 @@ export function* fetchSubscribersInitial({ payload }) {
 
 export function* fetchSubscribersNext({ payload }) {
   try {
-    const limit = yield select(state => state.filmSubscribers.limit);
-    const query = yield select(state => state.filmSubscribers.query);
-    const users = yield select(state => state.filmSubscribers.orders);
+    const limit = yield select(getOrdersByFilmLimit);
+    const query = yield select(getOrdersByFilmQuery);
+    const orders = yield select(getOrdersByFilm);
     const data = yield call(fetchFilmSubscribersNextAPI, {
       limit,
-      users,
+      orders,
       query,
       filmId: payload.filmId,
     });

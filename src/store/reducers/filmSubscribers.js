@@ -41,6 +41,7 @@ const filmSubscribers = handleActions(
     [fetchSubscribersNextSucceed]: produce((state, { payload }) => {
       state.loading = false;
       state.users = [...state.users, ...payload.users];
+      state.orders = [...state.orders, ...payload.orders];
       state.count += state.limit;
     }),
     [fetchSubscribersNextFailed]: produce((state, { payload: { message } }) => {

@@ -79,5 +79,10 @@ export const fetchFilmSubscribersNextAPI = async payload => {
     const usersSnapshot = db.collection("users").where("uid", "==", userUid).get();
     usersData.push(usersSnapshot.docs[0].data());
   });
-  return { users: usersData };
+  return {
+    users: usersData,
+    orders: ordersByFilm.docs.map(doc => {
+      return { id: doc.id, ...doc.data() };
+    }),
+  };
 };

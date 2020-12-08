@@ -5,7 +5,8 @@ import { Route, Redirect } from "react-router-dom";
 
 const AdminRoute = ({ component: Component, loading, user, error, loggedIn, ...rest }) => {
   return (
-    !loading && (
+    !loading &&
+    user && (
       <Route
         {...rest}
         render={props =>
@@ -23,7 +24,7 @@ AdminRoute.defaultProps = {
 
 AdminRoute.propTypes = {
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.objectOf(PropTypes.object).isRequired,
+  user: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
   error: PropTypes.string,
   component: PropTypes.elementType,
   loggedIn: PropTypes.bool.isRequired,

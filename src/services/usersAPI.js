@@ -38,6 +38,7 @@ export const fetchFilmSubscribersInitialAPI = async payload => {
     .limit(payload.limit)
     .where("filmId", "==", payload.filmId)
     .get();
+
   const users = [
     ...new Set(
       ordersByFilm.docs.map(doc => {
@@ -46,10 +47,15 @@ export const fetchFilmSubscribersInitialAPI = async payload => {
     ),
   ];
   const usersData = [];
-  users.forEach(userUid => {
-    const usersSnapshot = db.collection("users").where("uid", "==", userUid).get();
-    usersData.push(usersSnapshot.docs[0].data());
-  });
+  let userSnapshot;
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const userUid of users) {
+    // eslint-disable-next-line no-await-in-loop
+    userSnapshot = await db.collection("users").where("uid", "==", userUid).get();
+    usersData.push(userSnapshot.docs[0].data());
+  }
+
   return {
     users: usersData,
     allCount: ordersByFilmAll.size,

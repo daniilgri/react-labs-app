@@ -115,7 +115,7 @@ export function* fetchFilmByIdAdminPanel({ payload }) {
 
 export function* fetchSubscribersInitial({ payload }) {
   try {
-    const limit = yield select(state => state.filmSubscribers.limit);
+    const limit = yield select(getOrdersByFilmLimit);
     const data = yield call(fetchFilmSubscribersInitialAPI, {
       limit,
       filmId: payload.filmId,

@@ -24,6 +24,10 @@ const filmSubscribers = handleActions(
   {
     [fetchSubscribersInitialRequested]: produce(state => {
       state.loading = true;
+      state.users = [];
+      state.orders = [];
+      state.allCount = 0;
+      state.error = "";
     }),
     [fetchSubscribersInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;

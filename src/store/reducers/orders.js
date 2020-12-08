@@ -24,6 +24,9 @@ const orders = handleActions(
   {
     [fetchOrdersInitialRequested]: produce(state => {
       state.loading = true;
+      state.orders = [];
+      state.allCount = 0;
+      state.error = "";
     }),
     [fetchOrdersInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;

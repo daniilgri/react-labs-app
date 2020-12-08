@@ -24,6 +24,9 @@ const filmsAdminPanel = handleActions(
   {
     [fetchFilmsAdminPanelInitialRequested]: produce(state => {
       state.loading = true;
+      state.films = [];
+      state.allCount = 0;
+      state.error = "";
     }),
     [fetchFilmsAdminPanelInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;

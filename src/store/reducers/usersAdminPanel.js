@@ -24,6 +24,9 @@ const usersAdminPanel = handleActions(
   {
     [fetchUsersAdminPanelInitialRequested]: produce(state => {
       state.loading = true;
+      state.users = [];
+      state.allCount = 0;
+      state.error = "";
     }),
     [fetchUsersAdminPanelInitialSucceed]: produce((state, { payload }) => {
       state.loading = false;

@@ -38,7 +38,7 @@ export function* deleteUser({ payload }) {
   try {
     yield call(deleteUserAPI, payload);
     yield put(deleteUserSucceed());
-    yield put(fetchUsersAdminPanelInitialRequested({ count: 25 }));
+    yield put(fetchUsersAdminPanelInitialRequested());
   } catch (error) {
     yield put(deleteUserFailed(error));
   }

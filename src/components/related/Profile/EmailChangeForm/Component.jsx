@@ -11,6 +11,7 @@ const Component = ({ changeEmailRequested }) => {
       emailChange: "",
       passwordConfirmEmail: "",
     },
+    enableReinitialize: true,
     validationSchema: emailChangeSchema,
     onSubmit: (values, { resetForm }) => {
       changeEmailRequested({

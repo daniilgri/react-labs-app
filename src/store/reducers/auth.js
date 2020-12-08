@@ -22,6 +22,7 @@ import {
 } from "../actions/authActions";
 
 export const emptyUser = {
+  uid: "",
   firstName: "",
   lastName: "",
   email: "",

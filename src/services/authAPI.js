@@ -43,7 +43,16 @@ export const getAuthChannelAPI = () => {
             });
           });
       }
-      emit({ user: null });
+      emit({
+        user: {
+          uid: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          requestOnDelete: "",
+          role: "",
+        },
+      });
     });
   });
 };

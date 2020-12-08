@@ -22,6 +22,7 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
       firstNameChange: user.firstName,
       lastNameChange: user.lastName,
     },
+    enableReinitialize: true,
     validationSchema: personalInfoSchema,
     onSubmit: values => {
       const changedValues = {};
@@ -78,12 +79,11 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
 };
 
 Component.defaultProps = {
-  user: null,
   error: "",
 };
 
 Component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object),
+  user: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   updateProfileRequested: PropTypes.func.isRequired,

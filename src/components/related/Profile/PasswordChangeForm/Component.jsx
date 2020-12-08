@@ -12,6 +12,7 @@ const Component = ({ changePasswordRequested }) => {
       newPassword: "",
       confirmPasswordChange: "",
     },
+    enableReinitialize: true,
     validationSchema: changePasswordSchema,
     onSubmit: (values, { resetForm }) => {
       changePasswordRequested({

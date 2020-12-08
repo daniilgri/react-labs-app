@@ -19,13 +19,11 @@ const component = ({ user, loading, error }) => {
 };
 
 component.defaultProps = {
-  user: null,
-  loading: false,
   error: "",
 };
 
 component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object),
+  user: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };

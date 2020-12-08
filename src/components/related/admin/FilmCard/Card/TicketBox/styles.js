@@ -65,10 +65,6 @@ export const TimeOptionButton = styled.li`
   background-color: #aa6f51c7;
   padding: 4px 8px;
   border-radius: 4px;
-
-  cursor: pointer;
-
-  ${({ chosen }) => chosen && `background-color: #7d4d34c7;`};
 `;
 
 export const Loading = styled.label`

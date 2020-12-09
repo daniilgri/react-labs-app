@@ -56,7 +56,9 @@ const Component = ({ onChange, values, errors, onTagAdd, onTagDelete }) => {
 
 Component.propTypes = {
   onChange: PropTypes.func.isRequired,
-  values: PropTypes.objectOf(PropTypes.object).isRequired,
+  values: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array])
+  ).isRequired,
   errors: PropTypes.objectOf(PropTypes.object).isRequired,
   onTagAdd: PropTypes.func.isRequired,
   onTagDelete: PropTypes.func.isRequired,

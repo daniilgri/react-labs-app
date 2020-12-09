@@ -20,10 +20,20 @@ const component = ({ user, loading, error }) => {
 
 component.defaultProps = {
   error: "",
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
 };
 
 component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };

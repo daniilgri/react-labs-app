@@ -71,6 +71,14 @@ Component.defaultProps = {
   count: 0,
   allCount: 0,
   errorCurrentUser: "",
+  currentUser: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
 };
 
 Component.propTypes = {
@@ -82,7 +90,9 @@ Component.propTypes = {
   count: PropTypes.number,
   allCount: PropTypes.number,
   deleteUserRequested: PropTypes.func.isRequired,
-  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
   loadingCurrentUser: PropTypes.bool.isRequired,
   errorCurrentUser: PropTypes.string,
 };

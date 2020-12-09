@@ -61,12 +61,21 @@ const Component = ({
 };
 
 Component.defaultProps = {
-  user: null,
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
   error: "",
 };
 
 Component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object),
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   requestOnDeleteRequested: PropTypes.func.isRequired,

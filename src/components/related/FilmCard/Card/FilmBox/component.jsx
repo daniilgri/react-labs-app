@@ -52,11 +52,26 @@ const component = ({ film, onRatingChange, user, loggedIn }) => {
   );
 };
 
+component.defaultProps = {
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
+};
+
 component.propTypes = {
-  film: PropTypes.objectOf(PropTypes.object).isRequired,
-  user: PropTypes.objectOf(PropTypes.object).isRequired,
   onRatingChange: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
+  film: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
+  ).isRequired,
 };
 
 export default component;

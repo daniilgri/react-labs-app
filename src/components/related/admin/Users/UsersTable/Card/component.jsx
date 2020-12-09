@@ -54,17 +54,35 @@ const component = ({ user, onConfirmDeleteRequest, onDelete, currentUser }) => {
 };
 
 component.defaultProps = {
-  user: {},
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
   onConfirmDeleteRequest: () => {},
   onDelete: () => {},
-  currentUser: {},
+  currentUser: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
 };
 
 component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object).isRequired,
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
   onConfirmDeleteRequest: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
 };
 
 export default component;

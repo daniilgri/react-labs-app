@@ -56,20 +56,32 @@ const Component = ({
 Component.defaultProps = {
   filmError: "",
   orderError: "",
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
 };
 
 Component.propTypes = {
   filmId: PropTypes.string.isRequired,
   fetchFilmByIdRequested: PropTypes.func.isRequired,
-  film: PropTypes.objectOf(PropTypes.object).isRequired,
   filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.objectOf(PropTypes.object).isRequired,
   makeOrderRequested: PropTypes.func.isRequired,
   orderError: PropTypes.string,
   orderLoading: PropTypes.bool.isRequired,
   updateFilmRatingRequested: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
+  film: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
+  ).isRequired,
 };
 
 export default Component;

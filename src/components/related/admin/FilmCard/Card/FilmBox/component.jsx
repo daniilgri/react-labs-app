@@ -41,7 +41,9 @@ const component = ({ film }) => {
 };
 
 component.propTypes = {
-  film: PropTypes.objectOf(PropTypes.object).isRequired,
+  film: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
+  ).isRequired,
 };
 
 export default component;

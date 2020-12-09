@@ -23,7 +23,7 @@ const component = ({ value, onCancel }) => {
 };
 
 component.propTypes = {
-  value: PropTypes.objectOf(PropTypes.object).isRequired,
+  value: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
   onCancel: PropTypes.func.isRequired,
 };
 

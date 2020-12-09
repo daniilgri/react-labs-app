@@ -50,10 +50,11 @@ Component.defaultProps = {
   error: "",
   count: 0,
   allCount: 0,
+  orders: [],
 };
 
 Component.propTypes = {
-  orders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  orders: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   fetchOrdersInitialRequested: PropTypes.func.isRequired,

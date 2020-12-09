@@ -29,7 +29,10 @@ const Component = ({
   return (
     <>
       <Wrapper>
-        {films.length > 0 && films.map(item => <Card key={uuidv4()} film={item} />)}
+        {films.length > 0 &&
+          films.map(item => (
+            <Card key={uuidv4()} title={item.title} id={item.id} image={item.image} />
+          ))}
       </Wrapper>
       {loading || error ? (
         <Loading>Loading</Loading>

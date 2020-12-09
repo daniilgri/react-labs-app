@@ -80,13 +80,23 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
 
 Component.defaultProps = {
   error: "",
+  user: {
+    uid: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "guest",
+    requestOnDelete: false,
+  },
 };
 
 Component.propTypes = {
-  user: PropTypes.objectOf(PropTypes.object.isRequired).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   updateProfileRequested: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string])
+  ),
 };
 
 export default Component;

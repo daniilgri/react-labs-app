@@ -39,7 +39,9 @@ const component = ({ film, onDelete }) => {
 };
 
 component.propTypes = {
-  film: PropTypes.objectOf(PropTypes.object).isRequired,
+  film: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
+  ).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

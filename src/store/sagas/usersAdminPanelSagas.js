@@ -25,9 +25,8 @@ export function* fetchUsersAdminPanelInitial() {
 export function* fetchUsersAdminPanelNext() {
   try {
     const limit = yield select(state => state.usersAdminPanel.limit);
-    const query = yield select(state => state.usersAdminPanel.query);
     const users = yield select(state => state.usersAdminPanel.users);
-    const data = yield call(getUsersNextAPI, { limit, users, query });
+    const data = yield call(getUsersNextAPI, { limit, users });
     yield put(fetchUsersAdminPanelNextSucceed(data));
   } catch (error) {
     yield put(fetchUsersAdminPanelNextFailed(error));

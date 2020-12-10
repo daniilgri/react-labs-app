@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 
 export const makeOrderRequested = createAction("@ORDERS/MAKE_ORDER_REQUESTED", payload => payload);
-export const makeOrderSucceed = createAction("ORDERS/MAKE_ORDER_SUCCEED", payload => payload);
+export const makeOrderSucceed = createAction("ORDERS/MAKE_ORDER_SUCCEED");
 export const makeOrderFailed = createAction("ORDERS/MAKE_ORDER_FAILED", payload => payload);
 
 export const fetchOrdersInitialRequested = createAction("@ORDERS/FETCH_ORDERS_INITIAL_REQUESTED");

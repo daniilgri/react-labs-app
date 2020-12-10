@@ -27,13 +27,13 @@ describe("makeOrder saga", () => {
         dispatch: action => dispatched.push(action),
       },
       makeOrder,
-      [
-        {
+      {
+        payload: {
           filmId: "weffweKweijf",
           screeningDate: { date: "00.00.0000", time: "00:00" },
           userUid: "weojPOwoefj",
         },
-      ]
+      }
     );
 
     expect(makeOrderApi).toHaveBeenCalledTimes(1);
@@ -51,13 +51,13 @@ describe("makeOrder saga", () => {
         dispatch: action => dispatched.push(action),
       },
       makeOrder,
-      [
-        {
+      {
+        payload: {
           filmId: "weffweKweijf",
           screeningDate: { date: "00.00.0000", time: "00:00" },
           userUid: "weojPOwoefj",
         },
-      ]
+      }
     );
 
     expect(makeOrderApi).toHaveBeenCalledTimes(1);
@@ -89,8 +89,7 @@ describe("fetchOrdersInitial saga", () => {
         dispatch: action => dispatched.push(action),
         getState: () => ({ orders: { limit: 4, query: "query" } }),
       },
-      fetchOrdersInitial,
-      []
+      fetchOrdersInitial
     );
 
     expect(getOrdersInitialApi).toHaveBeenCalledTimes(1);
@@ -110,8 +109,7 @@ describe("fetchOrdersInitial saga", () => {
         dispatch: action => dispatched.push(action),
         getState: () => ({ orders: { limit: 4, query: "query" } }),
       },
-      fetchOrdersInitial,
-      []
+      fetchOrdersInitial
     );
 
     expect(getOrdersInitialApi).toHaveBeenCalledTimes(1);
@@ -143,8 +141,7 @@ describe("fetchOrdersNext saga", () => {
         dispatch: action => dispatched.push(action),
         getState: () => ({ orders: { limit: 4, query: "query", orders: [] } }),
       },
-      fetchOrdersNext,
-      []
+      fetchOrdersNext
     );
 
     expect(getOrdersNextApi).toHaveBeenCalledTimes(1);
@@ -164,8 +161,7 @@ describe("fetchOrdersNext saga", () => {
         dispatch: action => dispatched.push(action),
         getState: () => ({ orders: { limit: 4, query: "query", orders: [] } }),
       },
-      fetchOrdersNext,
-      []
+      fetchOrdersNext
     );
 
     expect(getOrdersNextApi).toHaveBeenCalledTimes(1);
@@ -187,7 +183,11 @@ describe("cancelOrder saga", () => {
         dispatch: action => dispatched.push(action),
       },
       cancelOrder,
-      []
+      {
+        payload: {
+          orderId: "1",
+        },
+      }
     );
 
     expect(cancelOrderApi).toHaveBeenCalledTimes(1);
@@ -207,7 +207,11 @@ describe("cancelOrder saga", () => {
         dispatch: action => dispatched.push(action),
       },
       cancelOrder,
-      []
+      {
+        payload: {
+          orderId: "1",
+        },
+      }
     );
 
     expect(cancelOrderApi).toHaveBeenCalledTimes(1);

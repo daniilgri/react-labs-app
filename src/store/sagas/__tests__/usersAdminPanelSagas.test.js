@@ -123,11 +123,11 @@ describe("deleteUser saga", () => {
         dispatch: action => dispatched.push(action),
       },
       deleteUser,
-      [
-        {
+      {
+        payload: {
           userUid: "joooj",
         },
-      ]
+      }
     );
 
     expect(deleteUserApi).toHaveBeenCalledTimes(1);
@@ -147,11 +147,11 @@ describe("deleteUser saga", () => {
         dispatch: action => dispatched.push(action),
       },
       deleteUser,
-      [
-        {
+      {
+        payload: {
           userUid: "joooj",
         },
-      ]
+      }
     );
 
     expect(deleteUserApi).toHaveBeenCalledTimes(1);

@@ -42,7 +42,6 @@ import getFilmsLimit from "../selectors/filmsAdminPanelSelectors/getFilmsLimit";
 import getFilmsQuery from "../selectors/filmsAdminPanelSelectors/getFilmsQuery";
 import getOrdersByFilm from "../selectors/filmSubscribersSelectors/getOrdersByFilm";
 import getOrdersByFilmLimit from "../selectors/filmSubscribersSelectors/getOrdersByFilmLimit";
-import getOrdersByFilmQuery from "../selectors/filmSubscribersSelectors/getOrdersByFilmQuery";
 
 export function* addFilm({ payload }) {
   try {
@@ -98,7 +97,7 @@ export function* deleteFilm({ payload }) {
   try {
     yield call(deleteFilmAPI, payload);
     yield put(deleteFilmSucceed());
-    yield put(fetchFilmsAdminPanelInitialRequested({ count: 25 }));
+    yield put(fetchFilmsAdminPanelInitialRequested());
   } catch (error) {
     yield put(deleteFilmFailed(error));
   }
@@ -129,12 +128,10 @@ export function* fetchSubscribersInitial({ payload }) {
 export function* fetchSubscribersNext({ payload }) {
   try {
     const limit = yield select(getOrdersByFilmLimit);
-    const query = yield select(getOrdersByFilmQuery);
     const orders = yield select(getOrdersByFilm);
     const data = yield call(fetchFilmSubscribersNextAPI, {
       limit,
       orders,
-      query,
       filmId: payload.filmId,
     });
     yield put(fetchSubscribersNextSucceed(data));

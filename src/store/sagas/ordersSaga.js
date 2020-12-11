@@ -55,7 +55,7 @@ export function* cancelOrder({ payload }) {
   try {
     yield call(cancelOrderAPI, payload);
     yield put(cancelOrderSucceed());
-    yield put(fetchOrdersInitialRequested({ count: 25 }));
+    yield put(fetchOrdersInitialRequested());
   } catch (error) {
     yield put(cancelOrderFailed(error));
   }

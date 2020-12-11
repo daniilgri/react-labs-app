@@ -3,3 +3,5 @@
 /secretKey.json
 
 /package-lock.json
+
+.env

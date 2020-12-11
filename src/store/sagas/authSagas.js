@@ -37,8 +37,8 @@ import {
 
 export function* signUp({ payload }) {
   try {
-    const data = yield call(signUpAPI, payload);
-    yield put(signUpSucceed(data));
+    yield call(signUpAPI, payload);
+    yield put(signUpSucceed());
   } catch (error) {
     yield put(signUpFailed(error));
   }
@@ -46,8 +46,8 @@ export function* signUp({ payload }) {
 
 export function* signIn({ payload }) {
   try {
-    const data = yield call(signInAPI, payload);
-    yield put(signInSucceed(data));
+    yield call(signInAPI, payload);
+    yield put(signInSucceed());
   } catch (error) {
     yield put(signInFailed(error));
   }

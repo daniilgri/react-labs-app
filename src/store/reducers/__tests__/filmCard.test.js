@@ -5,6 +5,11 @@ import {
   fetchFilmByIdSucceed,
 } from "../../actions/filmsActions";
 
+const getPerfectInitialState = (initial, changed) => ({
+  ...initial,
+  ...changed,
+});
+
 describe("filmCard reducer", () => {
   let fakeFilm;
   beforeEach(() => {
@@ -15,24 +20,26 @@ describe("filmCard reducer", () => {
   });
 
   it("should handle fetchFilmByIdRequested", () => {
-    expect(filmCard(initialState, fetchFilmByIdRequested("iqwdi"))).toEqual({
-      loading: true,
-      error: "",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdRequested("iqwdi"))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: true,
+      })
+    );
   });
   it("should handle fetchFilmByIdSucceed", () => {
-    expect(filmCard(initialState, fetchFilmByIdSucceed(fakeFilm))).toEqual({
-      loading: false,
-      error: "",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdSucceed(fakeFilm))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: false,
+        film: fakeFilm,
+      })
+    );
   });
   it("should handle fetchFilmByIdFailed", () => {
-    expect(filmCard(initialState, fetchFilmByIdFailed({ message: "Error" }))).toEqual({
-      loading: false,
-      error: "Error",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdFailed({ message: "Error" }))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: false,
+        error: "Error",
+      })
+    );
   });
 });

@@ -6,6 +6,11 @@ import {
   fetchFilmByIdAdminPanelSucceed,
 } from "../../actions/filmsAdminPanelActions";
 
+const getPerfectInitialState = (initial, changed) => ({
+  ...initial,
+  ...changed,
+});
+
 describe("filmCardAdminPanel reducer", () => {
   let fakeFilm;
   beforeEach(() => {
@@ -16,24 +21,26 @@ describe("filmCardAdminPanel reducer", () => {
   });
 
   it("should handle fetchFilmByIdAdminPanelRequested", () => {
-    expect(filmCard(initialState, fetchFilmByIdAdminPanelRequested("iqwdi"))).toEqual({
-      loading: true,
-      error: "",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdAdminPanelRequested("iqwdi"))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: true,
+      })
+    );
   });
   it("should handle fetchFilmByIdAdminPanelSucceed", () => {
-    expect(filmCard(initialState, fetchFilmByIdAdminPanelSucceed(fakeFilm))).toEqual({
-      loading: false,
-      error: "",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdAdminPanelSucceed(fakeFilm))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: false,
+        film: fakeFilm,
+      })
+    );
   });
   it("should handle fetchFilmByIdAdminPanelFailed", () => {
-    expect(filmCard(initialState, fetchFilmByIdAdminPanelFailed({ message: "Error" }))).toEqual({
-      loading: false,
-      error: "Error",
-      film: fakeFilm,
-    });
+    expect(filmCard(initialState, fetchFilmByIdAdminPanelFailed({ message: "Error" }))).toEqual(
+      getPerfectInitialState(initialState, {
+        loading: false,
+        error: "Error",
+      })
+    );
   });
 });

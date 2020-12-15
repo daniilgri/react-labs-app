@@ -36,13 +36,18 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
+    "client": "react-scripts start",
+    "server": "cd server && npm start",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
-  "husky":{
-    "hooks":{ "pre-commit": "npx lint-staged"}
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
   },
   "lint-staged": {
     "src/**/*.js": [

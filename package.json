@@ -36,9 +36,9 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "cd server && npm start",
     "client": "react-scripts start",
-    "server": "cd server && npm start",
+    "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",

@@ -27,6 +27,7 @@ const Component = ({ signUpRequested, history }) => {
     },
     validationSchema: signupSchema,
     onSubmit: (values, { resetForm }) => {
+      console.log(values);
       signUpRequested(values);
       resetForm();
       history.push("/");

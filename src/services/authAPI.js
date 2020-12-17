@@ -85,6 +85,14 @@ export const changeEmailAPI = async payload => {
   );
 
   await userCredential.user.updateEmail(payload.email);
+
+  const usersCollection = await db
+    .collection("users")
+    .where("uid", "==", auth.currentUser.uid)
+    .get();
+  await usersCollection.docs[0].ref.update({
+    email: payload.email,
+  });
 };
 
 export const changePasswordAPI = async payload => {

@@ -19,19 +19,19 @@ import {
 const Component = ({ user, loading, error, updateProfileRequested }) => {
   const formik = useFormik({
     initialValues: {
-      firstNameChange: user.firstName,
-      lastNameChange: user.lastName,
+      firstName: user.firstName,
+      lastName: user.lastName,
     },
     enableReinitialize: true,
     validationSchema: personalInfoSchema,
     onSubmit: values => {
       const changedValues = {};
-
-      Object.entries(values).forEach((value, key) => {
-        if (formik.initialValues[key] !== value) {
-          changedValues[key] = value;
+      Object.keys(values).forEach(prop => {
+        if (formik.initialValues[prop] !== values[prop]) {
+          changedValues[prop] = values[prop];
         }
       });
+
       if (Object.keys(changedValues).length !== 0 && changedValues.constructor === Object) {
         updateProfileRequested(changedValues);
       }
@@ -52,25 +52,25 @@ const Component = ({ user, loading, error, updateProfileRequested }) => {
           <Label htmlFor="firstNameChange">First name</Label>
           <Input
             id="firstNameChange"
-            name="firstNameChange"
+            name="firstName"
             placeholder="First name"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.firstNameChange}
+            value={formik.values.firstName}
           />
-          {formik.errors.firstNameChange && <ErrorText>{formik.errors.firstNameChange}</ErrorText>}
+          {formik.errors.firstName && <ErrorText>{formik.errors.firstName}</ErrorText>}
         </Field>
         <Field>
           <Label htmlFor="lastNameChange">Last name</Label>
           <Input
             id="lastNameChange"
-            name="lastNameChange"
+            name="lastName"
             placeholder="Last name"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.lastNameChange}
+            value={formik.values.lastName}
           />
-          {formik.errors.lastNameChange && <ErrorText>{formik.errors.lastNameChange}</ErrorText>}
+          {formik.errors.lastName && <ErrorText>{formik.errors.lastName}</ErrorText>}
         </Field>
       </Body>
       <FilledButton type="submit">Save</FilledButton>

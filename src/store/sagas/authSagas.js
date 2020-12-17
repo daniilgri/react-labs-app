@@ -40,6 +40,7 @@ export function* signUp({ payload }) {
     yield call(signUpAPI, payload);
     yield put(signUpSucceed());
   } catch (error) {
+    console.log(error);
     yield put(signUpFailed(error));
   }
 }
@@ -110,6 +111,7 @@ export function* changeEmail({ payload }) {
     yield fork(authCurrentUser);
     yield put(changeEmailSucceed());
   } catch (error) {
+    console.log(error);
     yield put(changeEmailFailed(error));
   }
 }

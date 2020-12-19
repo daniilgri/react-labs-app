@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 import { useFormik } from "formik";
 
 import signupSchema from "../../../../validations/signupSchema";
@@ -16,7 +15,7 @@ import {
   ErrorText,
 } from "./styles";
 
-const Component = ({ signUpRequested, history }) => {
+const Component = ({ signUpRequested }) => {
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -30,7 +29,6 @@ const Component = ({ signUpRequested, history }) => {
       console.log(values);
       signUpRequested(values);
       resetForm();
-      history.push("/");
     },
   });
 
@@ -96,7 +94,6 @@ const Component = ({ signUpRequested, history }) => {
 
 Component.propTypes = {
   signUpRequested: PropTypes.func.isRequired,
-  history: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
-export default withRouter(Component);
+export default Component;

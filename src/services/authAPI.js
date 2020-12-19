@@ -1,4 +1,3 @@
-import { eventChannel } from "redux-saga";
 import { auth, db } from "./firestore";
 
 export const signUpAPI = async payload => {
@@ -22,41 +21,47 @@ export const signOutAPI = async () => {
   await auth.signOut();
 };
 
-export const getAuthChannelAPI = () => {
-  return eventChannel(emit => {
-    return auth.onAuthStateChanged(user => {
+export const onAuthStateChanged = () => {
+  return new Promise(resolve => {
+    auth.onAuthStateChanged(user => {
       if (user) {
-        db.collection("users")
-          .where("uid", "==", user.uid)
-          .get()
-          .then(usersCollection => {
-            const customUser = usersCollection.docs[0].data();
-            emit({
-              user: {
-                uid: user.uid,
-                email: user.email,
-                firstName: customUser.firstName,
-                lastName: customUser.lastName,
-                requestOnDelete: customUser.requestOnDelete,
-                role: customUser.role,
-              },
-              loggedIn: true,
-            });
-          });
+        resolve(user);
+      } else {
+        resolve(null);
       }
-      emit({
-        user: {
-          uid: "",
-          email: "",
-          firstName: "",
-          lastName: "",
-          requestOnDelete: "",
-          role: "",
-        },
-        loggedIn: false,
-      });
     });
   });
+};
+
+export const getAuthChannelAPI = async () => {
+  const user = await onAuthStateChanged();
+  if (!user) {
+    return {
+      user: {
+        uid: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        requestOnDelete: "",
+        role: "",
+      },
+      loggedIn: false,
+    };
+  }
+
+  const userCollectionDoc = await db.collection("users").where("uid", "==", user.uid).get();
+  const customUser = userCollectionDoc.docs[0].data();
+  return {
+    user: {
+      uid: user.uid,
+      email: user.email,
+      firstName: customUser.firstName,
+      lastName: customUser.lastName,
+      requestOnDelete: customUser.requestOnDelete,
+      role: customUser.role,
+    },
+    loggedIn: true,
+  };
 };
 
 export const requestOnDeleteAPI = async ({ uid }) => {

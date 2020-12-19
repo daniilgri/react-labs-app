@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 import { useFormik } from "formik";
 
 import loginSchema from "../../../../validations/loginSchema";
@@ -16,7 +15,7 @@ import {
   ErrorText,
 } from "./styles";
 
-const Component = ({ signInRequested, history }) => {
+const Component = ({ signInRequested, error }) => {
   const formik = useFormik({
     initialValues: {
       emailLogin: "",
@@ -28,7 +27,6 @@ const Component = ({ signInRequested, history }) => {
         email: values.emailLogin,
         password: values.passwordLogin,
       });
-      history.push("/");
     },
   });
 
@@ -60,6 +58,7 @@ const Component = ({ signInRequested, history }) => {
           />
           {formik.errors.passwordLogin && <ErrorText>{formik.errors.passwordLogin}</ErrorText>}
         </Field>
+        {error && <ErrorText>{error}</ErrorText>}
       </FieldsWrapper>
 
       <FilledButton type="submit">Sign in</FilledButton>
@@ -68,11 +67,13 @@ const Component = ({ signInRequested, history }) => {
   );
 };
 
-Component.defaultProps = {};
+Component.defaultProps = {
+  error: "",
+};
 
 Component.propTypes = {
   signInRequested: PropTypes.func.isRequired,
-  history: PropTypes.objectOf(PropTypes.object).isRequired,
+  error: PropTypes.string,
 };
 
-export default withRouter(Component);
+export default Component;

@@ -56,9 +56,9 @@ const auth = handleActions(
     [signInSucceed]: produce(state => {
       state.loading = false;
     }),
-    [signInFailed]: produce((state, { payload: { message } }) => {
+    [signInFailed]: produce(state => {
       state.loading = false;
-      state.error = message;
+      state.error = "Error with login";
     }),
 
     [signOutRequested]: produce(state => {

@@ -86,7 +86,7 @@ describe("auth reducer", () => {
     expect(auth(initialState, signInFailed({ message: "Error" }))).toEqual(
       getPerfectInitialState(initialState, {
         loading: false,
-        error: "Error",
+        error: "Error with login",
       })
     );
   });

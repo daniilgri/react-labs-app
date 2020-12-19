@@ -18,8 +18,6 @@ import {
   requestOnDeleteFailed,
   cancelRequestOnDeleteSucceed,
   cancelRequestOnDeleteFailed,
-  // authCurrentUserSucceed,
-  // authCurrentUserFailed,
   authCurrentUserRequested,
   signInFailed,
   signInSucceed,
@@ -58,7 +56,7 @@ describe("signUp saga", () => {
     );
 
     expect(signUpApi).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([signUpSucceed()]);
+    expect(dispatched).toEqual([signUpSucceed(), authCurrentUserRequested()]);
 
     signUpApi.mockClear();
   });
@@ -108,7 +106,7 @@ describe("signIn saga", () => {
     );
 
     expect(signInApi).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([signInSucceed()]);
+    expect(dispatched).toEqual([signInSucceed(), authCurrentUserRequested()]);
 
     signInApi.mockClear();
   });

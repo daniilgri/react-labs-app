@@ -1,4 +1,4 @@
-import { call, fork, put, take } from "redux-saga/effects";
+import { call, fork, put } from "redux-saga/effects";
 
 import {
   signUpAPI,
@@ -35,12 +35,22 @@ import {
   changePasswordSucceed,
 } from "../actions/profileActions";
 
+export function* authCurrentUser() {
+  try {
+    yield put(authCurrentUserRequested());
+    const { user, loggedIn } = yield call(getAuthChannelAPI);
+    yield put(authCurrentUserSucceed({ user, loggedIn }));
+  } catch (error) {
+    yield put(authCurrentUserFailed(error));
+  }
+}
+
 export function* signUp({ payload }) {
   try {
     yield call(signUpAPI, payload);
     yield put(signUpSucceed());
+    yield fork(authCurrentUser);
   } catch (error) {
-    console.log(error);
     yield put(signUpFailed(error));
   }
 }
@@ -49,6 +59,7 @@ export function* signIn({ payload }) {
   try {
     yield call(signInAPI, payload);
     yield put(signInSucceed());
+    yield fork(authCurrentUser);
   } catch (error) {
     yield put(signInFailed(error));
   }
@@ -60,22 +71,6 @@ export function* signOut() {
     yield put(signOutSucceed());
   } catch (error) {
     yield put(signOutFailed());
-  }
-}
-
-export function* authCurrentUser() {
-  try {
-    yield put(authCurrentUserRequested());
-
-    const authChannel = yield call(getAuthChannelAPI);
-    while (true) {
-      const { user, loggedIn } = yield take(authChannel);
-      if (loggedIn) {
-        yield put(authCurrentUserSucceed({ user, loggedIn }));
-      }
-    }
-  } catch (error) {
-    yield put(authCurrentUserFailed(error));
   }
 }
 

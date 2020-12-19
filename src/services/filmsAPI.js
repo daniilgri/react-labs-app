@@ -35,7 +35,7 @@ export const addFilmAPI = async payload => {
 export const editFilmAPI = async payload => {
   const { values, changedValues } = payload;
   const filmDoc = await db.collection("films").doc(payload.filmId).get();
-
+  console.log(changedValues);
   if ("imageAsFile" in changedValues) {
     const uploadTask = storage
       .ref(`/images/${changedValues.imageAsFile.name}`)
@@ -52,14 +52,15 @@ export const editFilmAPI = async payload => {
           .getDownloadURL()
           .then(imageUrl => {
             delete values.imageAsFile;
+            delete changedValues.imageAsFile;
             filmDoc.ref.update({
               image: imageUrl,
-              ...values,
             });
           });
       }
     );
   }
+  filmDoc.ref.update(changedValues);
 };
 
 export const getFilmsInitialAPI = async payload => {

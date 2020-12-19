@@ -79,8 +79,8 @@ const auth = handleActions(
     }),
     [authCurrentUserSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      state.user = payload;
-      state.loggedIn = true;
+      state.user = payload.user;
+      state.loggedIn = payload.loggedIn;
     }),
     [authCurrentUserFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;

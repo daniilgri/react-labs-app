@@ -40,6 +40,7 @@ export const getAuthChannelAPI = () => {
                 requestOnDelete: customUser.requestOnDelete,
                 role: customUser.role,
               },
+              loggedIn: true,
             });
           });
       }
@@ -52,6 +53,7 @@ export const getAuthChannelAPI = () => {
           requestOnDelete: "",
           role: "",
         },
+        loggedIn: false,
       });
     });
   });

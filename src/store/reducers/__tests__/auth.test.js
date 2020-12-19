@@ -128,7 +128,7 @@ describe("auth reducer", () => {
     );
   });
   it("should handle authCurrentUserSucceed", () => {
-    expect(auth(initialState, authCurrentUserSucceed(fakeUser))).toEqual(
+    expect(auth(initialState, authCurrentUserSucceed({ user: fakeUser, loggedIn: true }))).toEqual(
       getPerfectInitialState(initialState, {
         loading: false,
         user: fakeUser,

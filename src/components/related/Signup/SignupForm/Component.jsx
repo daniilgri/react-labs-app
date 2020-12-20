@@ -26,7 +26,6 @@ const Component = ({ signUpRequested }) => {
     },
     validationSchema: signupSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       signUpRequested(values);
       resetForm();
     },

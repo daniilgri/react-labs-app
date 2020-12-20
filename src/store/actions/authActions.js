@@ -41,3 +41,5 @@ export const cancelRequestOnDeleteFailed = createAction(
   "@AUTH/CANCEL_REQUEST_ON_DELETE_FAILED",
   payload => payload
 );
+
+export const cleanAuthErrorState = createAction("AUTH/CLEAN_AUTH_ERROR_STATE");

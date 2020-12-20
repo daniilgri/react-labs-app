@@ -19,6 +19,7 @@ import {
   cancelRequestOnDeleteFailed,
   cancelRequestOnDeleteRequested,
   cancelRequestOnDeleteSucceed,
+  cleanAuthErrorState,
 } from "../actions/authActions";
 
 export const emptyUser = {
@@ -39,6 +40,9 @@ export const initialState = {
 
 const auth = handleActions(
   {
+    [cleanAuthErrorState]: produce(state => {
+      state.error = "";
+    }),
     [signUpRequested]: produce(state => {
       state.loading = true;
     }),
@@ -56,9 +60,9 @@ const auth = handleActions(
     [signInSucceed]: produce(state => {
       state.loading = false;
     }),
-    [signInFailed]: produce((state, { payload: { message } }) => {
+    [signInFailed]: produce(state => {
       state.loading = false;
-      state.error = message;
+      state.error = "Error with login";
     }),
 
     [signOutRequested]: produce(state => {
@@ -79,8 +83,8 @@ const auth = handleActions(
     }),
     [authCurrentUserSucceed]: produce((state, { payload }) => {
       state.loading = false;
-      state.user = payload;
-      state.loggedIn = true;
+      state.user = payload.user;
+      state.loggedIn = payload.loggedIn;
     }),
     [authCurrentUserFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;

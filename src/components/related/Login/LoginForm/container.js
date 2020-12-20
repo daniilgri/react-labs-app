@@ -1,11 +1,15 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { signInRequested } from "../../../../store/actions/authActions";
+import { signInRequested, cleanAuthErrorState } from "../../../../store/actions/authActions";
 import Component from "./Component";
 
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ signInRequested }, dispatch),
+const mapStateToProps = state => ({
+  error: state.auth.error,
 });
 
-export default connect(null, mapDispatchToProps)(Component);
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({ signInRequested, cleanAuthErrorState }, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

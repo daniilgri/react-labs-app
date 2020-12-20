@@ -18,6 +18,7 @@ import {
   cancelRequestOnDeleteSucceed,
   cancelRequestOnDeleteRequested,
   cancelRequestOnDeleteFailed,
+  cleanAuthErrorState,
 } from "../../actions/authActions";
 
 const getPerfectInitialState = (initial, changed) => ({
@@ -43,6 +44,14 @@ describe("auth reducer", () => {
 
   it("should return initial state", () => {
     expect(auth(undefined, {})).toEqual(initialState);
+  });
+
+  it("should clean error state", () => {
+    expect(auth(initialState, cleanAuthErrorState())).toEqual(
+      getPerfectInitialState(initialState, {
+        error: "",
+      })
+    );
   });
 
   it("should handle signUpRequested", () => {
@@ -86,7 +95,7 @@ describe("auth reducer", () => {
     expect(auth(initialState, signInFailed({ message: "Error" }))).toEqual(
       getPerfectInitialState(initialState, {
         loading: false,
-        error: "Error",
+        error: "Error with login",
       })
     );
   });
@@ -128,7 +137,7 @@ describe("auth reducer", () => {
     );
   });
   it("should handle authCurrentUserSucceed", () => {
-    expect(auth(initialState, authCurrentUserSucceed(fakeUser))).toEqual(
+    expect(auth(initialState, authCurrentUserSucceed({ user: fakeUser, loggedIn: true }))).toEqual(
       getPerfectInitialState(initialState, {
         loading: false,
         user: fakeUser,

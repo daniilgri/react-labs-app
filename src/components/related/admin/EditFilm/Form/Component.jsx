@@ -34,9 +34,9 @@ const Component = ({
     },
     onSubmit: values => {
       const changedValues = {};
-      Object.entries(values).forEach((value, key) => {
-        if (formik.initialValues[key] !== value) {
-          changedValues[key] = value;
+      Object.keys(values).forEach(prop => {
+        if (formik.initialValues[prop] !== values[prop]) {
+          changedValues[prop] = values[prop];
         }
       });
       if (Object.keys(changedValues).length !== 0 && changedValues.constructor === Object) {

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequestOnDeleteSection component renders correctly 1`] = `
+<div
+  className="sc-bdfBwQ fRzuAI"
+>
+  <p
+    className="sc-gsTCUz dBTRDY"
+  >
+    Wanna delete your account? Enter your e-mail address
+    <span
+      className="sc-dlfnbm kirNTT"
+    >
+      fkfk@gmail.com
+    </span>
+    to confirm
+  </p>
+  <form
+    className="sc-jSgupP iaInnZ"
+    onSubmit={[Function]}
+  >
+    <input
+      className="sc-hKgILt hOerGp"
+      disabled={false}
+      id="requestOnDeleteEmail"
+      name="requestOnDeleteEmail"
+      onChange={[Function]}
+      value=""
+    />
+    <button
+      className="sc-eCssSg iRozUe"
+      disabled={false}
+      type="submit"
+    >
+      Confirm
+    </button>
+  </form>
+</div>
+`;

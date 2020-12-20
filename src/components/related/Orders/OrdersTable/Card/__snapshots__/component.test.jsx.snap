@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrdersTable Card component renders correctly 1`] = `
+<component
+  onCancel={[Function]}
+  value={
+    Object {
+      "film": Object {
+        "image": "testSrc",
+        "title": "title",
+      },
+      "screeningDate": Object {
+        "date": "00:00:0000",
+        "time": "00:00",
+      },
+    }
+  }
+/>
+`;

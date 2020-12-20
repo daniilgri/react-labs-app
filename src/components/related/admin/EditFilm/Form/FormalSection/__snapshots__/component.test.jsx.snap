@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditFilm Form FormalSection component renders correctly 1`] = `
+<component
+  errors={Array []}
+  onAddScreeningDateModalOpen={[Function]}
+  onChange={[Function]}
+  onScreeningDateAdd={[Function]}
+  onScreeningDateDelete={[Function]}
+  screeningDates={Array []}
+  ticketPrice={0}
+/>
+`;

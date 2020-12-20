@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmCard Card FilmBox component renders correctly 1`] = `
+<component
+  film={
+    Object {
+      "description": "",
+      "image": "",
+      "rates": Array [],
+      "screeningDates": Array [],
+      "tags": Array [],
+      "ticketPrice": "",
+      "title": "",
+    }
+  }
+  loading={false}
+  loggedIn={false}
+  onRatingChange={[Function]}
+/>
+`;

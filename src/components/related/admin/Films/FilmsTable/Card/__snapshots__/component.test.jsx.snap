@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmsTable Card component renders correctly 1`] = `
+<component
+  film={
+    Object {
+      "description": "",
+      "image": "",
+      "rates": Array [],
+      "screeningDates": Array [],
+      "tags": Array [],
+      "ticketPrice": "",
+      "title": "",
+    }
+  }
+  onDelete={[Function]}
+/>
+`;

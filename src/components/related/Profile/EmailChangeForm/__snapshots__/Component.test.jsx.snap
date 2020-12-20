@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailChangeForm component renders correctly 1`] = `
+<form
+  autoComplete="off"
+  className="sc-bdfBwQ fRzuAI"
+  onSubmit={[Function]}
+>
+  <div
+    className="sc-gsTCUz koJJD"
+  >
+    <h2
+      className="sc-dlfnbm iLCklO"
+    >
+      Email change
+    </h2>
+  </div>
+  <div
+    className="sc-hKgILt eCHxNa"
+  >
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="emailChange"
+      >
+        Email
+      </label>
+      <input
+        className="sc-gKsewC hHOZFO"
+        id="emailChange"
+        name="emailChange"
+        onChange={[Function]}
+        placeholder="New email"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="passwordConfirmEmail"
+      >
+        Password to confirm email change
+      </label>
+      <input
+        className="sc-gKsewC hHOZFO"
+        id="passwordConfirmEmail"
+        name="passwordConfirmEmail"
+        onChange={[Function]}
+        placeholder="Current password"
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    className="sc-fubCfw hTaewY"
+    type="submit"
+  >
+    Change
+  </button>
+</form>
+`;

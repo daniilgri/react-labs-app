@@ -19,6 +19,7 @@ import {
   cancelRequestOnDeleteFailed,
   cancelRequestOnDeleteRequested,
   cancelRequestOnDeleteSucceed,
+  cleanAuthErrorState,
 } from "../actions/authActions";
 
 export const emptyUser = {
@@ -39,6 +40,9 @@ export const initialState = {
 
 const auth = handleActions(
   {
+    [cleanAuthErrorState]: produce(state => {
+      state.error = "";
+    }),
     [signUpRequested]: produce(state => {
       state.loading = true;
     }),

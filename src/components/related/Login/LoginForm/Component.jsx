@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
@@ -15,7 +15,7 @@ import {
   ErrorText,
 } from "./styles";
 
-const Component = ({ signInRequested, error }) => {
+const Component = ({ signInRequested, error, cleanAuthErrorState }) => {
   const formik = useFormik({
     initialValues: {
       emailLogin: "",
@@ -29,6 +29,12 @@ const Component = ({ signInRequested, error }) => {
       });
     },
   });
+
+  useEffect(() => {
+    return () => {
+      cleanAuthErrorState();
+    };
+  }, []);
 
   return (
     <Wrapper onSubmit={formik.handleSubmit}>
@@ -74,6 +80,7 @@ Component.defaultProps = {
 Component.propTypes = {
   signInRequested: PropTypes.func.isRequired,
   error: PropTypes.string,
+  cleanAuthErrorState: PropTypes.func.isRequired,
 };
 
 export default Component;

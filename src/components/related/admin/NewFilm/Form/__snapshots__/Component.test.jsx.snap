@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewFilm Form component renders correctly 1`] = `
+<form
+  className="sc-iNqMTl hcOcMv"
+  onKeyDown={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="sc-jeGSBP hCWxKS"
+  >
+    <h2
+      className="sc-eJMQSu cXuFkg"
+    >
+      Add new film
+    </h2>
+  </div>
+  <div
+    className="sc-nFpLZ kWCAZl"
+  >
+    <div
+      className="sc-gKsewC gXvPvm"
+    >
+      <div
+        className="sc-iBPRYJ kMYcQx"
+      >
+        <h2
+          className="sc-fubCfw jisYSy"
+        >
+          Add description info
+        </h2>
+      </div>
+      <div
+        className="sc-pFZIQ jVZddr"
+      >
+        <div
+          className="sc-jrAGrp kIRQId"
+        >
+          <label
+            className="sc-kEjbxe entLRf"
+            htmlFor="title"
+          >
+            Title
+          </label>
+          <input
+            className="sc-iqHYGH bmEXHp"
+            id="title"
+            name="title"
+            onChange={[Function]}
+            placeholder="title"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="sc-jrAGrp kIRQId"
+        >
+          <label
+            className="sc-kEjbxe entLRf"
+            htmlFor="description"
+          >
+            Description
+          </label>
+          <textarea
+            className="sc-crrsfI dtdTYr"
+            id="description"
+            name="description"
+            onChange={[Function]}
+            placeholder="..."
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="sc-bqyKva issJKd"
+        >
+          <div
+            className="sc-bdfBwQ cSqurG"
+          >
+            <ul
+              className="sc-gsTCUz iCnrxu"
+            />
+            <input
+              className="sc-eCssSg eSAPLj"
+              id="tagInput"
+              name="tagInput"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Type tag"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-kstrdz jwcExI"
+    >
+      <div
+        className="sc-hBEYos cmfZCp"
+      >
+        <h2
+          className="sc-fodVxV kCkhKE"
+        >
+          Add media info
+        </h2>
+      </div>
+      <div
+        className="sc-fFubgz gAFrKJ"
+      >
+        <div
+          className="sc-bkzZxe crqTxh"
+        >
+          <label
+            className="sc-idOhPF fZryjc"
+            htmlFor="imageAsFile"
+          >
+            Image
+          </label>
+          <input
+            className="sc-dIUggk eCBfXv"
+            id="imageAsFile"
+            name="imageAsFile"
+            onChange={[Function]}
+            type="file"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-cBNfnY fvSGaq"
+    >
+      <div
+        className="sc-citwmv ekdqqx"
+      >
+        <h2
+          className="sc-jcVebW dOkfJy"
+        >
+          Formal
+        </h2>
+      </div>
+      <div
+        className="sc-bZSQDF jISkcP"
+      >
+        <div
+          className="sc-iUuytg iWmoEC"
+        >
+          <label
+            className="sc-iBaPrD ijDTTs"
+            htmlFor="screeningDates"
+          >
+            Screening dates:
+          </label>
+          <div
+            className="sc-jNMdTA ikCsXw"
+          >
+            <button
+              className="sc-dOSReg gWAaxI"
+              onClick={[Function]}
+              type="button"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+        <div
+          className="sc-iUuytg iWmoEC"
+        >
+          <label
+            className="sc-iBaPrD ijDTTs"
+            htmlFor="ticketPrice"
+          >
+            Ticket price
+          </label>
+          <input
+            className="sc-eggNIi cgrRts"
+            id="ticketPrice"
+            name="ticketPrice"
+            onChange={[Function]}
+            placeholder="price"
+            type="text"
+            value={0}
+          />
+        </div>
+      </div>
+    </div>
+    <div />
+  </div>
+  <button
+    className="sc-higXBA kCeFie"
+    type="submit"
+  >
+    Publish
+  </button>
+</form>
+`;

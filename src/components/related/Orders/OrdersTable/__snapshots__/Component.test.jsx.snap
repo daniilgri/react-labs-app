@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrderTable component renders correctly 1`] = `
+<div
+  className="sc-gKsewC fA-dCXL"
+/>
+`;

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin: FilmCard Card TicketBox component renders correctly 1`] = `
+<div
+  className="sc-bdfBwQ dejgBu"
+>
+  <h3
+    className="sc-gsTCUz iscopE"
+  >
+    Ticketing
+  </h3>
+  <div
+    className="sc-dlfnbm cyDqmn"
+  >
+    <div
+      className="sc-hKgILt wgBAc"
+    >
+      <h5
+        className="sc-eCssSg gBbZEX"
+      >
+        Day
+      </h5>
+      <ul
+        className="sc-jSgupP jlGrhW"
+      >
+        <li
+          className="sc-gKsewC fPRrsE"
+        >
+          <div
+            className="sc-iBPRYJ"
+          >
+            00:00:0000
+          </div>
+          <ul
+            className="sc-pFZIQ cTebaP"
+          >
+            <li
+              className="sc-jrAGrp jMYjut"
+            >
+              00:00
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

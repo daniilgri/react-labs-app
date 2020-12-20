@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PasswordChangeForm component renders correctly 1`] = `
+<form
+  className="sc-bdfBwQ fRzuAI"
+  onSubmit={[Function]}
+>
+  <div
+    className="sc-gsTCUz koJJD"
+  >
+    <h2
+      className="sc-dlfnbm iLCklO"
+    >
+      Password change
+    </h2>
+  </div>
+  <div
+    className="sc-hKgILt eCHxNa"
+  >
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="currentPassword"
+      >
+        Current password
+      </label>
+      <input
+        autoComplete="off"
+        className="sc-gKsewC hHOZFO"
+        id="currentPassword"
+        name="currentPassword"
+        onChange={[Function]}
+        placeholder="Current password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="newPassword"
+      >
+        New password
+      </label>
+      <input
+        autoComplete="off"
+        className="sc-gKsewC hHOZFO"
+        id="newPassword"
+        name="newPassword"
+        onChange={[Function]}
+        placeholder="New password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="confirmPasswordChange"
+      >
+        Confirm password
+      </label>
+      <input
+        autoComplete="off"
+        className="sc-gKsewC hHOZFO"
+        id="confirmPasswordChange"
+        name="confirmPasswordChange"
+        onChange={[Function]}
+        placeholder="Confirm password"
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    className="sc-fubCfw hTaewY"
+  >
+    Change
+  </button>
+</form>
+`;

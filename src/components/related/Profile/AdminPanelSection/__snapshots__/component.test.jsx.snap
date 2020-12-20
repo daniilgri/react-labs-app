@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminPanelSection component renders correctly 1`] = `
+<component
+  loading={false}
+  user={
+    Object {
+      "email": "fkfk@gmail.com",
+      "firstName": "firstName",
+      "lastName": "lastName",
+      "requestOnDelete": false,
+      "role": "guest",
+      "uid": "e12",
+    }
+  }
+/>
+`;

@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmCard Card component renders correctly 1`] = `
+<div
+  className="sc-bBXqnf cjhDUR"
+>
+  <div
+    className="sc-hKgILt eJgxFi"
+  >
+    <div
+      className="sc-eCssSg bTRJGu"
+      src=""
+    />
+    <div
+      className="sc-jSgupP jirZjF"
+    >
+      <ul
+        className="sc-pFZIQ foKRaL"
+      />
+      <div
+        className="sc-kEjbxe iUyqHI"
+      >
+        <h5
+          className="sc-crrsfI dWZedv"
+        >
+          Rate 
+          <span
+            className="sc-iqHYGH fdsePL"
+          >
+            -
+          </span>
+        </h5>
+      </div>
+      <h4
+        className="sc-fubCfw kOumzu"
+      >
+        
+         $
+      </h4>
+      <h2
+        className="sc-gKsewC dDbFlM"
+      >
+        
+      </h2>
+      <p
+        className="sc-iBPRYJ kBXfFB"
+      >
+        
+      </p>
+    </div>
+  </div>
+  <div
+    className="sc-dQppl eUOehi"
+  >
+    <h3
+      className="sc-bqyKva xRQaq"
+    >
+      Ticketing
+    </h3>
+    <div
+      className="sc-kstrdz cpvyEA"
+    >
+      <div
+        className="sc-hBEYos bdYBED"
+      >
+        <h5
+          className="sc-fodVxV hBIcmo"
+        >
+          Day
+        </h5>
+        <ul
+          className="sc-fFubgz fTUZBb"
+        />
+      </div>
+    </div>
+    <div
+      className="sc-fKFyDc kaLCkD"
+    >
+      <button
+        className="sc-dIUggk bmuTPx"
+        onClick={[Function]}
+        type="button"
+      >
+        Order
+      </button>
+    </div>
+  </div>
+</div>
+`;

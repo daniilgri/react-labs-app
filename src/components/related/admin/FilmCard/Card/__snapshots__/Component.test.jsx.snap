@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin: FilmCard Card component renders correctly 1`] = `
+<div
+  className="sc-hHftDr eNVSND"
+>
+  <div
+    className="sc-bdfBwQ dKKiKf"
+  >
+    <div
+      className="sc-gsTCUz htTvnM"
+      src=""
+    />
+    <div
+      className="sc-dlfnbm ciMwMV"
+    >
+      <ul
+        className="sc-gKsewC YrGCF"
+      />
+      <div
+        className="sc-fubCfw ddZyYg"
+      >
+        <h5
+          className="sc-jrAGrp hyHnnE"
+        >
+          Rate 
+          <span
+            className="sc-pFZIQ cXjsvN"
+          >
+            -
+          </span>
+        </h5>
+      </div>
+      <h4
+        className="sc-jSgupP eveoYy"
+      >
+        
+         $
+      </h4>
+      <h2
+        className="sc-hKgILt htZhkB"
+      >
+        
+      </h2>
+      <p
+        className="sc-eCssSg"
+      >
+        
+      </p>
+    </div>
+  </div>
+  <div
+    className="sc-kEjbxe kJGwuF"
+  >
+    <h3
+      className="sc-iqHYGH brROQy"
+    >
+      Ticketing
+    </h3>
+    <div
+      className="sc-crrsfI hiXqPz"
+    >
+      <div
+        className="sc-dQppl kznZzs"
+      >
+        <h5
+          className="sc-bqyKva cYDJsf"
+        >
+          Day
+        </h5>
+        <ul
+          className="sc-kstrdz gpIiBR"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

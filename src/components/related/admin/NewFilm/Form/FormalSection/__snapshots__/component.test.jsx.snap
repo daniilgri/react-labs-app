@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewFilm Form FormalSection component renders correctly 1`] = `
+<component
+  errors={Array []}
+  onAddScreeningDateModalOpen={[Function]}
+  onChange={[Function]}
+  onScreeningDateAdd={[Function]}
+  onScreeningDateDelete={[Function]}
+  values={Array []}
+/>
+`;

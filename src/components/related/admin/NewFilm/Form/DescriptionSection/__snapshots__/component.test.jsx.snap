@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewFilm Form DescriptionSection component renders correctly 1`] = `
+<component
+  errors={Array []}
+  onChange={[Function]}
+  onTagAdd={[Function]}
+  onTagDelete={[Function]}
+  values={
+    Object {
+      "description": "description",
+      "title": "title",
+    }
+  }
+/>
+`;

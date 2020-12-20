@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PersonalForm component renders correctly 1`] = `
+<form
+  className="sc-bdfBwQ fRzuAI"
+  onSubmit={[Function]}
+>
+  <div
+    className="sc-gsTCUz koJJD"
+  >
+    <h2
+      className="sc-dlfnbm iLCklO"
+    >
+      Personal information
+    </h2>
+  </div>
+  <div
+    className="sc-hKgILt eCHxNa"
+  >
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="firstNameChange"
+      >
+        First name
+      </label>
+      <input
+        className="sc-gKsewC hHOZFO"
+        id="firstNameChange"
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        type="text"
+        value="firstName"
+      />
+    </div>
+    <div
+      className="sc-eCssSg kbddLr"
+    >
+      <label
+        className="sc-jSgupP hhWncP"
+        htmlFor="lastNameChange"
+      >
+        Last name
+      </label>
+      <input
+        className="sc-gKsewC hHOZFO"
+        id="lastNameChange"
+        name="lastName"
+        onChange={[Function]}
+        placeholder="Last name"
+        type="text"
+        value="lastName"
+      />
+    </div>
+  </div>
+  <button
+    className="sc-fubCfw hTaewY"
+    type="submit"
+  >
+    Save
+  </button>
+</form>
+`;

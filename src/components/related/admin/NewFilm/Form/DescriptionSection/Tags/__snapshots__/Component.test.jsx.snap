@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewFilm Form DescriptionSection Tags component renders correctly 1`] = `
+<div
+  className="sc-bdfBwQ cSqurG"
+>
+  <ul
+    className="sc-gsTCUz iCnrxu"
+  />
+  <input
+    className="sc-eCssSg eSAPLj"
+    id="tagInput"
+    name="tagInput"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Type tag"
+    value=""
+  />
+</div>
+`;

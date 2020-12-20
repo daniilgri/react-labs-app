@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmsTable component renders correctly 1`] = `
+<div
+  className="sc-pFZIQ edSwHV"
+/>
+`;

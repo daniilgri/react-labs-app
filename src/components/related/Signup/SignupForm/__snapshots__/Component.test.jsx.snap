@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignupForm component renders correctly 1`] = `
+<form
+  className="sc-bdfBwQ grmobM"
+  onSubmit={[Function]}
+>
+  <h2
+    className="sc-gsTCUz fzSTIc"
+  >
+    Register
+  </h2>
+  <div
+    className="sc-dlfnbm cxRrbB"
+  >
+    <div
+      className="sc-hKgILt hsvqtC"
+    >
+      <label
+        className="sc-gKsewC QVYmQ"
+        htmlFor="email"
+      >
+        First name*
+      </label>
+      <input
+        className="sc-jSgupP cscRNn"
+        id="firstName"
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-hKgILt hsvqtC"
+    >
+      <label
+        className="sc-gKsewC QVYmQ"
+        htmlFor="lastName"
+      >
+        Last name*
+      </label>
+      <input
+        className="sc-jSgupP cscRNn"
+        id="lastName"
+        name="lastName"
+        onChange={[Function]}
+        placeholder="Last name"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-hKgILt hsvqtC"
+    >
+      <label
+        className="sc-gKsewC QVYmQ"
+        htmlFor="email"
+      >
+        E-mail*
+      </label>
+      <input
+        className="sc-jSgupP cscRNn"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder="email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="sc-hKgILt hsvqtC"
+    >
+      <label
+        className="sc-gKsewC QVYmQ"
+        htmlFor="password"
+      >
+        Password*
+      </label>
+      <input
+        className="sc-jSgupP cscRNn"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        placeholder="password"
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    className="sc-iBPRYJ iGgQcK"
+    type="submit"
+  >
+    Register
+  </button>
+  <a
+    className="sc-fubCfw cQKJKb"
+    href="/login"
+    onClick={[Function]}
+  >
+    Sign in
+  </a>
+</form>
+`;

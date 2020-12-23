@@ -1,4 +1,5 @@
 # React Labs App
+
 [![Generic badge](https://img.shields.io/badge/license-MIT-green.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/demo-Netlify-green.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/npm-v6.14.6-blue.svg)](https://shields.io/)
@@ -6,20 +7,23 @@
 [![Generic badge](https://img.shields.io/badge/express-v4.16.4-blue.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/react-v16.14.0-blue.svg)](https://shields.io/)
 
-
 ## Installation
+
 In your terminal run script below to install all dependencies for both server and client sides:
 
 ```
 npm i
 ```
+
 ```
 cd server
 npm i
 ```
 
 ## Making configuration files
+
 In root directory make .env file with following constants:
+
 ```
 REACT_APP_FIREBASE_API_KEY=your api key for firebase
 REACT_APP_FIREBASE_AUTH_DOMAIN=your auth domain for firebase
@@ -31,14 +35,20 @@ REACT_APP_FIREBASE_APP_ID=app id for firebase
 
 SKIP_PREFLIGHT_CHECK=true
 ```
+
 Move to server directory:
+
 ```
 cd server
 ```
+
 Make another .env file in server directory with following constants:
+
 ```
 DB_URL=your db your for firebase
 ```
+
+Then go to your firebase console, move to Service account, in there click on Generate new private key. Rename that file to secretKey.json and put it inside server directory.
 
 ## Running in development mode
 

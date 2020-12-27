@@ -2,7 +2,7 @@
 
 exports[`SignupForm component renders correctly 1`] = `
 <form
-  className="sc-bdfBwQ grmobM"
+  className="sc-bdfBwQ hwgXSE"
   onSubmit={[Function]}
 >
   <h2

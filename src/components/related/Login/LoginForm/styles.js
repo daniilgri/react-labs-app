@@ -7,7 +7,7 @@ export const Wrapper = styled.form`
 
   padding: 2%;
 
-  display: flex;
+  display: inline-flex;
   flex-flow: column nowrap;
 
   border-radius: 4px;

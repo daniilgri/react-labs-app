@@ -8,7 +8,7 @@ export const Wrapper = styled(Link)`
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #f3f3f3;
-  display: flex;
+  display: inline-flex;
   align-items: flex-end;
   text-decoration: none;
   box-shadow: 5px 10px 60px rgba(170, 111, 81, 0.1);

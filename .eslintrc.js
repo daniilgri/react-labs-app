@@ -21,7 +21,7 @@ module.exports = {
     "linebreak-style": "off",
     "func-names": "off",
     "no-param-reassign": [2, { props: false }],
-    "react/jsx-props-no-spreading": ["error", { custom: "ignore" }],
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
   },
 };

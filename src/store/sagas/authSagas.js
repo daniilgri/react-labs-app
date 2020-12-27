@@ -108,7 +108,6 @@ export function* changeEmail({ payload }) {
     yield fork(authCurrentUser);
     yield put(changeEmailSucceed());
   } catch (error) {
-    console.log(error);
     yield put(changeEmailFailed(error));
   }
 }

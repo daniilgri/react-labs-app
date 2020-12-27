@@ -58,8 +58,8 @@ Component.propTypes = {
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  errors: PropTypes.objectOf(PropTypes.object).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
+  errors: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
   onTagAdd: PropTypes.func.isRequired,
   onTagDelete: PropTypes.func.isRequired,
 };

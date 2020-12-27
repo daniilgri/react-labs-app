@@ -55,8 +55,8 @@ const Component = ({ onSet, onDelete, values, errors }) => {
 Component.propTypes = {
   onSet: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  errors: PropTypes.objectOf(PropTypes.object).isRequired,
+  values: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  errors: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 export default Component;

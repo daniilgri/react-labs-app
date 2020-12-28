@@ -52,6 +52,10 @@ const filmsBoard = handleActions(
     }),
     [setFilmsSearchQuery]: produce((state, { payload }) => {
       state.query = payload;
+      state.loading = true;
+      state.films = [];
+      state.allCount = 0;
+      state.error = "";
     }),
   },
   initialState

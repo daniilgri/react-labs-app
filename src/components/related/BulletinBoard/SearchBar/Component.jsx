@@ -12,7 +12,7 @@ const Component = ({ setFilmsSearchQuery, query }) => {
       query,
     },
     onSubmit: values => {
-      setFilmsSearchQuery(values);
+      setFilmsSearchQuery(values.query.toLowerCase());
     },
   });
 

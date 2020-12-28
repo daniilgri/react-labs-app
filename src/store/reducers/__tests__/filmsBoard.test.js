@@ -72,6 +72,10 @@ describe("filmsBoard reducer", () => {
     expect(filmsBoard(initialState, setFilmsSearchQuery("search query"))).toEqual(
       getPerfectInitialState(initialState, {
         query: "search query",
+        loading: true,
+        films: [],
+        allCount: 0,
+        error: "",
       })
     );
   });

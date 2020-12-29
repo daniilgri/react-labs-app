@@ -12,6 +12,7 @@ import {
   fetchFilmsInitialRequested,
   updateFilmRatingRequested,
   fetchFilmsNextRequested,
+  setFilmsSearchQuery,
 } from "../actions/filmsActions";
 import {
   fetchFilmsAdminPanelInitialRequested,
@@ -82,6 +83,7 @@ function* rootSaga() {
     yield takeLatest(fetchFilmsNextRequested, fetchFilmsNext),
     yield takeLatest(fetchFilmByIdRequested, fetchFilmById),
     yield takeLatest(updateFilmRatingRequested, updateFilmRating),
+    yield takeLatest(setFilmsSearchQuery, fetchFilmsInitial),
 
     yield takeLatest(signUpRequested, signUp),
     yield takeLatest(signInRequested, signIn),

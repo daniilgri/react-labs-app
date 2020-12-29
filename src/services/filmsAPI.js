@@ -1,3 +1,4 @@
+import generateKeywords from "../utils/generateKeywords";
 import { db, storage } from "./firestore";
 
 export const addFilmAPI = async payload => {
@@ -10,6 +11,7 @@ export const addFilmAPI = async payload => {
     tags: payload.tags,
     screeningDates: payload.screeningDates,
     rates: [],
+    keywords: generateKeywords([payload.title.toLowerCase()]),
   });
 
   const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
@@ -35,7 +37,7 @@ export const addFilmAPI = async payload => {
 export const editFilmAPI = async payload => {
   const { values, changedValues } = payload;
   const filmDoc = await db.collection("films").doc(payload.filmId).get();
-  console.log(changedValues);
+
   if ("imageAsFile" in changedValues) {
     const uploadTask = storage
       .ref(`/images/${changedValues.imageAsFile.name}`)
@@ -65,7 +67,12 @@ export const editFilmAPI = async payload => {
 
 export const getFilmsInitialAPI = async payload => {
   const allSnapshot = await db.collection("films").get();
-  const snapshot = await db.collection("films").orderBy("title").limit(payload.limit).get();
+  const snapshot = await db
+    .collection("films")
+    .where("keywords", "array-contains", payload.query)
+    .orderBy("title")
+    .limit(payload.limit)
+    .get();
   return {
     films: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };

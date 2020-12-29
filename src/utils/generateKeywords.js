@@ -1,7 +1,7 @@
 import createKeywords from "./createKeywords";
 
 export default values => {
-  const [title] = values;
+  const { title } = values;
 
   const keywordTitleWithoutDots = [];
   const keywordTitle = createKeywords(title);

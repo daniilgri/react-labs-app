@@ -11,7 +11,7 @@ export const addFilmAPI = async payload => {
     tags: payload.tags,
     screeningDates: payload.screeningDates,
     rates: [],
-    keywords: generateKeywords([payload.title.toLowerCase()]),
+    keywords: generateKeywords({ title: payload.title.toLowerCase() }),
   });
 
   const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
@@ -63,6 +63,12 @@ export const editFilmAPI = async payload => {
     );
   }
   filmDoc.ref.update(changedValues);
+
+  if (changedValues.title) {
+    filmDoc.ref.update({
+      keywords: generateKeywords({ title: changedValues.title.toLowerCase() }),
+    });
+  }
 };
 
 export const getFilmsInitialAPI = async payload => {

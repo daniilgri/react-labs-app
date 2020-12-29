@@ -6,13 +6,13 @@ import { useFormik } from "formik";
 
 import { Wrapper, InputWrapper, Input, IconWrapper } from "./styles";
 
-const Component = ({ setFilmsSearchQuery, query }) => {
+const Component = ({ onSet, value }) => {
   const formik = useFormik({
     initialValues: {
-      query,
+      query: value,
     },
     onSubmit: values => {
-      setFilmsSearchQuery(values.query.toLowerCase());
+      onSet(values);
     },
   });
 
@@ -35,12 +35,12 @@ const Component = ({ setFilmsSearchQuery, query }) => {
 };
 
 Component.defaultProps = {
-  query: "",
+  value: "",
 };
 
 Component.propTypes = {
-  query: PropTypes.string,
-  setFilmsSearchQuery: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onSet: PropTypes.func.isRequired,
 };
 
 export default Component;

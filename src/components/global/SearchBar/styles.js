@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../../../../constants/mediaBreakpoints";
+import { device } from "../../../constants/mediaBreakpoints";
 
 export const Wrapper = styled.form`
   background-color: #aa6f510d;

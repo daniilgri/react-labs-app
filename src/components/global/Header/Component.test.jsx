@@ -9,7 +9,7 @@ describe("Header component", () => {
     const tree = renderer
       .create(
         <Router>
-          <Component loggedIn loading={false} signOutRequested={() => {}} />
+          <Component loading={false} signOutRequested={() => {}} loggedIn={false} />
         </Router>
       )
       .toJSON();

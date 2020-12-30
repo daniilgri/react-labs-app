@@ -28,6 +28,8 @@ describe("Board component", () => {
             fetchFilmsNextRequested={() => {}}
             allCount={0}
             count={0}
+            setFilmsSearchQuery={() => {}}
+            query=""
           />
         </Provider>
       )

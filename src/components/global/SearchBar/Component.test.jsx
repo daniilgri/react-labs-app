@@ -5,7 +5,7 @@ import Component from "./Component";
 
 describe("SearchBar component", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(<Component setFilmsSearchQuery={() => {}} />).toJSON();
+    const tree = renderer.create(<Component onSet={() => {}} value="" />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

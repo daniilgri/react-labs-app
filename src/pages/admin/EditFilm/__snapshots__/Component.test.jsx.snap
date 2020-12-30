@@ -1,0 +1,289 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditFilm component renders correctly 1`] = `
+Array [
+  <nav
+    className="sc-bdfBwQ grEbaU"
+  >
+    <div
+      className="sc-jSgupP NXinf"
+      onClick={[Function]}
+    >
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-bars fa-w-14 "
+        data-icon="bars"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
+    </div>
+    <a
+      className="sc-gsTCUz fKNCie"
+      href="/profile"
+      onClick={[Function]}
+    >
+      Go to profile
+    </a>
+    <ul
+      className="sc-dlfnbm uDvuY"
+    >
+      <li
+        className="sc-hKgILt kYjJwg"
+      >
+        <a
+          aria-current={null}
+          className="sc-eCssSg iyHtsY"
+          href="/admin/users"
+          onClick={[Function]}
+        >
+          Users
+        </a>
+      </li>
+      <li
+        className="sc-hKgILt kYjJwg"
+      >
+        <a
+          aria-current={null}
+          className="sc-eCssSg iyHtsY"
+          href="/admin/films"
+          onClick={[Function]}
+        >
+          Films
+        </a>
+      </li>
+      <li
+        className="sc-hKgILt kYjJwg"
+      >
+        <a
+          aria-current={null}
+          className="sc-eCssSg iyHtsY"
+          href="/admin/films/new"
+          onClick={[Function]}
+        >
+          New film
+        </a>
+      </li>
+    </ul>
+  </nav>,
+  <div
+    className="sc-aemoO hUrqFk"
+  >
+    <form
+      className="sc-clsHhM gcwzZZ"
+      onKeyDown={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-fbkhIv bNwILm"
+      >
+        <h2
+          className="sc-GqfZa danEqG"
+        >
+          Edit film - 
+          
+        </h2>
+         
+        <a
+          className="sc-fWSCIC gQRrhx"
+          href="/admin/film/undefined"
+          onClick={[Function]}
+        >
+          Go to film card
+        </a>
+      </div>
+      <div
+        className="sc-dwfUOf fUAEWa"
+      >
+        <div
+          className="sc-crrsfI cJqrZf"
+        >
+          <div
+            className="sc-dQppl hnKiiC"
+          >
+            <h2
+              className="sc-bqyKva hDaAzP"
+            >
+              Add description info
+            </h2>
+          </div>
+          <div
+            className="sc-kstrdz rKYPv"
+          >
+            <div
+              className="sc-hBEYos dIIpzz"
+            >
+              <label
+                className="sc-fodVxV japWFt"
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                className="sc-fFubgz gdURtZ"
+                id="title"
+                name="title"
+                onChange={[Function]}
+                placeholder="title"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="sc-hBEYos dIIpzz"
+            >
+              <label
+                className="sc-fodVxV japWFt"
+                htmlFor="description"
+              >
+                Description
+              </label>
+              <textarea
+                className="sc-bkzZxe cqpWQA"
+                id="description"
+                name="description"
+                onChange={[Function]}
+                placeholder="..."
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="sc-dIUggk izSkSw"
+            >
+              <div
+                className="sc-iBPRYJ jHiIsc"
+              >
+                <ul
+                  className="sc-fubCfw pTHLR"
+                />
+                <input
+                  className="sc-kEjbxe gmminW"
+                  id="tagInput"
+                  name="tagInput"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="Type tag"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-hHftDr kRIWcI"
+        >
+          <div
+            className="sc-dmlrTW jkOiiX"
+          >
+            <h2
+              className="sc-kfzAmx efuZiy"
+            >
+              Add media info
+            </h2>
+          </div>
+          <div
+            className="sc-fKFyDc kVEVXy"
+          >
+            <img
+              alt="preview"
+              className="sc-iJuUWI lcrZAx"
+              src=""
+            />
+            <div
+              className="sc-bBXqnf haPuhk"
+            >
+              <label
+                className="sc-iwyYcG gvGGaq"
+                htmlFor="imageAsFile"
+              >
+                Image
+              </label>
+              <input
+                className="sc-cxFLnm frsgui"
+                id="imageAsFile"
+                name="imageAsFile"
+                onChange={[Function]}
+                type="file"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-jNMdTA bVYHRQ"
+        >
+          <div
+            className="sc-dOSReg chhgLj"
+          >
+            <h2
+              className="sc-bBrOnJ hqmTqI"
+            >
+              Formal
+            </h2>
+          </div>
+          <div
+            className="sc-cOajty fxnhiZ"
+          >
+            <div
+              className="sc-AzgDb fGbrWD"
+            >
+              <label
+                className="sc-khAkjo dvAqag"
+                htmlFor="screeningDates"
+              >
+                Screening dates:
+              </label>
+              <div
+                className="sc-gTgzIj gSQLgx"
+              >
+                <button
+                  className="sc-laRPJI fKFCwY"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div
+              className="sc-AzgDb fGbrWD"
+            >
+              <label
+                className="sc-khAkjo dvAqag"
+                htmlFor="ticketPrice"
+              >
+                Ticket price
+              </label>
+              <input
+                className="sc-hTZhsR kiVfIc"
+                id="ticketPrice"
+                name="ticketPrice"
+                onChange={[Function]}
+                placeholder="price"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div />
+      </div>
+      <button
+        className="sc-TmcTc iaQIkC"
+        type="submit"
+      >
+        Publish
+      </button>
+    </form>
+  </div>,
+]
+`;

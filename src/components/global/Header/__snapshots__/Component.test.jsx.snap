@@ -78,24 +78,18 @@ exports[`Header component renders correctly 1`] = `
     >
       <a
         className="sc-pFZIQ fdxRfJ"
-        href="/profile"
+        href="/login"
         onClick={[Function]}
       >
-        Profile
+        Login
       </a>
       <a
         className="sc-pFZIQ fdxRfJ"
-        href="/profile/orders"
+        href="/signup"
         onClick={[Function]}
       >
-        Orders
+        Sign up
       </a>
-      <div
-        className="sc-jrAGrp hhnzuj"
-        onClick={[Function]}
-      >
-        Sign out
-      </div>
     </div>
   </div>
 </nav>

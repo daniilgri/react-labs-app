@@ -9,7 +9,7 @@ const { authRoutes } = require("./routes/authRoutes");
 
 config();
 
-const serviceAccount = require("./secretKey.json");
+const serviceAccount = require("./secretKey.js");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

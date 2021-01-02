@@ -2,7 +2,7 @@
 
 exports[`FilmCard Card component renders correctly 1`] = `
 <div
-  className="sc-bBXqnf cjhDUR"
+  className="sc-cxFLnm fYdwzS"
 >
   <div
     className="sc-hKgILt eJgxFi"
@@ -57,6 +57,11 @@ exports[`FilmCard Card component renders correctly 1`] = `
     >
       Ticketing
     </h3>
+    <h4
+      className="sc-iwyYcG iAZIyQ"
+    >
+      Login to choose screening date
+    </h4>
     <div
       className="sc-kstrdz cpvyEA"
     >
@@ -74,15 +79,24 @@ exports[`FilmCard Card component renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="sc-fKFyDc kaLCkD"
+      className="sc-fKFyDc sc-bBXqnf kaLCkD"
     >
-      <button
-        className="sc-dIUggk bmuTPx"
+      <a
+        backgroundcolor="#8bc34a"
+        className="sc-hHftDr fkGbYN"
+        href="/signup"
         onClick={[Function]}
-        type="button"
       >
-        Order
-      </button>
+        Sign up
+      </a>
+      <a
+        backgroundcolor="#f85d4b"
+        className="sc-hHftDr jvvKuj"
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
     </div>
   </div>
 </div>

@@ -64,10 +64,20 @@ Component.defaultProps = {
     role: "guest",
     requestOnDelete: false,
   },
+  filmId: "",
+  film: {
+    title: "None",
+    description: "None",
+    tags: [],
+    image: "",
+    rates: [],
+    screeningDates: [],
+    ticketPrice: "0",
+  },
 };
 
 Component.propTypes = {
-  filmId: PropTypes.string.isRequired,
+  filmId: PropTypes.string,
   fetchFilmByIdRequested: PropTypes.func.isRequired,
   filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
@@ -81,7 +91,7 @@ Component.propTypes = {
   ),
   film: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
-  ).isRequired,
+  ),
 };
 
 export default Component;

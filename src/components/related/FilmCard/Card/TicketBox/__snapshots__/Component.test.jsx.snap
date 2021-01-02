@@ -9,6 +9,11 @@ exports[`FilmCard Card TicketBox component renders correctly 1`] = `
   >
     Ticketing
   </h3>
+  <h4
+    className="sc-dQppl krhzjf"
+  >
+    Login to choose screening date
+  </h4>
   <div
     className="sc-dlfnbm cyDqmn"
   >
@@ -32,10 +37,10 @@ exports[`FilmCard Card TicketBox component renders correctly 1`] = `
             00:00:0000
           </div>
           <ul
-            className="sc-pFZIQ cTebaP"
+            className="sc-jrAGrp gRHOYj"
           >
             <li
-              className="sc-jrAGrp brImSA"
+              className="sc-kEjbxe flMcfj"
               onClick={[Function]}
             >
               00:00
@@ -46,15 +51,24 @@ exports[`FilmCard Card TicketBox component renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="sc-iqHYGH cmXRmw"
+    className="sc-iqHYGH sc-crrsfI cmXRmw"
   >
-    <button
-      className="sc-fubCfw dRHUUt"
+    <a
+      backgroundcolor="#8bc34a"
+      className="sc-pFZIQ ijSNiF"
+      href="/signup"
       onClick={[Function]}
-      type="button"
     >
-      Order
-    </button>
+      Sign up
+    </a>
+    <a
+      backgroundcolor="#f85d4b"
+      className="sc-pFZIQ gfMHPf"
+      href="/login"
+      onClick={[Function]}
+    >
+      Login
+    </a>
   </div>
 </div>
 `;

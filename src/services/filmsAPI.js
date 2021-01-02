@@ -73,12 +73,17 @@ export const editFilmAPI = async payload => {
 
 export const getFilmsInitialAPI = async payload => {
   const allSnapshot = await db.collection("films").get();
-  const snapshot = await db
-    .collection("films")
-    .where("keywords", "array-contains", payload.query)
-    .orderBy("title")
-    .limit(payload.limit)
-    .get();
+  let snapshot;
+  if (payload.query) {
+    snapshot = await db
+      .collection("films")
+      .where("tags", "array-contains", payload.query)
+      .orderBy("title")
+      .limit(payload.limit)
+      .get();
+  } else {
+    snapshot = await db.collection("films").orderBy("title").limit(payload.limit).get();
+  }
   return {
     films: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };
@@ -88,12 +93,23 @@ export const getFilmsInitialAPI = async payload => {
 };
 
 export const getFilmsNextAPI = async payload => {
-  const snapshot = await db
-    .collection("films")
-    .orderBy("title")
-    .startAfter(payload.films[payload.films.length - 1].title)
-    .limit(payload.limit)
-    .get();
+  let snapshot;
+  if (payload.query) {
+    snapshot = await db
+      .collection("films")
+      .where("tags", "array-contains", payload.query)
+      .orderBy("title")
+      .startAfter(payload.films[payload.films.length - 1].title)
+      .limit(payload.limit)
+      .get();
+  } else {
+    snapshot = await db
+      .collection("films")
+      .orderBy("title")
+      .startAfter(payload.films[payload.films.length - 1].title)
+      .limit(payload.limit)
+      .get();
+  }
   return {
     films: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };

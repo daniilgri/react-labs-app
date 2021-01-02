@@ -30,3 +30,4 @@ debug.log
 /src/stories
 
 /debug.log
+/server/.env

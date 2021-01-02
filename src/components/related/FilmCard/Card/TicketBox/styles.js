@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -38,8 +39,8 @@ export const ButtonOption = styled.li`
 
 export const DateValue = styled.div``;
 
-export const OrderButton = styled.button`
-  background: #f85d4b;
+export const DefaultButton = styled.button`
+  ${({ backgroundcolor }) => `background-color: ${backgroundcolor}`};
   border-radius: 4px;
 
   font-size: 18px;
@@ -53,6 +54,36 @@ export const OrderButton = styled.button`
   cursor: pointer;
 
   outline: none;
+
+  &:disabled {
+    background-color: #d48178;
+  }
+`;
+
+export const LinkButton = styled(Link)`
+  ${({ backgroundcolor }) => `background-color: ${backgroundcolor}`};
+
+  width: 330px;
+  height: 60px;
+
+  border-radius: 4px;
+
+  font-size: 18px;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  outline: none;
+
+  margin-bottom: 10px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 export const TimesList = styled.ul`
@@ -77,11 +108,14 @@ export const TimeOptionButton = styled.li`
   }
 `;
 
-export const Loading = styled.label`
-  color: red;
-`;
-
 export const OrderController = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const AuthController = styled(OrderController)``;
+
+export const Warning = styled.h4`
+  font-weight: 300;
+  color: #d32f2f;
 `;

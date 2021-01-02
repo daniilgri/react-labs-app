@@ -1,1 +1,1 @@
-web: cd /server && node app.js
+web: cd /app/server && node app.js

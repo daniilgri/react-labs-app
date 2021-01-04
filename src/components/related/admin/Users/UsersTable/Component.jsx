@@ -39,6 +39,9 @@ const Component = ({
 
   useEffect(() => {
     fetchUsersAdminPanelInitialRequested();
+    return () => {
+      setUsersSearchQuery("");
+    };
   }, []);
 
   return (

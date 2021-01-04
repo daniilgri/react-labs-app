@@ -23,7 +23,11 @@ export const signUpAPI = async payload => {
       requestOnDelete: false,
       role: "guest",
       email: payload.email,
-      keywords: generateKeywords(payload.firstName, payload.lastName, payload.email),
+      keywords: generateKeywords(
+        payload.firstName.toLowerCase(),
+        payload.lastName.toLowerCase(),
+        payload.email.toLowerCase()
+      ),
     });
 };
 

@@ -28,6 +28,9 @@ const Component = ({
 
   useEffect(() => {
     fetchFilmsAdminPanelInitialRequested();
+    return () => {
+      setAdminPanelFilmsSearchQuery("");
+    };
   }, []);
 
   return (

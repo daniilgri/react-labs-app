@@ -27,6 +27,9 @@ const Component = ({
 
   useEffect(() => {
     fetchFilmsInitialRequested();
+    return () => {
+      setFilmsSearchQuery("");
+    };
   }, []);
 
   return (

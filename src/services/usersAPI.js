@@ -5,7 +5,7 @@ export const getUsersInitialAPI = async payload => {
   const allSnapshot = await db.collection("users").get();
   const snapshot = await db
     .collection("users")
-    .where("keywords", "array-contains", payload.query)
+    .where("keywords", "array-contains", payload.query.toLowerCase())
     .orderBy("email")
     .limit(payload.limit)
     .get();
@@ -20,7 +20,7 @@ export const getUsersInitialAPI = async payload => {
 export const getUsersNextAPI = async payload => {
   const snapshot = await db
     .collection("users")
-    .where("keywords", "array-contains", payload.query)
+    .where("keywords", "array-contains", payload.query.toLowerCase())
     .orderBy("email")
     .startAfter(payload.users[payload.users.length - 1].email)
     .limit(payload.limit)

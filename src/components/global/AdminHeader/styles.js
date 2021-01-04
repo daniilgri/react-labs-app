@@ -7,7 +7,6 @@ export const Wrapper = styled.nav`
   width: 100%;
   position: relative;
   padding: 10px 0;
-  margin-bottom: 40px;
 
   @media ${device.laptop} {
     display: flex;

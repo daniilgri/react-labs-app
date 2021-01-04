@@ -3,17 +3,15 @@ import renderer from "react-test-renderer";
 
 import Component from "./Component";
 
-describe("UsersTable component", () => {
+describe("Subscribers component", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(
         <Component
           loading={false}
-          fetchUsersAdminPanelInitialRequested={() => {}}
-          deleteUserRequested={() => {}}
-          fetchUsersAdminPanelNextRequested={() => {}}
-          loadingCurrentUser={false}
-          setUsersSearchQuery={() => {}}
+          fetchSubscribersInitialRequested={() => {}}
+          fetchSubscribersNextRequested={() => {}}
+          filmId="filmId"
         />
       )
       .toJSON();

@@ -42,7 +42,7 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",

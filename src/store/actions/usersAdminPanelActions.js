@@ -33,3 +33,8 @@ export const deleteUserFailed = createAction(
   "@USERS_ADMIN_PANEL/DELETE_USER_FAILED",
   payload => payload
 );
+
+export const setUsersSearchQuery = createAction(
+  "@USERS_ADMIN_PANEL/SET_USERS_SEARCH_QUERY",
+  payload => payload
+);

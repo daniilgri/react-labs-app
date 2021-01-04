@@ -1,16 +1,30 @@
 import { auth, db } from "./firestore";
 
+import createKeywords from "../utils/createKeywords";
+
+const generateKeywords = (firstName, lastName, email) => {
+  const keywordFullName = createKeywords(`${firstName} ${lastName}`);
+  const keywordLastNameFirst = createKeywords(`${lastName} ${firstName}`);
+  const keywordEmail = createKeywords(email);
+
+  return [...new Set(["", ...keywordFullName, ...keywordLastNameFirst, ...keywordEmail])];
+};
+
 export const signUpAPI = async payload => {
   const registeredUser = await auth.createUserWithEmailAndPassword(payload.email, payload.password);
 
-  await db.collection("users").doc().set({
-    uid: registeredUser.user.uid,
-    firstName: payload.firstName,
-    lastName: payload.lastName,
-    requestOnDelete: false,
-    role: "guest",
-    email: payload.email,
-  });
+  await db
+    .collection("users")
+    .doc()
+    .set({
+      uid: registeredUser.user.uid,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      requestOnDelete: false,
+      role: "guest",
+      email: payload.email,
+      keywords: generateKeywords(payload.firstName, payload.lastName, payload.email),
+    });
 };
 
 export const signInAPI = async payload => {
@@ -82,6 +96,15 @@ export const updateProfileAPI = async payload => {
   const curUser = auth.currentUser;
 
   const usersCollection = await db.collection("users").where("uid", "==", curUser.uid).get();
+
+  usersCollection.docs[0].ref.update({
+    keywords: generateKeywords(
+      payload.firstName || usersCollection.docs[0].data().firstName,
+      payload.lastName || usersCollection.docs[0].data().lastName,
+      payload.email || usersCollection.docs[0].data().email
+    ),
+  });
+
   await usersCollection.docs[0].ref.update(payload);
 };
 

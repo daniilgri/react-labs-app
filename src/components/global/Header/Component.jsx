@@ -104,10 +104,11 @@ const Component = ({ loggedIn, loading, error, signOutRequested }) => {
 
 Component.defaultProps = {
   error: "",
+  loading: false,
 };
 
 Component.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   error: PropTypes.string,
   signOutRequested: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,

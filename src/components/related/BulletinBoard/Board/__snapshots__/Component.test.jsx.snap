@@ -14,7 +14,7 @@ Array [
         id="filmsBoardSearchBar"
         name="query"
         onChange={[Function]}
-        placeholder="Search..."
+        placeholder="Search by tag..."
         value=""
       />
       <button

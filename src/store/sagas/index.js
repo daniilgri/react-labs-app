@@ -27,6 +27,7 @@ import {
   fetchUsersAdminPanelInitialRequested,
   deleteUserRequested,
   fetchUsersAdminPanelNextRequested,
+  setUsersSearchQuery,
 } from "../actions/usersAdminPanelActions";
 import {
   makeOrderRequested,
@@ -102,6 +103,7 @@ function* rootSaga() {
     yield takeLatest(fetchFilmsAdminPanelNextRequested, fetchFilmsAdminPanelNext),
     yield takeLatest(editFilmRequested, editFilm),
     yield takeLatest(fetchEditFilmRequested, fetchEditFilm),
+    yield takeLatest(setUsersSearchQuery, fetchUsersAdminPanelInitial),
 
     yield takeLatest(makeOrderRequested, makeOrder),
     yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),

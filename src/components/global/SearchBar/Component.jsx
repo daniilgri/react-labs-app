@@ -6,13 +6,13 @@ import { useFormik } from "formik";
 
 import { Wrapper, InputWrapper, Input, IconWrapper } from "./styles";
 
-const Component = ({ onSet, value }) => {
+const Component = ({ onSet, value, placeholder }) => {
   const formik = useFormik({
     initialValues: {
       query: value,
     },
     onSubmit: values => {
-      onSet(values);
+      onSet(values.query);
     },
   });
 
@@ -20,7 +20,7 @@ const Component = ({ onSet, value }) => {
     <Wrapper onSubmit={formik.handleSubmit}>
       <InputWrapper>
         <Input
-          placeholder="Search..."
+          placeholder={placeholder}
           name="query"
           id="filmsBoardSearchBar"
           onChange={formik.handleChange}
@@ -36,11 +36,13 @@ const Component = ({ onSet, value }) => {
 
 Component.defaultProps = {
   value: "",
+  placeholder: "Search...",
 };
 
 Component.propTypes = {
   value: PropTypes.string,
   onSet: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default Component;

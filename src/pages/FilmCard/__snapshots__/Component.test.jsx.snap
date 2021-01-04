@@ -95,13 +95,107 @@ Array [
     </div>
   </nav>,
   <div
-    className="sc-citwmv fyTGuU"
+    className="sc-bZSQDF bCGAIS"
   >
-    <h3
-      className="sc-cBNfnY"
+    <div
+      className="sc-citwmv edHdVe"
     >
-      Loading
-    </h3>
+      <div
+        className="sc-bqyKva ljeYWh"
+      >
+        <div
+          className="sc-kstrdz bunCQo"
+          src=""
+        />
+        <div
+          className="sc-hBEYos kUsAnE"
+        >
+          <ul
+            className="sc-idOhPF fCrDQf"
+          />
+          <div
+            className="sc-hHftDr beHDjL"
+          >
+            <h5
+              className="sc-kfzAmx VzHwf"
+            >
+              Rate 
+              <span
+                className="sc-dmlrTW cZSsGl"
+              >
+                -
+              </span>
+            </h5>
+          </div>
+          <h4
+            className="sc-bkzZxe jFEMfB"
+          >
+            0
+             $
+          </h4>
+          <h2
+            className="sc-fodVxV jdoqqP"
+          >
+            None
+          </h2>
+          <p
+            className="sc-fFubgz gTxLPd"
+          >
+            None
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-fKFyDc kumBRm"
+      >
+        <h3
+          className="sc-bBXqnf fEqFcV"
+        >
+          Ticketing
+        </h3>
+        <h4
+          className="sc-cBNfnY gOarRc"
+        >
+          Login to choose screening date
+        </h4>
+        <div
+          className="sc-iwyYcG dgaAUW"
+        >
+          <div
+            className="sc-cxFLnm dquULz"
+          >
+            <h5
+              className="sc-lmoMRL bKrREo"
+            >
+              Day
+            </h5>
+            <ul
+              className="sc-iJuUWI gwwpUY"
+            />
+          </div>
+        </div>
+        <div
+          className="sc-hiSbYr sc-gWHgXt dxehAt"
+        >
+          <a
+            backgroundcolor="#8bc34a"
+            className="sc-kLgntA ezEtfS"
+            href="/signup"
+            onClick={[Function]}
+          >
+            Sign up
+          </a>
+          <a
+            backgroundcolor="#f85d4b"
+            className="sc-kLgntA goJbHI"
+            href="/login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
   </div>,
 ]
 `;

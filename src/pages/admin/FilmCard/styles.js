@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { device } from "../../../constants/mediaBreakpoints";
 
 export const Wrapper = styled.div`
-  margin-bottom: 40px;
   max-width: 97%;
   margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
   @media ${device.laptop} {
     max-width: 85%;

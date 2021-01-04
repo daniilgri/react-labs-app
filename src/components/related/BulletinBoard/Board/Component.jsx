@@ -31,7 +31,7 @@ const Component = ({
 
   return (
     <>
-      <SearchBar value={query} onSet={setFilmsSearchQuery} />
+      <SearchBar value={query} onSet={setFilmsSearchQuery} placeholder="Search by tag..." />
       <BoardContainer>
         <Wrapper>
           {films.length > 0 &&

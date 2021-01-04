@@ -5,6 +5,7 @@ import {
   fetchUsersAdminPanelInitialRequested,
   deleteUserRequested,
   fetchUsersAdminPanelNextRequested,
+  setUsersSearchQuery,
 } from "../../../../../store/actions/usersAdminPanelActions";
 import Component from "./Component";
 
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
   currentUser: state.auth.user,
   loadingCurrentUser: state.auth.loading,
   errorCurrentUser: state.auth.error,
+  query: state.usersAdminPanel.query,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
       fetchUsersAdminPanelInitialRequested,
       deleteUserRequested,
       fetchUsersAdminPanelNextRequested,
+      setUsersSearchQuery,
     },
     dispatch
   ),

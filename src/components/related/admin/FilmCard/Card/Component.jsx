@@ -24,14 +24,24 @@ const Component = ({ filmId, fetchFilmByIdAdminPanelRequested, film, filmError, 
 
 Component.defaultProps = {
   filmError: "",
+  filmId: "",
+  film: {
+    title: "",
+    description: "",
+    tags: [],
+    image: "",
+    rates: [],
+    screeningDates: [],
+    ticketPrice: "",
+  },
 };
 
 Component.propTypes = {
-  filmId: PropTypes.string.isRequired,
+  filmId: PropTypes.string,
   fetchFilmByIdAdminPanelRequested: PropTypes.func.isRequired,
   film: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
-  ).isRequired,
+  ),
   filmError: PropTypes.string,
   loading: PropTypes.bool.isRequired,
 };

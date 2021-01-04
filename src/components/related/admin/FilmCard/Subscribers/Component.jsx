@@ -50,10 +50,11 @@ Component.defaultProps = {
   error: "",
   count: 0,
   allCount: 0,
+  filmId: "",
 };
 
 Component.propTypes = {
-  filmId: PropTypes.string.isRequired,
+  filmId: PropTypes.string,
   fetchSubscribersInitialRequested: PropTypes.func.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
   error: PropTypes.string,

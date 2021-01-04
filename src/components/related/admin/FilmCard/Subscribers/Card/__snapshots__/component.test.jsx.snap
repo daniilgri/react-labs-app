@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin: Subscriber Card component renders correctly 1`] = `
+<component
+  user={
+    Object {
+      "email": "",
+      "firstName": "",
+      "lastName": "",
+      "requestOnDelete": false,
+      "role": "guest",
+      "uid": "",
+    }
+  }
+/>
+`;

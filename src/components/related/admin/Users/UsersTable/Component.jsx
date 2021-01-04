@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import Card from "./Card";
 
-import { Wrapper, Loading, CenterContainer, FetchButton } from "./styles";
+import SearchBar from "../../../../global/SearchBar";
+import Card from "./Card";
+import { Wrapper, Loading, CenterContainer, FetchButton, Container } from "./styles";
 
 const Component = ({
   loading,
@@ -17,6 +18,8 @@ const Component = ({
   currentUser,
   loadingCurrentUser,
   errorCurrentUser,
+  setUsersSearchQuery,
+  query,
 }) => {
   const handleGetMoreButtonOnClick = event => {
     event.preventDefault();
@@ -40,27 +43,34 @@ const Component = ({
 
   return (
     <>
-      <Wrapper>
-        {users.length > 0 &&
-          users.map(item => (
-            <Card
-              key={uuidv4()}
-              currentUser={currentUser}
-              user={item}
-              onConfirmDeleteRequest={handleConfirmDeleteRequest}
-              onDelete={handleDeleteUser}
-            />
-          ))}
-      </Wrapper>
-      {loading || error || loadingCurrentUser || errorCurrentUser ? (
-        <Loading>Loading</Loading>
-      ) : (
-        count < allCount && (
-          <CenterContainer>
-            <FetchButton onClick={handleGetMoreButtonOnClick}>Get more</FetchButton>
-          </CenterContainer>
-        )
-      )}
+      <SearchBar
+        onSet={setUsersSearchQuery}
+        value={query}
+        placeholder="Search by first name, last name or email..."
+      />
+      <Container>
+        <Wrapper>
+          {users.length > 0 &&
+            users.map(item => (
+              <Card
+                key={uuidv4()}
+                currentUser={currentUser}
+                user={item}
+                onConfirmDeleteRequest={handleConfirmDeleteRequest}
+                onDelete={handleDeleteUser}
+              />
+            ))}
+        </Wrapper>
+        {loading || error || loadingCurrentUser || errorCurrentUser ? (
+          <Loading>Loading</Loading>
+        ) : (
+          count < allCount && (
+            <CenterContainer>
+              <FetchButton onClick={handleGetMoreButtonOnClick}>Get more</FetchButton>
+            </CenterContainer>
+          )
+        )}
+      </Container>
     </>
   );
 };
@@ -79,6 +89,7 @@ Component.defaultProps = {
     role: "guest",
     requestOnDelete: false,
   },
+  query: "",
 };
 
 Component.propTypes = {
@@ -95,6 +106,8 @@ Component.propTypes = {
   ),
   loadingCurrentUser: PropTypes.bool.isRequired,
   errorCurrentUser: PropTypes.string,
+  setUsersSearchQuery: PropTypes.func.isRequired,
+  query: PropTypes.string,
 };
 
 export default Component;

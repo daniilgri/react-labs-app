@@ -122,12 +122,13 @@ const Component = ({
 
 Component.defaultProps = {
   error: "",
+  filmId: "",
 };
 
 Component.propTypes = {
   editFilmRequested: PropTypes.func.isRequired,
   openAddScreeningDateModal: PropTypes.func.isRequired,
-  filmId: PropTypes.string.isRequired,
+  filmId: PropTypes.string,
   film: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string, PropTypes.array])
   ).isRequired,

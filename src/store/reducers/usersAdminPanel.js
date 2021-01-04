@@ -8,6 +8,7 @@ import {
   fetchUsersAdminPanelNextFailed,
   fetchUsersAdminPanelNextRequested,
   fetchUsersAdminPanelNextSucceed,
+  setUsersSearchQuery,
 } from "../actions/usersAdminPanelActions";
 
 export const initialState = {
@@ -48,6 +49,13 @@ const usersAdminPanel = handleActions(
     [fetchUsersAdminPanelNextFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
       state.error = message;
+    }),
+    [setUsersSearchQuery]: produce((state, { payload }) => {
+      state.query = payload;
+      state.loading = true;
+      state.users = [];
+      state.allCount = 0;
+      state.error = "";
     }),
   },
   initialState

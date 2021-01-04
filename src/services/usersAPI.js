@@ -3,7 +3,12 @@ import API from "./axios";
 
 export const getUsersInitialAPI = async payload => {
   const allSnapshot = await db.collection("users").get();
-  const snapshot = await db.collection("users").orderBy("email").limit(payload.limit).get();
+  const snapshot = await db
+    .collection("users")
+    .where("keywords", "array-contains", payload.query)
+    .orderBy("email")
+    .limit(payload.limit)
+    .get();
   return {
     users: snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() };
@@ -15,6 +20,7 @@ export const getUsersInitialAPI = async payload => {
 export const getUsersNextAPI = async payload => {
   const snapshot = await db
     .collection("users")
+    .where("keywords", "array-contains", payload.query)
     .orderBy("email")
     .startAfter(payload.users[payload.users.length - 1].email)
     .limit(payload.limit)

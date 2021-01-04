@@ -15,9 +15,7 @@ const component = ({ user, loading, error }) => {
         <FilledButton to="/admin/films/new">New film</FilledButton>
       </Body>
     </Wrapper>
-  ) : (
-    <h1>Hello</h1>
-  );
+  ) : null;
 };
 
 component.defaultProps = {

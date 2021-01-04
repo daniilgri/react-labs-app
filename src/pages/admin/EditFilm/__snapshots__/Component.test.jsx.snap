@@ -3,7 +3,7 @@
 exports[`EditFilm component renders correctly 1`] = `
 Array [
   <nav
-    className="sc-bdfBwQ grEbaU"
+    className="sc-bdfBwQ jLEyRP"
   >
     <div
       className="sc-jSgupP NXinf"
@@ -76,7 +76,7 @@ Array [
     </ul>
   </nav>,
   <div
-    className="sc-aemoO hUrqFk"
+    className="sc-aemoO jASfAr"
   >
     <form
       className="sc-clsHhM gcwzZZ"

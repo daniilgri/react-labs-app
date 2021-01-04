@@ -3,7 +3,7 @@
 exports[`admin FilmCard component renders correctly 1`] = `
 Array [
   <nav
-    className="sc-bdfBwQ grEbaU"
+    className="sc-bdfBwQ jLEyRP"
   >
     <div
       className="sc-jSgupP NXinf"
@@ -76,13 +76,82 @@ Array [
     </ul>
   </nav>,
   <div
-    className="sc-iUuytg hSZdwu"
+    className="sc-iUuytg bQiixx"
   >
-    <h3
-      className="sc-iJuUWI"
+    <div
+      className="sc-lmoMRL EImyq"
     >
-      Loading
-    </h3>
+      <div
+        className="sc-iBPRYJ clCQaR"
+      >
+        <div
+          className="sc-fubCfw fCdnLb"
+          src=""
+        />
+        <div
+          className="sc-pFZIQ lcNgUe"
+        >
+          <ul
+            className="sc-crrsfI fSNQeo"
+          />
+          <div
+            className="sc-bqyKva qAJYd"
+          >
+            <h5
+              className="sc-hBEYos kdWGZO"
+            >
+              Rate 
+              <span
+                className="sc-kstrdz kekgPR"
+              >
+                -
+              </span>
+            </h5>
+          </div>
+          <h4
+            className="sc-iqHYGH imAXwf"
+          >
+            
+             $
+          </h4>
+          <h2
+            className="sc-jrAGrp cfdjqk"
+          >
+            
+          </h2>
+          <p
+            className="sc-kEjbxe"
+          >
+            
+          </p>
+        </div>
+      </div>
+      <div
+        className="sc-fodVxV duiFmH"
+      >
+        <h3
+          className="sc-fFubgz cLfBhW"
+        >
+          Ticketing
+        </h3>
+        <div
+          className="sc-bkzZxe gAHmgU"
+        >
+          <div
+            className="sc-idOhPF Fpyxh"
+          >
+            <h5
+              className="sc-dIUggk iEZvcG"
+            >
+              Day
+            </h5>
+            <ul
+              className="sc-hHftDr hDRliZ"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       className="sc-cBNfnY hVTtNn"
     >

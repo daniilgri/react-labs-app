@@ -8,6 +8,7 @@ import {
   fetchFilmsAdminPanelNextFailed,
   fetchFilmsAdminPanelNextRequested,
   fetchFilmsAdminPanelNextSucceed,
+  setAdminPanelFilmsSearchQuery,
 } from "../actions/filmsAdminPanelActions";
 
 export const initialState = {
@@ -48,6 +49,13 @@ const filmsAdminPanel = handleActions(
     [fetchFilmsAdminPanelNextFailed]: produce((state, { payload: { message } }) => {
       state.loading = false;
       state.error = message;
+    }),
+    [setAdminPanelFilmsSearchQuery]: produce((state, { payload }) => {
+      state.query = payload;
+      state.loading = true;
+      state.films = [];
+      state.allCount = 0;
+      state.error = "";
     }),
   },
   initialState

@@ -70,3 +70,8 @@ export const fetchEditFilmRequested = createAction(
 );
 export const fetchEditFilmSucceed = createAction("@FILMS_ADMIN_PANEL/FETCH_EDIT_FILM_SUCCEED");
 export const fetchEditFilmFailed = createAction("@FILMS_ADMIN_PANEL/FETCH_EDIT_FILM_FAILED");
+
+export const setAdminPanelFilmsSearchQuery = createAction(
+  "@FILMS_ADMIN_PANEL/SET_FILMS_SEARCH_QUERY",
+  payload => payload
+);

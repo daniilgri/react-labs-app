@@ -110,7 +110,7 @@ Component.propTypes = {
   values: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array])
   ).isRequired,
-  errors: PropTypes.objectOf(PropTypes.object).isRequired,
+  errors: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
   onAddScreeningDateModalOpen: PropTypes.func.isRequired,
   onScreeningDateAdd: PropTypes.func.isRequired,
   onScreeningDateDelete: PropTypes.func.isRequired,

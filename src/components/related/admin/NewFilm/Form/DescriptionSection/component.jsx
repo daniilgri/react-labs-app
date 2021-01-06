@@ -59,7 +59,7 @@ Component.propTypes = {
   values: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array])
   ).isRequired,
-  errors: PropTypes.objectOf(PropTypes.object).isRequired,
+  errors: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
   onTagAdd: PropTypes.func.isRequired,
   onTagDelete: PropTypes.func.isRequired,
 };

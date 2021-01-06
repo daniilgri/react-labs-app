@@ -5,6 +5,7 @@ import {
   fetchFilmsAdminPanelInitialRequested,
   deleteFilmRequested,
   fetchFilmsAdminPanelNextRequested,
+  setAdminPanelFilmsSearchQuery,
 } from "../../../../../store/actions/filmsAdminPanelActions";
 import Component from "./Component";
 
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
   error: state.filmsAdminPanel.error,
   allCount: state.filmsAdminPanel.allCount,
   count: state.filmsAdminPanel.count,
+  query: state.filmsAdminPanel.query,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
       fetchFilmsAdminPanelInitialRequested,
       deleteFilmRequested,
       fetchFilmsAdminPanelNextRequested,
+      setAdminPanelFilmsSearchQuery,
     },
     dispatch
   ),

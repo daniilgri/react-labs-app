@@ -15,6 +15,7 @@ describe("FilmsTable component", () => {
           allCount={0}
           count={0}
           deleteFilmRequested={() => {}}
+          setAdminPanelFilmsSearchQuery={() => {}}
         />
       )
       .toJSON();

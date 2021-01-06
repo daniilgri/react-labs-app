@@ -22,6 +22,7 @@ import {
   addFilmRequested,
   editFilmRequested,
   fetchEditFilmRequested,
+  setAdminPanelFilmsSearchQuery,
 } from "../actions/filmsAdminPanelActions";
 import {
   fetchUsersAdminPanelInitialRequested,
@@ -80,34 +81,45 @@ function* rootSaga() {
     yield fork(authCurrentUser),
 
     yield takeLatest(addFilmRequested, addFilm),
+    yield takeLatest(editFilmRequested, editFilm),
+
     yield takeLatest(fetchFilmsInitialRequested, fetchFilmsInitial),
     yield takeLatest(fetchFilmsNextRequested, fetchFilmsNext),
-    yield takeLatest(fetchFilmByIdRequested, fetchFilmById),
-    yield takeLatest(updateFilmRatingRequested, updateFilmRating),
     yield takeLatest(setFilmsSearchQuery, fetchFilmsInitial),
+
+    yield takeLatest(fetchFilmByIdRequested, fetchFilmById),
+
+    yield takeLatest(updateFilmRatingRequested, updateFilmRating),
 
     yield takeLatest(signUpRequested, signUp),
     yield takeLatest(signInRequested, signIn),
     yield takeLatest(signOutRequested, signOut),
+
     yield takeLatest(requestOnDeleteRequested, requestOnDelete),
     yield takeLatest(cancelRequestOnDeleteRequested, cancelRequestOnDelete),
 
     yield takeLatest(fetchFilmsAdminPanelInitialRequested, fetchFilmsAdminPanelInitial),
+    yield takeLatest(fetchFilmsAdminPanelNextRequested, fetchFilmsAdminPanelNext),
+    yield takeLatest(setAdminPanelFilmsSearchQuery, fetchFilmsAdminPanelInitial),
+
     yield takeLatest(fetchFilmByIdAdminPanelRequested, fetchFilmByIdAdminPanel),
+
     yield takeLatest(fetchUsersAdminPanelInitialRequested, fetchUsersAdminPanelInitial),
     yield takeLatest(fetchUsersAdminPanelNextRequested, fetchUsersAdminPanelNext),
+    yield takeLatest(setUsersSearchQuery, fetchUsersAdminPanelInitial),
+
     yield takeLatest(deleteFilmRequested, deleteFilm),
     yield takeLatest(fetchSubscribersInitialRequested, fetchSubscribersInitial),
     yield takeLatest(fetchSubscribersNextRequested, fetchSubscribersNext),
+
     yield takeLatest(deleteUserRequested, deleteUser),
-    yield takeLatest(fetchFilmsAdminPanelNextRequested, fetchFilmsAdminPanelNext),
-    yield takeLatest(editFilmRequested, editFilm),
+
     yield takeLatest(fetchEditFilmRequested, fetchEditFilm),
-    yield takeLatest(setUsersSearchQuery, fetchUsersAdminPanelInitial),
 
     yield takeLatest(makeOrderRequested, makeOrder),
-    yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),
     yield takeLatest(cancelOrderRequested, cancelOrder),
+
+    yield takeLatest(fetchOrdersInitialRequested, fetchOrdersInitial),
     yield takeLatest(fetchOrdersNextRequested, fetchOrdersNext),
 
     yield takeLatest(updateProfileRequested, updateProfile),

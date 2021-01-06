@@ -1,5 +1,14 @@
-import generateKeywords from "../utils/generateKeywords";
 import { db, storage } from "./firestore";
+import createKeywords from "../utils/createKeywords";
+
+const generateKeywords = tags => {
+  const result = [];
+  tags.forEach(el => {
+    result.push(...createKeywords(el.toLowerCase()));
+  });
+
+  return ["", ...result];
+};
 
 export const addFilmAPI = async payload => {
   const newFilmDoc = db.collection("films").doc();
@@ -11,6 +20,7 @@ export const addFilmAPI = async payload => {
     tags: payload.tags,
     screeningDates: payload.screeningDates,
     rates: [],
+    keywords: generateKeywords(payload.tags),
   });
 
   const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
@@ -63,9 +73,9 @@ export const editFilmAPI = async payload => {
   }
   filmDoc.ref.update(changedValues);
 
-  if (changedValues.title) {
+  if (changedValues.tags) {
     filmDoc.ref.update({
-      keywords: generateKeywords({ title: changedValues.title.toLowerCase() }),
+      keywords: generateKeywords(changedValues.tags),
     });
   }
 };
@@ -76,7 +86,7 @@ export const getFilmsInitialAPI = async payload => {
   if (payload.query) {
     snapshot = await db
       .collection("films")
-      .where("tags", "array-contains", payload.query)
+      .where("keywords", "array-contains", payload.query.toLowerCase())
       .orderBy("title")
       .limit(payload.limit)
       .get();
@@ -96,7 +106,7 @@ export const getFilmsNextAPI = async payload => {
   if (payload.query) {
     snapshot = await db
       .collection("films")
-      .where("tags", "array-contains", payload.query)
+      .where("keywords", "array-contains", payload.query.toLowerCase())
       .orderBy("title")
       .startAfter(payload.films[payload.films.length - 1].title)
       .limit(payload.limit)

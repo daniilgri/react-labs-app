@@ -23,6 +23,6 @@ const Component = ({ onImageUpload, errors }) => {
 
 Component.propTypes = {
   onImageUpload: PropTypes.func.isRequired,
-  errors: PropTypes.objectOf(PropTypes.object).isRequired,
+  errors: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
 };
 export default withRouter(Component);

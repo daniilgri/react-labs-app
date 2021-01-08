@@ -25,7 +25,7 @@ const Component = ({
 
   useEffect(() => {
     fetchSubscribersInitialRequested({ filmId });
-  }, []);
+  }, [fetchSubscribersInitialRequested, filmId]);
 
   return (
     <>

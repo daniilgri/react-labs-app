@@ -28,7 +28,7 @@ const Component = ({
 
   useEffect(() => {
     fetchFilmByIdRequested(filmId);
-  }, []);
+  }, [fetchFilmByIdRequested, filmId]);
 
   if (loading || filmError || !film) {
     return <Pending>Loading</Pending>;

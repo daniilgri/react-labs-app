@@ -31,7 +31,7 @@ const Component = ({
     return () => {
       setAdminPanelFilmsSearchQuery("");
     };
-  }, []);
+  }, [fetchFilmsAdminPanelInitialRequested, setAdminPanelFilmsSearchQuery]);
 
   return (
     <>

@@ -8,7 +8,7 @@ import { Wrapper, Pending } from "./styles";
 const Component = ({ filmId, fetchFilmByIdAdminPanelRequested, film, filmError, loading }) => {
   useEffect(() => {
     fetchFilmByIdAdminPanelRequested(filmId);
-  }, []);
+  }, [fetchFilmByIdAdminPanelRequested, filmId]);
 
   if (loading || filmError || !film) {
     return <Pending>Loading</Pending>;

@@ -25,7 +25,7 @@ const Component = ({
 
   useEffect(() => {
     fetchOrdersInitialRequested();
-  }, []);
+  }, [fetchOrdersInitialRequested]);
 
   return (
     <>

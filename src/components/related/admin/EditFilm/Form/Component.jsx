@@ -20,7 +20,7 @@ const Component = ({
 }) => {
   useEffect(() => {
     fetchEditFilmRequested(filmId);
-  }, []);
+  }, [fetchEditFilmRequested, filmId]);
 
   const formik = useFormik({
     initialValues: {

@@ -30,7 +30,7 @@ const Component = ({
     return () => {
       setFilmsSearchQuery("");
     };
-  }, []);
+  }, [fetchFilmsInitialRequested, setFilmsSearchQuery]);
 
   return (
     <>

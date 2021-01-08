@@ -42,7 +42,7 @@ const Component = ({
     return () => {
       setUsersSearchQuery("");
     };
-  }, []);
+  }, [fetchUsersAdminPanelInitialRequested, setUsersSearchQuery]);
 
   return (
     <>

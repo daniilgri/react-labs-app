@@ -34,7 +34,7 @@ const Component = ({ signInRequested, error, cleanAuthErrorState }) => {
     return () => {
       cleanAuthErrorState();
     };
-  }, []);
+  }, [cleanAuthErrorState]);
 
   return (
     <Wrapper onSubmit={formik.handleSubmit}>

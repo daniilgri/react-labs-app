@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Inject .env
+      run: echo "SKIP_PREFLIGHT_CHECK=true" > ".env"
     - name: Install Packages 🔧
       run: |
         npm install

@@ -18,7 +18,27 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Inject .env
-      run: echo "SKIP_PREFLIGHT_CHECK=true" > ".env"
+      run: echo "
+          SKIP_PREFLIGHT_CHECK=true
+          AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
+          AUTH_URI=${{ secrets.AUTH_URI }}
+          CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}
+          CLIENT_ID=${{ secrets.CLIENT_ID }}
+          CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}
+          DB_URL=${{ secrets.DB_URL }}
+          PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}
+          PROJECT_ID=${{ secrets.PROJECT_ID }}
+          REACT_APP_FIREBASE_API_KEY=${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+          REACT_APP_FIREBASE_APP_ID=${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+          REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
+          REACT_APP_FIREBASE_DATABASE_URL=${{ secrets.REACT_APP_FIREBASE_DATABASE_URL }}
+          REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+          REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+          REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+          TOKEN_URI=${{ secrets.TOKEN_URI }}
+          TYPE=${{ secrets.TYPE }}
+        " > ".env"
     - name: Install Packages 🔧
       run: |
         npm install
@@ -28,4 +48,4 @@ jobs:
     - name: Build 🏗️
       run: npm run build
     - name: Test 🚨
-      run: npm test -- --coverage --updateSnapshot
+      run: npm test -- --updateSnapshot

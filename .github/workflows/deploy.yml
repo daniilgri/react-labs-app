@@ -19,7 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Inject .env
       run: echo "
-          SKIP_PREFLIGHT_CHECK=true
+          SKIP_PREFLIGHT_CHECK=${{ secrets.SKIP_PREFLIGHT_CHECK }}
           AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
           AUTH_URI=${{ secrets.AUTH_URI }}
           CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}

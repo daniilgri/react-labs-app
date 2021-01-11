@@ -28,25 +28,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.18.4]
+        node-version: [14.15.4]
     steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Inject .env
-      run: echo "
+      - name: Checkout 🛎️
+        uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Inject .env
+        run: echo "
           SKIP_PREFLIGHT_CHECK=true
-        " > ".env"
-    - name: Install Packages 🔧
-      run: |
-        npm install
-        cd server
-        npm install
-        cd ../
-    - name: Build 🏗️
-      run: npm run build
-    - name: Test 🚨
-      run: npm test -- --updateSnapshot
+          " > ".env"
+      - name: Install Packages 🔧
+        run: |
+          npm install
+          cd server
+          npm install
+          cd ../
+      - name: Build 🏗️
+        run: npm run build
+      - name: Test 🚨
+        run: npm test -- --updateSnapshot

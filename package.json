@@ -1,9 +1,5 @@
 {
   "name": "react-labs-app",
-  "jest": {
-    "verbose": true,
-    "preset": "jest-puppeteer"
-  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,8 +43,8 @@
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:e2e": "jest",
-    "test:e2eWatch": "jest --watch",
+    "test:e2e": "jest -c ./e2e/jest.config.js",
+    "test:e2eWatch": "jest -c ./e2e/jest.config.js --watch",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",

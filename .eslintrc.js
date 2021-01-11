@@ -7,6 +7,10 @@ module.exports = {
   extends: ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
   globals: {
     $: "readonly",
+    page: true,
+    browser: true,
+    context: true,
+    jestPuppeteer: true,
   },
   parser: "babel-eslint",
   parserOptions: {

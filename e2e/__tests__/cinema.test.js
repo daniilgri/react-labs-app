@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 describe("Google", () => {
   beforeAll(async () => {
     await page.goto("https://google.com");

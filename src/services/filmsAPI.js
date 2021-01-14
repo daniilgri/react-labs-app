@@ -1,4 +1,6 @@
+import { v4 as uuidv4 } from "uuid";
 import { db, storage } from "./firestore";
+
 import createKeywords from "../utils/createKeywords";
 
 const generateKeywords = tags => {
@@ -23,7 +25,8 @@ export const addFilmAPI = async payload => {
     keywords: generateKeywords(payload.tags),
   });
 
-  const uploadTask = storage.ref(`/images/${payload.imageAsFile.name}`).put(payload.imageAsFile);
+  const imageName = uuidv4();
+  const uploadTask = storage.ref(`/images/${imageName}`).put(payload.imageAsFile);
 
   uploadTask.on(
     "state_changed",
@@ -32,7 +35,7 @@ export const addFilmAPI = async payload => {
     () => {
       storage
         .ref("images")
-        .child(payload.imageAsFile.name)
+        .child(imageName)
         .getDownloadURL()
         .then(imageUrl => {
           newFilmDoc.update({

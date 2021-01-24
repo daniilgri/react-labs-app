@@ -14,12 +14,11 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
+    "cypress": "^6.3.0",
     "firebase": "^7.24.0",
     "formik": "^2.2.0",
     "immer": "^7.0.14",
-    "jest-puppeteer": "^4.4.0",
     "prop-types": "^15.7.2",
-    "puppeteer": "^5.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-modal": "^3.11.2",
@@ -45,10 +44,12 @@
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:e2e": "concurrently \"npm run dev\" \"npm run cypress\"",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "heroku-postbuild": "cd server && npm install && cd ../ && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd server && npm install && cd ../ && npm install --only=dev --no-shrinkwrap && npm run build",
+    "cypress": "cypress open --project ./e2e --config baseUrl=http://localhost:3000,chromeWebSecurity=false"    
   },
   "husky": {
     "hooks": {
